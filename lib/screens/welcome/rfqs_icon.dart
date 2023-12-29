@@ -54,7 +54,7 @@ class _RFQIconsState extends State<RFQIcons> {
             int index,
           ) {
             return card(
-                _rfqs[index].quantity.toString(), _rfqs[index].expiration, context);
+                _rfqs[index].quantity.toString(), _rfqs[index].isExpired! ? "true" : "false", context);
           }),
     );
   }

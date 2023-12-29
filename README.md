@@ -1,1 +1,1 @@
-# Code Bridge Flutter APp template
+# Code Bridge Flutter App template

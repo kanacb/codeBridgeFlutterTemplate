@@ -1,8 +1,9 @@
-import 'package:feathersjs_demo_app/models/user.dart';
+import 'package:vx_index/users/userModel.dart';
 import 'package:flutter/material.dart';
 
 class ReceiverMessageTile extends StatelessWidget {
-  const ReceiverMessageTile({Key? key, required this.content}) : super(key: key);
+  const ReceiverMessageTile({Key? key, required this.content})
+      : super(key: key);
 
   final String content;
 

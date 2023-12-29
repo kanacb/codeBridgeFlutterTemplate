@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.feathersjs_demo_app">
+    package="com.cb.vx.index">
    <application
-        android:label="feathersjs_demo_app"
+        android:label="VX Index"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

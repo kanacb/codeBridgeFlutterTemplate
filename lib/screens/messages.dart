@@ -1,9 +1,12 @@
-import 'package:feathersjs_demo_app/models/message.dart';
-import 'package:feathersjs_demo_app/screens/users.dart';
-import 'package:feathersjs_demo_app/screens/widgets/loading.dart';
-import 'package:feathersjs_demo_app/screens/widgets/message_tiles.dart';
-import 'package:feathersjs_demo_app/services/messages.dart';
+import 'package:vx_index/models/message.dart';
+import 'package:vx_index/users/userModel.dart';
+import 'package:vx_index/screens/widgets/loading.dart';
+import 'package:vx_index/screens/widgets/message_tiles.dart';
+import 'package:vx_index/services/messages.dart';
 import 'package:flutter/material.dart';
+
+import '../global.dart';
+import '../users/usersScreen.dart';
 
 class MessagesScreen extends StatefulWidget {
   const MessagesScreen({Key? key}) : super(key: key);
@@ -64,9 +67,10 @@ class MessagesScreenState extends State<MessagesScreen> {
         elevation: 12,
         titleSpacing: 10,
         title: const Text(
-          'FlutterFeathersJS Chat',
+          'Notifications',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
+        backgroundColor: colorPrimary,
         actions: [
           IconButton(
             icon: const Icon(Icons.people_alt_outlined),

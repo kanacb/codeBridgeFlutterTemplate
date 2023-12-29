@@ -1,4 +1,4 @@
-import 'package:feathersjs_demo_app/global.dart';
+import 'package:vx_index/global.dart';
 
 class Message {
   final String content;

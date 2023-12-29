@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:feathersjs_demo_app/global.dart';
-import 'package:feathersjs_demo_app/main.dart';
-import 'package:feathersjs_demo_app/models/message.dart';
-import 'package:feathersjs_demo_app/services/api.dart';
+import 'package:vx_index/global.dart';
+import 'package:vx_index/main.dart';
+import 'package:vx_index/models/message.dart';
+import 'package:vx_index/services/api.dart';
 import 'package:flutter_feathersjs/flutter_feathersjs.dart';
 
 class MessagesAPI {
@@ -24,10 +24,10 @@ class MessagesAPI {
        */
     } on FeatherJsError catch (e) {
       logger.e("FeatherJsError error ::: Type => ${e.type} ::: Message => ${e.message}");
-      error = "Unexpected FeatherJsError occured, please retry!";
+      error = "Unexpected FeatherJsError occurred, please retry!";
     } catch (e) {
       logger.e("Unexpected error ::: ${e.toString()}");
-      error = "Unexpected error occured, please retry!";
+      error = "Unexpected error occurred, please retry!";
     }
     return APIResponse(errorMessage: error, data: messages);
   }
@@ -43,10 +43,10 @@ class MessagesAPI {
       logger.e(response.toString());
     } on FeatherJsError catch (e) {
       logger.e("FeatherJsError error ::: Type => ${e.type} ::: Message => ${e.message}");
-      error = "Unexpected FeatherJsError occured, please retry!";
+      error = "Unexpected FeatherJsError occurred, please retry!";
     } catch (e) {
       logger.e("Unexpected error ::: ${e.toString()}");
-      error = "Unexpected error occured, please retry!";
+      error = "Unexpected error occurred, please retry!";
     }
     return APIResponse(errorMessage: error, data: null);
   }

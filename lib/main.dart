@@ -31,14 +31,14 @@ class MyApp extends StatefulWidget  {
 }
 
 class _MyAppState extends State<MyApp> {
- User? user;
+ UsersModel? user;
 
   @override
   void initState() {
     super.initState();
     var thisUser = Utils.getItemFromLocalStorage("user");
     if (thisUser != null) {
-      user = User.fromMap(thisUser!);
+      user = UsersModel.fromMap(thisUser!);
       print(thisUser.toString());
     }
 
@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'VX Index',
+      title: '~cb-project-name~',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,

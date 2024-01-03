@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:~cb-project-name~/screens/auth/login_screen.dart';
 import 'package:~cb-project-name~/messages/messages_screen.dart';
 import 'package:~cb-project-name~/screens/welcome/welcome_screen.dart';
-import 'package:~cb-project-name~/screens/drawer/new_password.dart';
 import 'package:~cb-project-name~/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feathersjs/flutter_feathersjs.dart';

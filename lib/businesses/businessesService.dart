@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import '../main.dart';
 import 'package:vx_index/global.dart';
-import 'package:vx_index/businesses/businessModel.dart';
+import 'businessModel.dart';
 import 'package:vx_index/services/api.dart';
 import 'package:flutter_feathersjs/flutter_feathersjs.dart';
 

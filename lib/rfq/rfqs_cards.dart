@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vx_index/rfq/rfqModel.dart';
+import 'package:vx_index/rfq/rfq_model.dart';
 
-import '../../rfq/rfqService.dart';
+import 'rfq_service.dart';
 
 class RFQIcons extends StatefulWidget {
   const RFQIcons({super.key});

@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:vx_index/screens/login_screen.dart';
-import 'package:vx_index/screens/messages.dart';
+import 'package:vx_index/screens/auth/login_screen.dart';
+import 'package:vx_index/messages/messages_screen.dart';
 import 'dart:io';
 import 'package:vx_index/screens/welcome/welcome_screen.dart';
-import 'package:vx_index/screens/new_password.dart';
+import 'package:vx_index/screens/drawer/new_password.dart';
 import 'package:vx_index/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feathersjs/flutter_feathersjs.dart';

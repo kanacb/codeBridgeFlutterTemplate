@@ -1,5 +1,5 @@
 import 'package:vx_index/global.dart';
-import 'package:vx_index/screens/login_screen.dart';
+import 'package:vx_index/screens/auth/login_screen.dart';
 import 'package:vx_index/screens/welcome/welcome_screen.dart';
 import 'package:vx_index/screens/widgets/footer.dart';
 import 'package:vx_index/screens/widgets/loading.dart';
@@ -8,7 +8,7 @@ import 'package:vx_index/users/userModel.dart';
 import 'package:vx_index/validators.dart';
 import 'package:flutter/material.dart';
 
-import '../businesses/businessDialogCreateScreen.dart';
+import '../../businesses/businessDialogCreateScreen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

@@ -5,14 +5,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:vx_index/businesses/businessesService.dart';
 import 'package:vx_index/global.dart';
-import 'package:vx_index/screens/new_email.dart';
-import 'package:vx_index/screens/new_password.dart';
+import 'package:vx_index/screens/drawer/new_email.dart';
+import 'package:vx_index/screens/drawer/new_password.dart';
 import 'package:vx_index/services/utils.dart';
 
 import '../../businesses/businessDialogViewScreen.dart';
 import '../../users/userModel.dart';
-import '../preferences.dart';
-import '../settings.dart';
+import '../drawer/preferences.dart';
+import '../drawer/settings.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key, required this.user});

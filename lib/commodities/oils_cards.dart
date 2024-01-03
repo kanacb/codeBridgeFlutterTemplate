@@ -60,23 +60,35 @@ class _OilIconsState extends State<OilIcons> {
 
   Widget card(String image, String title, BuildContext context) {
     return Card(
-      color: Colors.white,
-      elevation: 8.0,
-      margin: const EdgeInsets.all(4.0),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      child: Column(
-        children: [
-          Text(title, style: TextStyle(fontWeight: FontWeight.w100, fontSize: 12),),
-          Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: Image.network(
-              image,
-              height: MediaQuery.of(context).size.width * (3 / 4) / 3,
-              fit: BoxFit.fill,
-            ),
+        color: Colors.white,
+        elevation: 8.0,
+        margin: const EdgeInsets.all(4.0),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        child: Center(
+          child: Stack(
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                child: Image.network(
+                  image,
+                  height: 150,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                margin: const EdgeInsets.all(20),
+                child: Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      color: Colors.white70,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 40),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ));
   }
 }

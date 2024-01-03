@@ -1,5 +1,5 @@
 import 'package:flutter_feathersjs/flutter_feathersjs.dart';
-import 'package:vx_index/rfq/rfqModel.dart';
+import 'package:vx_index/rfq/rfq_model.dart';
 import '../global.dart';
 import '../main.dart';
 import '../services/api.dart';

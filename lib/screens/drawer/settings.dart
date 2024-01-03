@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../users/userModel.dart';
+import '../../users/userModel.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key, required this.user});

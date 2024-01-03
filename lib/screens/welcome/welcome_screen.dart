@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:vx_index/businesses/businessesScreen.dart';
 import 'package:vx_index/categories/categoriesScreen.dart';
 import 'package:vx_index/commodities/commoditiesScreen.dart';
-import 'package:vx_index/screens/messages.dart';
-import 'package:vx_index/screens/welcome/business_icon.dart';
-import 'package:vx_index/screens/welcome/oils_icon.dart';
+import 'package:vx_index/messages/messages_screen.dart';
+import 'package:vx_index/businesses/business_cards.dart';
+import 'package:vx_index/commodities/oils_cards.dart';
 import 'package:vx_index/screens/widgets/nav_bar.dart';
 import 'package:vx_index/screens/widgets/tab_bar.dart';
+import 'package:vx_index/services/utils.dart';
 import 'package:vx_index/users/userModel.dart';
 import 'package:vx_index/users/usersScreen.dart';
 
@@ -127,7 +128,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           ),
         ],
       ),
-      body: _selectedIndex == 0 ? buyer(context) : _selectedIndex == 1 ? seller(context) : admin(context),
+      body: _selectedIndex == 0
+          ? buyer(context)
+          : _selectedIndex == 1
+              ? seller(context)
+              : admin(context),
       drawer: NavBar(
         user: widget.user,
       ),
@@ -135,10 +140,58 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 
+  Widget title_name() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(
+              width: 10,
+              height: 10,
+            ),
+            Text(
+              "Good ${Utils.isAfternoon()},",
+              style: const TextStyle(fontSize: 12),
+            ),
+            const SizedBox(
+              width: 3,
+            ),
+            Text(
+              widget.user.name,
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Icon(
+              Icons.ice_skating,
+              size: 12,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Text("services", style: TextStyle(fontSize: 12)),
+            SizedBox(
+              width: 5,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
   Widget buyer(context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        title_name(),
+        const SizedBox(
+          height: 5,
+        ),
         card(
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm1OLI1pm6htVR0lsDkuybur1gtyacpTIBAg&usqp=CAU",
             'Industrial Diesel Oils',
@@ -159,6 +212,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        title_name(),
+        const SizedBox(
+          height: 5,
+        ),
         card(
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm1OLI1pm6htVR0lsDkuybur1gtyacpTIBAg&usqp=CAU",
             'Industrial Diesel Oils',
@@ -179,6 +236,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        title_name(),
+        const SizedBox(
+          height: 5,
+        ),
         card(
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm1OLI1pm6htVR0lsDkuybur1gtyacpTIBAg&usqp=CAU",
             'Industrial Diesel Oils',
@@ -197,7 +258,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   Widget card(String image, String title, BuildContext context) {
     return Card(
-      color: Colors.white,
+      color: Colors.greenAccent,
       elevation: 8.0,
       margin: const EdgeInsets.all(4.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

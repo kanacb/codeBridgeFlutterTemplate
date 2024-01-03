@@ -1,35 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vx_index/users/usersService.dart';
+import '../../global.dart';
+import '../../users/userModel.dart';
+import '../../users/usersService.dart';
+import '../../validators.dart';
 
-import '../global.dart';
-import '../services/authService.dart';
-import '../users/userModel.dart';
-import '../validators.dart';
-import 'widgets/loading.dart';
-
-class ChangePassword extends StatefulWidget {
-  const ChangePassword({super.key, required this.user});
+class ChangeEmail extends StatelessWidget {
+  const ChangeEmail({super.key, required this.user});
   final User user;
   @override
-  State<ChangePassword> createState() => _ChangePasswordState();
-
-}
-
-class _ChangePasswordState extends State<ChangePassword> {
-  late String old = "";
-  late String newPassword = "";
-  late String confirm = "";
-  bool isChanging = false;
-  late LabeledGlobalKey<FormState> key =
-  LabeledGlobalKey<FormState>("ChangePassword");
-
-  @override
   Widget build(BuildContext context) {
+    late String email = "";
+    late LabeledGlobalKey<FormState> key =
+    LabeledGlobalKey<FormState>("ChangeEmail");
+
     return Scaffold(
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(title: Text(widget.user.name)),
+        appBar: AppBar(title: Text(user.name)),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Form(
@@ -43,7 +31,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    'Change Password',
+                    'Change Email',
                     style: TextStyle(fontSize: 50.0),
                   ),
                   Column(
@@ -51,62 +39,20 @@ class _ChangePasswordState extends State<ChangePassword> {
                       TextFormField(
                         keyboardType: TextInputType.visiblePassword,
                         validator: (value) {
-                          if (Validators.isStringNotEmpty(value, false)) {
+                          if (Validators.isEmail(value)) {
                             return null;
                           }
-                          return "Please enter old password";
+                          return "Please enter new email";
                         },
                         onSaved: (value) {
-                          old = value!;
+                          email = value!;
                         },
                         decoration: const InputDecoration(
-                          hintText: 'Old Password',
-                          labelText: 'Old Password',
+                          hintText: 'New Email',
+                          labelText: 'New Email',
                         ),
                       ),
                       const SizedBox(height: 20.0),
-                      TextFormField(
-                        obscureText: true,
-                        keyboardType: TextInputType.visiblePassword,
-                        validator: (value) {
-                          if(old.isNotEmpty && old != value){
-                            return "Please select a new password";
-                          }
-                          if (Validators.isPassword(value)) {
-                            return null;
-                          }
-                          return "Please enter a strong password";
-                        },
-                        onSaved: (value) {
-                          newPassword = value!;
-                        },
-                        decoration: const InputDecoration(
-                          hintText: 'New Password',
-                          labelText: 'New Password',
-                        ),
-                      ),
-                      const SizedBox(height: 30.0),
-                      TextFormField(
-                        obscureText: true,
-                        keyboardType: TextInputType.visiblePassword,
-                        validator: (value) {
-                          if(newPassword != value){
-                            return "Please check your password";
-                          }
-                          if (Validators.isPassword(value)) {
-                            return null;
-                          }
-                          return "Please enter a strong password";
-                        },
-                        onSaved: (value) {
-                          confirm = value!;
-                        },
-                        decoration: const InputDecoration(
-                          hintText: 'Confirm Password',
-                          labelText: 'Confirm Password',
-                        ),
-                      ),
-                      const SizedBox(height: 30.0),
                       Row(
                         children: [
                           Expanded(
@@ -119,14 +65,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                               onPressed: () async {
                                 if (key.currentState!.validate()) {
                                   key.currentState!.save();
-                                  setState(() {
-                                    isChanging = true;
-                                  });
                                   UsersAPI userApi = UsersAPI();
-                                  final response = await userApi.patch(widget.user.id , { "password" : newPassword});
-                                  setState(() {
-                                    isChanging = false;
-                                  });
+                                  final response = await userApi.patch(user.id , { "email" : email});
                                   if (response.errorMessage == null) {
                                     logger.i(response.data!.toString());
                                     if (context.mounted) {
@@ -148,10 +88,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   }
                                 }
                               },
-                              child: isChanging
-                                  ? const MiniCPI()
-                                  : const Text(
-                                'Change',
+                              child: const Text(
+                                'Verify',
                                 style: TextStyle(
                                     fontSize: 25.0, color: Colors.white),
                               ),
@@ -167,6 +105,4 @@ class _ChangePasswordState extends State<ChangePassword> {
           ),
         ));
   }
-
 }
-

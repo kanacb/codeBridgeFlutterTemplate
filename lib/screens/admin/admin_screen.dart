@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:vx_index/businesses/businessesScreen.dart';
 import 'package:vx_index/categories/categoriesScreen.dart';
 import 'package:vx_index/commodities/commoditiesScreen.dart';
-import 'package:vx_index/screens/messages.dart';
+import 'package:vx_index/messages/messages_screen.dart';
 import 'package:vx_index/screens/widgets/nav_bar.dart';
 import 'package:vx_index/screens/widgets/tab_bar.dart';
 import 'package:vx_index/users/userModel.dart';
 import 'package:vx_index/users/usersScreen.dart';
 
-import '../currencies/currenciesScreen.dart';
-import '../global.dart';
+import '../../currencies/currenciesScreen.dart';
+import '../../global.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({super.key, required this.user});

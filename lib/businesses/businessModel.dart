@@ -6,14 +6,14 @@ class Business {
   late final String reg;
   late final String phone;
   late final String mobile;
-  final String address1;
-  final String address2;
+  String? address1;
+  String? address2;
   late final String city;
   late final String postalcode;
   late final String state;
   late final String country;
   final String businessType;
-  final String createdAt;
+  final DateTime createdAt;
   final String updatedAt;
 
   Business({
@@ -23,7 +23,7 @@ class Business {
     required this.phone,
     required this.mobile,
     required this.address1,
-    required this.address2,
+     this.address2,
     required this.city,
     required this.postalcode,
     required this.state,
@@ -47,7 +47,7 @@ class Business {
         state: map['state'] as String,
         country: map['country'] as String,
         businessType: map['businessType'] as String,
-        createdAt: map['createdAt'] as String,
+        createdAt: map['createdAt'] as DateTime,
         updatedAt: map['updatedAt'] as String);
   }
 

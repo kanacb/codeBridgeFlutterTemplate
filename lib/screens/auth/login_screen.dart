@@ -1,5 +1,5 @@
 import 'package:vx_index/global.dart';
-import 'package:vx_index/screens/register_screen.dart';
+import 'package:vx_index/screens/auth/register_screen.dart';
 import 'package:vx_index/screens/welcome/welcome_screen.dart';
 import 'package:vx_index/screens/widgets/footer.dart';
 import 'package:vx_index/screens/widgets/loading.dart';
@@ -7,7 +7,7 @@ import 'package:vx_index/services/authService.dart';
 import 'package:vx_index/validators.dart';
 import 'package:flutter/material.dart';
 
-import '../users/userModel.dart';
+import '../../users/userModel.dart';
 
 
 class LoginScreen extends StatefulWidget {

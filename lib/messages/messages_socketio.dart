@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:vx_index/global.dart';
 import 'package:vx_index/main.dart';
-import 'package:vx_index/models/message.dart';
+import 'package:vx_index/messages/message.dart';
 import 'package:vx_index/services/api.dart';
 import 'package:flutter_feathersjs/flutter_feathersjs.dart';
 

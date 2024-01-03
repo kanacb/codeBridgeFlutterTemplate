@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:~cb-project-name~/screens/auth/login_screen.dart';
 import 'package:~cb-project-name~/messages/messages_screen.dart';
-import 'dart:io';
 import 'package:~cb-project-name~/screens/welcome/welcome_screen.dart';
 import 'package:~cb-project-name~/screens/drawer/new_password.dart';
 import 'package:~cb-project-name~/services/api.dart';
@@ -10,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feathersjs/flutter_feathersjs.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:~cb-project-name~/services/utils.dart';
-import 'package:~cb-project-name~/users/userModel.dart';
 // import 'package:socket_io_client/socket_io_client.dart' as socket;
 
 FlutterFeathersjs flutterFeathersJS = FlutterFeathersjs()

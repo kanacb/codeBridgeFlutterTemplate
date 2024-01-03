@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feathersjs/flutter_feathersjs.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:~cb-project-name~/services/utils.dart';
+import 'package:~cb-project-name~/components/users/users.model.dart';
 // import 'package:socket_io_client/socket_io_client.dart' as socket;
 
 FlutterFeathersjs flutterFeathersJS = FlutterFeathersjs()

@@ -10,9 +10,11 @@ class API {
 class APIResponse<T> {
   final String? errorMessage;
   final T? data;
+    Map<String, dynamic>? response;
   APIResponse({
     required this.errorMessage,
     required this.data,
+    this.response
   }) : assert(
           (errorMessage == null && data != null) ||
               (errorMessage != null && data == null),

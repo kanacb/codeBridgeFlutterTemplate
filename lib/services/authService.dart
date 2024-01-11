@@ -1,9 +1,9 @@
-import 'package:vx_index/global.dart';
-import 'package:vx_index/main.dart';
-import 'package:vx_index/users/userModel.dart';
-import 'package:vx_index/services/api.dart';
+import '../../global.dart';
+import '../../main.dart';
+import '../../users/userModel.dart';
+import '../../services/api.dart';
 import 'package:flutter_feathersjs/flutter_feathersjs.dart';
-import 'package:vx_index/services/utils.dart';
+import '../../services/utils.dart';
 
 class AuthAPI {
   Future<APIResponse<User>> loginUser(String email, String password) async {

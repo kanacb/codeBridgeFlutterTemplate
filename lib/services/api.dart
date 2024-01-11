@@ -1,6 +1,4 @@
 class API {
-  // development
-  static const baseUrl = "http://192.168.1.4:3030/";
   // staging
   // static const baseUrl = "https://oil-futures.apps.uat.codebridge.live/";
   static const secret =

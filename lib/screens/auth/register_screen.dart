@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vx_oil_futures4/screens/welcome/welcome_screen.dart';
 
 import '../../global.dart';
 import '../../services/authService.dart';
@@ -9,10 +8,9 @@ import '../widgets/footer.dart';
 import '../widgets/loading.dart';
 import 'login_screen.dart';
 
-import '../../businesses/businessDialogCreateScreen.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+   const RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -133,7 +131,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) {
-                                            return  BusinessDialogCreate(user: response.data as User);
+                                            return  const LoginScreen();
                                           },
                                         ),
                                       );
@@ -202,3 +200,4 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ));
   }
 }
+

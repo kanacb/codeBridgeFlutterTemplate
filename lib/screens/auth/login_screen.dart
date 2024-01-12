@@ -104,14 +104,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                     setState(() {
                                       isLoggingIn = false;
                                     });
-                                    if (response.errorMessage == null) {
-
+                                    if (response.errorMessage == null && response.data != null) {
                                       if (context.mounted) {
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) {
-                                              return WelcomeScreen(user: response.data as User);
+                                              return WelcomeScreen(user: response.data!);
                                             },
                                           ),
                                         );

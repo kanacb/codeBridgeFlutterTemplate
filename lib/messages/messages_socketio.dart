@@ -1,8 +1,9 @@
-import 'package:vx_index/global.dart';
-import 'package:vx_index/main.dart';
-import 'package:vx_index/messages/message.dart';
-import 'package:vx_index/services/api.dart';
 import 'package:flutter_feathersjs/flutter_feathersjs.dart';
+
+import '../global.dart';
+import '../main.dart';
+import '../services/api.dart';
+import 'message.dart';
 
 class MessagesAPI {
   Future<APIResponse<List<Message>>> getMessages() async {

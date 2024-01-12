@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../components/users/users.dart';
+import '../../components/users/usersService.dart';
 import '../../global.dart';
-import '../../users/userModel.dart';
-import '../../users/usersService.dart';
 import '../../validators.dart';
 
 class ChangeEmail extends StatelessWidget {

@@ -135,78 +135,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 
-  Widget buyer(context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        title_name(),
-        const SizedBox(
-          height: 5,
-        ),
-        card(
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm1OLI1pm6htVR0lsDkuybur1gtyacpTIBAg&usqp=CAU",
-            'Industrial Diesel Oils',
-            context),
-        const OilIcons(),
-        Text(
-          "RFQ Specially for you",
-          textAlign: TextAlign.end,
-          style: TextStyle(fontSize: 13, foreground: Paint()),
-        ),
-        const BusinessIcons(),
-        const Text("RFQ Just in"),
-      ],
-    );
-  }
-
-  Widget seller(context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        title_name(),
-        const SizedBox(
-          height: 5,
-        ),
-        card(
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm1OLI1pm6htVR0lsDkuybur1gtyacpTIBAg&usqp=CAU",
-            'Industrial Diesel Oils',
-            context),
-        const OilIcons(),
-        Text(
-          "RFQ Specially for you",
-          textAlign: TextAlign.end,
-          style: TextStyle(fontSize: 13, foreground: Paint()),
-        ),
-        const BusinessIcons(),
-        const Text("RFQ Just in"),
-      ],
-    );
-  }
-
-  Widget admin(context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        title_name(),
-        const SizedBox(
-          height: 5,
-        ),
-        card(
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm1OLI1pm6htVR0lsDkuybur1gtyacpTIBAg&usqp=CAU",
-            'Industrial Diesel Oils',
-            context),
-        const OilIcons(),
-        Text(
-          "RFQ Specially for you",
-          textAlign: TextAlign.end,
-          style: TextStyle(fontSize: 13, foreground: Paint()),
-        ),
-        const BusinessIcons(),
-        const Text("RFQ Just in"),
-      ],
-    );
-  }
-
   Widget card(String image, String title, BuildContext context) {
     return Card(
       color: Colors.greenAccent,
@@ -219,7 +147,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(
               title,
-              style: TextStyle(fontSize: 12),
+              style: const TextStyle(fontSize: 12),
             ),
             const Text("RM 3.15/liter",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),

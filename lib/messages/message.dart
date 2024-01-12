@@ -1,4 +1,4 @@
-import 'package:vx_index/global.dart';
+import '../../global.dart';
 
 class Message {
   final String content;

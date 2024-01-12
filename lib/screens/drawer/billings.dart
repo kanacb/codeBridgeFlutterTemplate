@@ -11,7 +11,7 @@ class Billings extends StatefulWidget {
 }
 
 class _BillingsState extends State<Billings> {
-  late User user;
+  late Users user;
 
   getUser() async {
     user = await flutterFeathersJS.rest.reAuthenticate();

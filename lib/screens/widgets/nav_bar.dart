@@ -1,16 +1,11 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:vx_index/businesses/businessesService.dart';
-import 'package:vx_index/global.dart';
-import 'package:vx_index/screens/drawer/new_email.dart';
-import 'package:vx_index/screens/drawer/new_password.dart';
-import 'package:vx_index/services/utils.dart';
-
-import '../../businesses/businessDialogViewScreen.dart';
-import '../../users/userModel.dart';
+import '../../components/businesses/businessesService.dart';
+import '../../global.dart';
+import '../../screens/drawer/new_email.dart';
+import '../../screens/drawer/new_password.dart';
+import '../../services/utils.dart';
+import '../../components/users/users.dart';
 import '../drawer/preferences.dart';
 import '../drawer/settings.dart';
 
@@ -23,7 +18,7 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  BusinessesAPI businessesAPI = BusinessesAPI();
+  BusinessesService businessesAPI = BusinessesService();
   fetchBusinessByUserId() {
     businessesAPI.get(widget.user.businessId).then((value) {
       Navigator.push(

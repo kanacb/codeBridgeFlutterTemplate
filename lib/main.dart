@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import 'package:vx_oil_futures4/screens/welcome/landing_screen.dart';
 import './screens/auth/login_screen.dart';
 import './messages/messages_screen.dart';
 import './screens/welcome/welcome_screen.dart';
@@ -39,7 +41,9 @@ class _MyAppState extends State<MyApp> {
     var thisUser = Utils.getItemFromLocalStorage("user");
     if (thisUser != null) {
       user = Users.fromMap(thisUser!);
-      print(thisUser.toString());
+      if (kDebugMode) {
+        print(thisUser.toString());
+      }
     }
 
   }
@@ -47,7 +51,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '~cb-project-name~',
+      title: 'vx_oil_futures4',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -71,7 +75,7 @@ class _MyAppState extends State<MyApp> {
           displaySmall: GoogleFonts.pacifico(),
         ),
       ),
-      home: user?.id != null ? WelcomeScreen(user: user!) : const LoginScreen(),
+      home: user?.id != null ? WelcomeScreen(user: user!) : const LandingScreen(),
       routes: {
         '/logout' : (context) => const LoginScreen(),
         '/messages' : (context) => const MessagesScreen(),

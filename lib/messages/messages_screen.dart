@@ -1,8 +1,8 @@
-import 'package:vx_index/messages/message.dart';
-import 'package:vx_index/users/userModel.dart';
-import 'package:vx_index/screens/widgets/loading.dart';
-import 'package:vx_index/messages/message_tiles.dart';
-import 'package:vx_index/messages/messages_socketio.dart';
+import 'message.dart';
+import '../components/users/users.dart';
+import '../screens/widgets/loading.dart';
+import 'message_tiles.dart';
+import 'messages_socketio.dart';
 import 'package:flutter/material.dart';
 
 import '../global.dart';

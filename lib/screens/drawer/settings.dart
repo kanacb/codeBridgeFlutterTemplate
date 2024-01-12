@@ -1,8 +1,11 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 import '../../components/users/users.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key, required this.user});
-  final User user;
+  final Users user;
   @override
   State<Settings> createState() => _SettingsState();
 }

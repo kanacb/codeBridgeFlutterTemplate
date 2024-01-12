@@ -1,22 +1,25 @@
 import '../components/users/users.dart';
 import 'package:flutter/material.dart';
 
+import '../services/utils.dart';
+
 class ReceiverMessageTile extends StatelessWidget {
-  ReceiverMessageTile({Key? key, required this.content})
+   ReceiverMessageTile({Key? key, required this.content})
       : super(key: key);
 
-  final String content;
   var thisUser = Utils.getItemFromLocalStorage("user");
-  
+
+  final String content;
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: CircleAvatar(
-          backgroundImage: NetworkImage(User.profileImages.last),
-        ),
-      ),
+      // leading: Padding(
+      //   padding: const EdgeInsets.only(bottom: 10),
+      //   child: CircleAvatar(
+      //     backgroundImage: NetworkImage(users.last),
+      //   ),
+      // ),
       title: Wrap(
         children: [
           Container(
@@ -78,9 +81,9 @@ class SenderMessageTile extends StatelessWidget {
           style: TextStyle(fontSize: 10),
         ),
       ),
-      trailing: CircleAvatar(
-        backgroundImage: NetworkImage(User.profileImages.first),
-      ),
+      // trailing: CircleAvatar(
+      //   backgroundImage: NetworkImage(users.image),
+      // ),
     );
   }
 }

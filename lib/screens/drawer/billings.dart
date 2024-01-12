@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vx_index/main.dart';
-
-import '../../users/userModel.dart';
+import '../../components/users/users.dart';
+import '../../main.dart';
 
 class Billings extends StatefulWidget {
   const Billings({super.key});

@@ -18,7 +18,7 @@ import 'app_bar_title.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key, required this.user});
-  final User user;
+  final Users user;
 
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
@@ -32,55 +32,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     'https://cdn.pixabay.com/photo/2014/09/08/17/32/humming-bird-439364_960_720.jpg',
     'https://cdn.pixabay.com/photo/2018/05/03/22/34/lion-3372720_960_720.jpg',
     'https://cdn.pixabay.com/photo/2021/06/01/07/03/sparrow-6300790_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2017/10/20/10/58/elephant-2870777_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2014/09/08/17/32/humming-bird-439364_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2018/05/03/22/34/lion-3372720_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2021/06/01/07/03/sparrow-6300790_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2017/10/20/10/58/elephant-2870777_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2014/09/08/17/32/humming-bird-439364_960_720.jpg',
-    'https://cdn.pixabay.com/photo/2018/05/03/22/34/lion-3372720_960_720.jpg'
   ];
+  
   List<Map<String, dynamic>> title = [
     {'name': 'Users', 'object': 'users', "screen": const UsersScreen()},
-    {
-      'name': 'Businesses',
-      'object': 'businesses',
-      "screen": const BusinessesScreen()
-    },
-    {
-      'name': 'Currencies',
-      'object': 'currencies',
-      "screen": const CurrenciesScreen()
-    },
-    {
-      'name': 'Categories',
-      'object': 'categories',
-      "screen": const CategoriesScreen()
-    },
-    {
-      'name': 'Commodities',
-      'object': 'commodities',
-      "screen": const CommoditiesScreen()
-    },
-    {
-      'name': 'Delivery methods',
-      'object': 'deliverymethods',
-      "screen": const UsersScreen()
-    },
-    {'name': 'Inboxes', 'object': 'inboxes', "screen": const UsersScreen()},
-    {
-      'name': 'Payment terms',
-      'object': 'paymentterms',
-      "screen": const UsersScreen()
-    },
-    {'name': 'Prices', 'object': 'categories', "screen": const UsersScreen()},
-    {'name': 'Quotations', 'object': 'users', "screen": const UsersScreen()},
-    {
-      'name': 'request4quotes',
-      'object': 'request4quotes',
-      "screen": const UsersScreen()
-    },
-    {'name': 'won', 'object': 'rfqwons', "screen": const UsersScreen()},
   ];
 
   void _onItemTapped(int index) {

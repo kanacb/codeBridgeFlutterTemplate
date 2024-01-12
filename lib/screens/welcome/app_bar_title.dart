@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:vx_oil_futures4/components/businesses/businessesService.dart';
 
-import '../../businesses/businessModel.dart';
-import '../../businesses/businessesService.dart';
+import '../../components/businesses/businesses.dart';
 
 class AppBarTitle extends StatefulWidget {
   const AppBarTitle({super.key});
@@ -14,13 +14,13 @@ class AppBarTitle extends StatefulWidget {
 class _AppBarTitleState extends State<AppBarTitle> {
   final TextEditingController _searchController = TextEditingController();
   late bool _isLoading;
-  List<Business> _businesses = [];
-  List<Business> _filteredbusinesses = [];
+  List<Businesses> _businesses = [];
+  List<Businesses> _filteredbusinesses = [];
   String? error;
-  BusinessesAPI businessesAPI = BusinessesAPI();
+  BusinessesService businessesService = BusinessesService();
 
   fetchBusinesses() {
-    businessesAPI.getBusinesses().then(
+    businessesService.getAll().then(
       (response) {
         _isLoading = false;
         if (response.errorMessage == null) {

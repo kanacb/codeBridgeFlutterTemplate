@@ -1,6 +1,6 @@
 class API {
   // staging
-  // static const baseUrl = "https://oil-futures.apps.uat.codebridge.live/";
+  static const baseUrl = "https://oil-futures.apps.uat.codebridge.live/";
   static const secret =
       "00a11be53e71608c37c1653f28adfd1bcff089abb15e6c0cacbae0da02934d9b";
 }

@@ -1,13 +1,13 @@
+import 'package:flutter_feathersjs/flutter_feathersjs.dart';
 import '../../global.dart';
 import '../../main.dart';
-import '../../users/userModel.dart';
+import '../components/users/users.dart';
 import '../../services/api.dart';
-import 'package:flutter_feathersjs/flutter_feathersjs.dart';
 import '../../services/utils.dart';
 
 class AuthAPI {
-  Future<APIResponse<User>> loginUser(String email, String password) async {
-    User? user;
+  Future<APIResponse<Users>> loginUser(String email, String password) async {
+    Users? user;
     String? error;
 
     try {
@@ -18,7 +18,7 @@ class AuthAPI {
         userNameFieldName: "email"
       );
 
-      user = User.fromMap(response);
+      user = Users.fromMap(response);
       // If all thing is ok, save user in local storage
       Utils.removeItemFromLocalStorage("user");
       Utils.addItemsToLocalStorage('user',response);
@@ -47,9 +47,9 @@ class AuthAPI {
     return APIResponse(errorMessage: error, data: user);
   }
 
-  Future<APIResponse<User>> registerUser(
+  Future<APIResponse<Users>> registerUser(
       String name, String email, String password) async {
-    User? user;
+    Users? user;
     String? error;
     try {
       Map<String, dynamic> response = await flutterFeathersJS.rest.create(
@@ -57,7 +57,7 @@ class AuthAPI {
         data: {"name": name, "email": email, "password": password},
       );
       logger.i(response.toString());
-      user = User.fromMap(response);
+      user = Users.fromMap(response);
       await loginUser(email, password);
     } on FeatherJsError catch (e) {
       if (e.type == FeatherJsErrorType.IS_INVALID_CREDENTIALS_ERROR) {

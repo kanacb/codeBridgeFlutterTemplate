@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
-import 'package:~cb-project-name~/screens/auth/login_screen.dart';
-import 'package:~cb-project-name~/messages/messages_screen.dart';
-import 'package:~cb-project-name~/screens/welcome/welcome_screen.dart';
-import 'package:~cb-project-name~/services/api.dart';
+import './screens/auth/login_screen.dart';
+import './messages/messages_screen.dart';
+import './screens/welcome/welcome_screen.dart';
+import './services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feathersjs/flutter_feathersjs.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:~cb-project-name~/services/utils.dart';
-import 'package:~cb-project-name~/components/users/users.model.dart';
+import './services/utils.dart';
+import './components/users/users.dart';
 // import 'package:socket_io_client/socket_io_client.dart' as socket;
 
 FlutterFeathersjs flutterFeathersJS = FlutterFeathersjs()

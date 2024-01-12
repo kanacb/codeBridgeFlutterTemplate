@@ -1,14 +1,11 @@
-import 'package:vx_index/global.dart';
-import 'package:vx_index/screens/auth/register_screen.dart';
-import 'package:vx_index/screens/welcome/welcome_screen.dart';
-import 'package:vx_index/screens/widgets/footer.dart';
-import 'package:vx_index/screens/widgets/loading.dart';
-import 'package:vx_index/services/authService.dart';
-import 'package:vx_index/validators.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../users/userModel.dart';
-
+import '../../screens/auth/register_screen.dart';
+import '../../services/authService.dart';
+import '../../validators.dart';
+import '../welcome/welcome_screen.dart';
+import '../widgets/footer.dart';
+import '../widgets/loading.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

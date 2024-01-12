@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import '../../components/users/users.dart';
 import '../../components/users/usersMain.dart';
 import '../../messages/messages_screen.dart';
-import '../../components/businesses/businessesCards.dart';
-import '../../components/commodities/commoditiesCards.dart';
 import '../../screens/widgets/nav_bar.dart';
 import '../../screens/widgets/tab_bar.dart';
 import '../../services/utils.dart';
 
-import '../../currencies/currenciesScreen.dart';
+
 import '../../global.dart';
 import 'app_bar_title.dart';
 
@@ -79,11 +77,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           ),
         ],
       ),
-      body: _selectedIndex == 0
-          ? buyer(context)
-          : _selectedIndex == 1
-              ? seller(context)
-              : admin(context),
+      body: const Center(
+        child: Text("Start here"),
+      ),
       drawer: NavBar(
         user: widget.user,
       ),

@@ -120,8 +120,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   setState(() {
                                     isChanging = true;
                                   });
-                                  UsersAPI userApi = UsersAPI();
-                                  final response = await userApi.patch(widget.user.id , { "password" : newPassword});
+                                  UsersService usersService = UsersService();
+                                  final response = await usersService.patch(widget.user.id , { "password" : newPassword});
                                   setState(() {
                                     isChanging = false;
                                   });

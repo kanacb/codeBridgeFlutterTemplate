@@ -1,12 +1,12 @@
-import 'message.dart';
-import '../components/users/users.dart';
-import '../screens/widgets/loading.dart';
-import 'message_tiles.dart';
-import 'messages_socketio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../components/users/usersMain.dart';
 import '../global.dart';
-import '../users/usersScreen.dart';
+import '../screens/widgets/loading.dart';
+import 'message.dart';
+import 'message_tiles.dart';
+import 'messages_socketio.dart';
 
 class MessagesScreen extends StatefulWidget {
   const MessagesScreen({Key? key}) : super(key: key);

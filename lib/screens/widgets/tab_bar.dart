@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vx_index/global.dart';
+import '../../global.dart';
 
 class BottomTabBar extends StatefulWidget {
   const BottomTabBar({super.key, required this.onItemTapped});

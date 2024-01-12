@@ -1,12 +1,13 @@
-import 'package:vx_index/global.dart';
-import 'package:vx_index/screens/auth/login_screen.dart';
-import 'package:vx_index/screens/welcome/welcome_screen.dart';
-import 'package:vx_index/screens/widgets/footer.dart';
-import 'package:vx_index/screens/widgets/loading.dart';
-import 'package:vx_index/services/authService.dart';
-import 'package:vx_index/users/userModel.dart';
-import 'package:vx_index/validators.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:vx_oil_futures4/screens/welcome/welcome_screen.dart';
+
+import '../../global.dart';
+import '../../services/authService.dart';
+import '../../validators.dart';
+import '../widgets/footer.dart';
+import '../widgets/loading.dart';
+import 'login_screen.dart';
 
 import '../../businesses/businessDialogCreateScreen.dart';
 

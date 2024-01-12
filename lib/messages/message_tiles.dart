@@ -1,4 +1,4 @@
-import 'package:vx_index/users/userModel.dart';
+import '../components/users/users.dart';
 import 'package:flutter/material.dart';
 
 class ReceiverMessageTile extends StatelessWidget {

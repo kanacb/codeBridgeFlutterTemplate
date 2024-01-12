@@ -7,7 +7,7 @@ import '../../validators.dart';
 
 class ChangeEmail extends StatelessWidget {
   const ChangeEmail({super.key, required this.user});
-  final User user;
+  final Users user;
   @override
   Widget build(BuildContext context) {
     late String email = "";
@@ -65,8 +65,8 @@ class ChangeEmail extends StatelessWidget {
                               onPressed: () async {
                                 if (key.currentState!.validate()) {
                                   key.currentState!.save();
-                                  UsersAPI userApi = UsersAPI();
-                                  final response = await userApi.patch(user.id , { "email" : email});
+                                  UsersService usersService = UsersService();
+                                  final response = await usersService.patch(user.id , { "email" : email});
                                   if (response.errorMessage == null) {
                                     logger.i(response.data!.toString());
                                     if (context.mounted) {

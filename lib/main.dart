@@ -31,14 +31,14 @@ class MyApp extends StatefulWidget  {
 }
 
 class _MyAppState extends State<MyApp> {
- UsersModel? user;
+ Users? user;
 
   @override
   void initState() {
     super.initState();
     var thisUser = Utils.getItemFromLocalStorage("user");
     if (thisUser != null) {
-      user = UsersModel.fromMap(thisUser!);
+      user = Users.fromMap(thisUser!);
       print(thisUser.toString());
     }
 

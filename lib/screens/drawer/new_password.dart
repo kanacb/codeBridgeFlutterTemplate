@@ -1,16 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vx_index/users/usersService.dart';
-
+import '../../components/users/usersService.dart';
+import '../../components/users/users.dart';
 import '../../global.dart';
-import '../../services/authService.dart';
-import '../../users/userModel.dart';
 import '../../validators.dart';
 import '../widgets/loading.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key, required this.user});
-  final User user;
+  final Users user;
   @override
   State<ChangePassword> createState() => _ChangePasswordState();
 

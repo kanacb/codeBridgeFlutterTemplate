@@ -11,26 +11,13 @@ import '../drawer/settings.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key, required this.user});
-  final User user;
+  final Users user;
 
   @override
   State<NavBar> createState() => _NavBarState();
 }
 
 class _NavBarState extends State<NavBar> {
-  BusinessesService businessesAPI = BusinessesService();
-  fetchBusinessByUserId() {
-    businessesAPI.get(widget.user.businessId).then((value) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return BusinessDialogView(index: 1, data: value.data!);
-          },
-        ),
-      );
-    });
-  }
 
   @override
   void initState() {
@@ -50,10 +37,10 @@ class _NavBarState extends State<NavBar> {
             textAlign: TextAlign.end,
           ),
           accountEmail: Text(widget.user.email),
-          currentAccountPicture: CircleAvatar(
-            backgroundImage: NetworkImage(widget.user.imageUrl),
-            radius: 50.4,
-          ),
+          // currentAccountPicture: CircleAvatar(
+          //   backgroundImage: NetworkImage(widget.user.imageUrl),
+          //   radius: 50.4,
+          // ),
           decoration: const BoxDecoration(
             color: colorHelp,
             image: DecorationImage(

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../components/businesses/businessesService.dart';
 import '../../global.dart';
 import '../../screens/drawer/new_email.dart';
 import '../../screens/drawer/new_password.dart';
@@ -50,13 +49,6 @@ class _NavBarState extends State<NavBar> {
               fit: BoxFit.fill,
             ),
           ),
-        ),
-        ListTile(
-          leading: const Icon(Icons.contact_mail),
-          title: const Text('Account'),
-          onTap: () {
-            fetchBusinessByUserId();
-          },
         ),
         ListTile(
           leading: const Icon(Icons.message),

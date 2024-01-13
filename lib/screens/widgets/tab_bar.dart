@@ -22,10 +22,10 @@ class _BottomTabBarState extends State<BottomTabBar> {
   }
   @override
   Widget build(BuildContext context) {
-    return admin(context);
+    return tabs(context);
   }
 
-  Widget admin(context) {
+  Widget tabs(context) {
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
@@ -33,7 +33,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
             label: 'Home',
             backgroundColor: colorPrimary),
         BottomNavigationBarItem(
-          icon: Icon(Icons.business),
+          icon: Icon(Icons.currency_exchange_rounded),
           label: 'Admin',
         ),
         BottomNavigationBarItem(
@@ -47,47 +47,4 @@ class _BottomTabBarState extends State<BottomTabBar> {
     );
   }
 
-  Widget buyer(context) {
-    return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: colorPrimary),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.business),
-          label: 'Buyer',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.school),
-          label: 'Trends',
-        ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Colors.amber[800],
-      onTap: widget.onItemTapped(_selectedIndex),
-    );
-  }
-
-  Widget seller(context) {
-    return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: colorPrimary),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.business),
-          label: 'Seller',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.school),
-          label: 'Trends',
-        ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Colors.amber[800],
-      onTap: widget.onItemTapped(_selectedIndex),
-    );
-  }
 }

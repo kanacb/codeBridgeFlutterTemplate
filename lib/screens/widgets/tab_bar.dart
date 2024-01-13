@@ -34,7 +34,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
             backgroundColor: colorPrimary),
         BottomNavigationBarItem(
           icon: Icon(Icons.currency_exchange_rounded),
-          label: 'Admin',
+          label: 'Market',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.school),

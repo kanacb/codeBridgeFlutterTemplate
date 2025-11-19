@@ -1,0 +1,67 @@
+name: aims
+description: "Atlas IRM Solutions App"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+7
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.14
+  intl: ^0.20.0
+  localstorage: ^5.0.0
+  logger: ^2.4.0
+  moment_dart: ^2.2.1+beta.0
+  rename: ^3.0.2
+  socket_io_client: ^3.0.1
+  http: ^1.2.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  provider: ^6.1.2
+  shared_preferences: any
+  skeletonizer: ^2.1.0+1
+  file_picker: ^8.3.7
+  change_app_package_name: ^1.4.0
+  firebase_core: ^3.8.0
+  firebase_messaging: ^15.1.5
+  permission_handler: ^11.3.1
+  flutter_local_notifications: ^18.0.1
+  flutter_reorderable_list: ^1.1.1
+  flutter_html: ^3.0.0-beta.2
+  url_launcher: ^6.1.14
+  image_picker: ^0.8.9
+  qr_code_scanner_plus: ^2.0.10+1
+  crypto: ^3.0.3
+  photo_view: ^0.15.0
+  flutter_secure_storage: ^9.2.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: ^0.14.3  # Check for latest version
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.13
+  json_serializable: ^6.8.0
+  hive_generator: any
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Medium.ttf
+  assets:
+    - assets/images/
+    - assets/svg/
+    - assets/logos/
+    - assets/icon/
+    - assets/ca/
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.jpg"  # Path to your icon
+  adaptive_icon_background: "#ffffff"  # Background color for adaptive icons (Android)
+  #adaptive_icon_foreground: "assets/icon/ic_foreground.png"  # Optional for adaptive icons

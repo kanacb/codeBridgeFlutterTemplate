@@ -1,0 +1,131 @@
+import '../../Utils/Services/IdName.dart';
+import 'package:hive/hive.dart';
+
+import '../../Utils/Globals.dart';
+import '../Branches/Branches.dart';
+
+part 'AtlasMachines.g.dart';
+
+@HiveType(typeId: 42)
+class AtlasMachines {
+  @HiveField(0)
+  String? id; // _id from API
+
+  @HiveField(1)
+  Branches ownership;
+
+  @HiveField(2)
+  String? vendingMachineCode;
+
+  @HiveField(3)
+  String? modelNo;
+
+  @HiveField(4)
+  String? serialNumber; // Convert serialNumber to String
+
+  @HiveField(5)
+  IdName? vendingMachineType;
+
+  @HiveField(6)
+  DateTime? comissionDate;
+
+  @HiveField(7)
+  String? createdBy;
+
+  @HiveField(8)
+  String? updatedBy;
+
+  @HiveField(9)
+  DateTime? createdAt; // New field from API
+
+  @HiveField(10)
+  DateTime? updatedAt; // New field from API
+
+  AtlasMachines(
+      {this.id,
+      required this.ownership,
+      this.vendingMachineCode,
+      this.modelNo,
+      this.serialNumber,
+      this.vendingMachineType,
+      this.comissionDate,
+      this.createdBy,
+      this.updatedBy,
+      this.createdAt,
+      this.updatedAt});
+
+  factory AtlasMachines.fromJson(Map<String, dynamic> json) {
+    try {
+      return AtlasMachines(
+        id: json['_id'] as String?,
+        ownership: Branches.fromJson(json['ownership']),
+        vendingMachineCode: json['vendingMachineCode'] as String?,
+        modelNo: json['modelNo'] as String?,
+        serialNumber: json['serialNumber']?.toString(),
+        // Ensure string format
+        vendingMachineType: json['vendingMachineType'] is Map<String, dynamic>
+            ? IdName.fromJson(json['vendingMachineType'])
+            : null,
+        comissionDate: json['comissionDate'] != null
+            ? DateTime.tryParse(json['comissionDate'])
+            : null,
+        createdBy: json['createdBy'] as String?,
+        updatedBy: json['updatedBy'] as String?,
+        createdAt: json['createdAt'] != null
+            ? DateTime.tryParse(json['createdAt'])
+            : null,
+        updatedAt: json['updatedAt'] != null
+            ? DateTime.tryParse(json['updatedAt'])
+            : null,
+      );
+    } catch (e) {
+      print(e);
+      print(json);
+      return AtlasMachines(
+        id: "",
+        ownership: Branches.fromJson(json['ownership']),
+        vendingMachineCode: "vendingMachineCode",
+        modelNo: "modelNo",
+        serialNumber: "serialNumber",
+        vendingMachineType: IdName.fromJson({"_id": "_id", "name": "name"}),
+        comissionDate: DateTime.now(),
+        createdBy: "createdBy",
+        updatedBy: "updatedBy",
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+      );
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      '_id': id,
+      'ownership': ownership,
+      'vendingMachineCode': vendingMachineCode,
+      'modelNo': modelNo,
+      'serialNumber': serialNumber,
+      'vendingMachineType': vendingMachineType?.toJson(),
+      'comissionDate': comissionDate?.toIso8601String(),
+      'createdBy': createdBy,
+      'updatedBy': updatedBy,
+      'createdAt': createdAt?.toIso8601String(),
+      'updatedAt': updatedAt?.toIso8601String()
+    };
+  }
+
+  @override
+  String toString() => '''
+  AtlasMachines: {
+    "_id": "$id",
+    "ownership": "$ownership",
+    "vendingMachineCode": "$vendingMachineCode",
+    "modelNo": "$modelNo",
+    "serialNumber": "$serialNumber",
+    "vendingMachineType": "${vendingMachineType?.name}",
+    "comissionDate": "$comissionDate",
+    "createdBy": "$createdBy",
+    "updatedBy": "$updatedBy",
+    "createdAt": "$createdAt",
+    "updatedAt": "$updatedAt"
+  }''';
+}

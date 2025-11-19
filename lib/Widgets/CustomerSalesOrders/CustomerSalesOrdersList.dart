@@ -1,0 +1,249 @@
+import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
+
+import '../../Utils/Globals.dart' as globals;
+import '../../Utils/Dialogs/BottomNavigationBar.dart';
+import '../../Utils/Dialogs/DeleteDialog.dart';
+import '../../Utils/Dialogs/DrawerMenu.dart';
+import '../../Utils/Dialogs/SnackBars.dart';
+import '../../Utils/PageUtils.dart';
+import '../../Utils/Services/Response.dart';
+import '../../Utils/Services/ServiceFilterByMenu.dart';
+import '../../Utils/Services/ServiceFieldsMenu.dart';
+import '../../Utils/Services/ServiceSortByMenu.dart';
+import '../../Utils/Services/ServiceMoreMenu.dart';
+import 'CustomerSalesOrders.dart';
+import 'CustomerSalesOrdersAdd.dart';
+import 'CustomerSalesOrdersEdit.dart';
+import 'CustomerSalesOrdersProvider.dart';
+
+class CustomerSalesOrdersList extends StatefulWidget {
+  const CustomerSalesOrdersList({super.key});
+
+  @override
+  State<CustomerSalesOrdersList> createState() => _CustomerSalesOrdersListState();
+}
+
+class _CustomerSalesOrdersListState extends State<CustomerSalesOrdersList> {
+  final Logger logger = globals.logger;
+  bool _showMenu = false;
+  bool _showFilterBy = false;
+  bool _showFields = false;
+  bool _showSort = false;
+
+  final List<bool> _showMore = List.filled(200, false, growable: true);
+  List<bool> _selected = List.filled(200, false, growable: true);
+  bool _allSelected = false;
+
+  Response? schemaResponse;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchSchema();
+  }
+
+  Future<void> _fetchSchema() async {
+    schemaResponse = await CustomerSalesOrdersProvider().schema();
+    setState(() {});
+  }
+
+  Future<void> _deleteTicket(String id, bool confirm) async {
+    if (confirm) {
+      final provider = Provider.of<CustomerSalesOrdersProvider>(context, listen: false);
+      Response response = await provider.deleteOne(id);
+
+      if (response.isSuccess) {
+        SnackBars().SuccessSnackBar(context, "Deleted ticket successfully");
+        setState(() {
+          provider.loadCustomerSalesOrdersFromHive();
+        });
+      } else {
+        SnackBars().FailedSnackBar(context, "Failed to delete ticket");
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final ticketProvider = Provider.of<CustomerSalesOrdersProvider>(context);
+    final tickets = ticketProvider.data;
+
+    return Scaffold(
+      appBar: _buildAppBar(),
+      drawer: DrawerMenu(),
+      body: ticketProvider.isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : GestureDetector(
+        onTap: () => setState(() {
+          _showMenu = false;
+          _showFilterBy = false;
+          _showFields = false;
+          _showSort = false;
+        }),
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                _buildHeader(),
+                tickets.isEmpty
+                    ? const Expanded(
+                  child: Center(
+                    child: Text('No tickets available'),
+                  ),
+                )
+                    : Expanded(child: _buildTicketList(tickets)),
+              ],
+            ),
+            ServiceMoreMenu(show: _showMenu),
+            ServiceFilterByMenu(show: _showFilterBy, response: schemaResponse?.data),
+            ServiceSortByMenu(show: _showSort, response: schemaResponse?.data),
+            ServiceFieldsMenu(show: _showFields, response: schemaResponse?.data),
+          ],
+        ),
+      ),
+      bottomNavigationBar: CBBottomNavigationBar(),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: const Text('Customer Sales Orders Page'),
+      backgroundColor: Colors.white,
+      elevation: 1,
+      titleTextStyle: const TextStyle(
+        color: Colors.black,
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
+      iconTheme: const IconThemeData(color: Colors.black),
+      actions: [
+        IconButton(
+          icon: _showMenu
+              ? const Icon(Icons.close_rounded)
+              : const Icon(Icons.more_horiz_rounded),
+          onPressed: () => setState(() {
+            _showMenu = !_showMenu;
+          }),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildHeader() {
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Checkbox(
+            value: _allSelected,
+            onChanged: (value) {
+              setState(() {
+                _allSelected = value!;
+                _selected = List<bool>.filled(200, _allSelected, growable: true);
+              });
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.filter_list, color: _showFilterBy ? Colors.red : Colors.grey),
+            onPressed: () => setState(() => _showFilterBy = !_showFilterBy),
+          ),
+          IconButton(
+            icon: Icon(Icons.sort, color: _showSort ? Colors.red : Colors.grey),
+            onPressed: () => setState(() => _showSort = !_showSort),
+          ),
+          IconButton(
+            icon: Icon(Icons.list, color: _showFields ? Colors.red : Colors.grey),
+            onPressed: () => setState(() => _showFields = !_showFields),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(Utils().createRoute(
+                  context, CustomerSalesOrdersAdd(resource: schemaResponse?.data)));
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            child: const Text("Add", style: TextStyle(color: Colors.white)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTicketList(List<CustomerSalesOrders> tickets) {
+    return ListView.builder(
+      itemCount: tickets.length,
+      itemBuilder: (context, index) {
+        final ticket = tickets[index];
+        return _buildTicketCard(ticket, index);
+      },
+    );
+  }
+
+  Widget _buildTicketCard(CustomerSalesOrders ticket, int index) {
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Column(
+        children: [
+          ListTile(
+            leading: Checkbox(
+              value: _selected[index],
+              onChanged: (value) => setState(() => _selected[index] = value!),
+            ),
+            title: Text(
+              'Sales Order ID: ${ticket.salesOrderId}',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Company: ${ticket.company}'),
+                Text('Sales Order Date: ${ticket.salesOrderDate}'),
+              ],
+            ),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.edit, color: Colors.red),
+                  onPressed: () {
+                    Navigator.of(context).push(Utils().createRoute(
+                        context,
+                        CustomerSalesOrdersEdit(
+                          resource: schemaResponse?.data,
+                          ticket: ticket, jobStationTicket: null,
+                        )));
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete, color: Colors.red),
+                  onPressed: () {
+                    showDialog<String>(
+                      context: context,
+                      builder: (context) => DeleteDialog(
+                        title: "Delete Ticket",
+                        content: "Are you sure?",
+                        pos: "Yes",
+                        neg: "Cancel",
+                        id: ticket.salesOrderId,
+                        answer: (answer) => _deleteTicket(ticket.salesOrderId, answer),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+          TextButton(
+            onPressed: () => setState(() => _showMore[index] = !_showMore[index]),
+            child: Text(
+              _showMore[index] ? 'Show less' : 'Show more',
+              style: const TextStyle(color: Colors.red),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

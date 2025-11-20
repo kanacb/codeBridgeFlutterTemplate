@@ -1,6 +1,6 @@
-# aims
+# CodeBridge Flutter Template
 
-Atlas IRM Solutions App
+
 
 ## Getting Started
 

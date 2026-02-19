@@ -22,7 +22,8 @@ import '../Widgets/DocumentsStorage/DocumentStorageProvider.dart';
 import '../Widgets/Users/User.dart';
 import '../Widgets/Users/UserProvider.dart';
 import 'Services/IdName.dart';
-// ~cb-add-imports~
+~cb-add-service-imports~
+~cb-add-provider-imports~
 
 class HiveSetup {
   static Future<void> initializeHive() async {
@@ -67,7 +68,7 @@ class HiveSetup {
     if (!Hive.isAdapterRegistered(57)) {
       Hive.registerAdapter(PhoneAdapter());
     }
-    // ~cb-add-adapters~1
+    // ~cb-add-service-adapters~
 
     // Open required boxes
     if (!Hive.isBoxOpen('usersBox')) {
@@ -100,9 +101,7 @@ class HiveSetup {
     if (!Hive.isBoxOpen('positionsBox')) {
       await Hive.openBox<Positions>('positionsBox');
     }
-
-    //
-    // ~cb-add-boxes~
+     ~cb-add-hivebox~
   }
 
   List<SingleChildWidget> providers() {
@@ -115,7 +114,7 @@ class HiveSetup {
       ChangeNotifierProvider(create: (_) => NotificationProvider()),
       ChangeNotifierProvider(create: (_) => DocumentStorageProvider()),
       ChangeNotifierProvider(create: (_) => PositionsProvider()),
-      // ~cb-add-widgets~
+      // ~cb-add-notifier~
     ];
   }
 }

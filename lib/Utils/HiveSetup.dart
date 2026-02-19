@@ -22,8 +22,8 @@ import '../Widgets/DocumentsStorage/DocumentStorageProvider.dart';
 import '../Widgets/Users/User.dart';
 import '../Widgets/Users/UserProvider.dart';
 import 'Services/IdName.dart';
-~cb-add-service-imports~
-~cb-add-provider-imports~
+// ~cb-add-service-imports~
+// ~cb-add-provider-imports~
 
 class HiveSetup {
   static Future<void> initializeHive() async {
@@ -101,7 +101,7 @@ class HiveSetup {
     if (!Hive.isBoxOpen('positionsBox')) {
       await Hive.openBox<Positions>('positionsBox');
     }
-     ~cb-add-hivebox~
+    // ~cb-add-hivebox~
   }
 
   List<SingleChildWidget> providers() {

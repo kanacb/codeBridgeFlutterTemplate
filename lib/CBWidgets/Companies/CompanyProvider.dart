@@ -1,12 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:logger/logger.dart';
+
 import '../DataInitializer/DataFetchable.dart';
 import '../../Utils/Services/SchemaService.dart';
-import 'package:logger/logger.dart';
 import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
-
-import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 
 import 'Companies.dart';
 import 'CompanyService.dart';

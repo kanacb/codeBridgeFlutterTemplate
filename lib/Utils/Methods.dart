@@ -1,14 +1,10 @@
 import 'dart:convert';
-
 import 'package:intl/intl.dart';
 
-import '../../Widgets/AtlasMachines/AtlasMachines.dart';
 import '../App/MenuBottomBar/Profile/Profile.dart';
 import '../App/MenuBottomBar/Profile/ProfileProvider.dart';
 import '../CBWidgets/Companies/Companies.dart';
 import '../CBWidgets/Companies/CompanyProvider.dart';
-import '../Widgets/VendingMachine/VendingMachine.dart';
-import '../Widgets/VendingMachine/VendingMachineProvider.dart';
 import 'Services/SharedPreferences.dart';
 
 class Methods {
@@ -45,14 +41,6 @@ class Methods {
   static Companies? getCompanyFromProfile(Profile profile) {
     final companies = CompanyProvider().data;
     return companies.where((i) => i.id == profile.company?.sId).firstOrNull;
-  }
-
-  static VendingMachine getVM(AtlasMachines machine) {
-    final vendingMachines = VendingMachineProvider().data;
-    VendingMachine vm = vendingMachines.firstWhere(
-      (i) => i.id == machine.vendingMachineType?.sId,
-    );
-    return vm;
   }
 
   static String encodeQueryParameters(

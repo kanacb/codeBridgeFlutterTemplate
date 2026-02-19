@@ -36,7 +36,7 @@ import '../../App/MenuBottomBar/Profile/Profile.dart';
 import '../../App/MenuBottomBar/Profile/ProfileProvider.dart';
 import '../../Widgets/IncomingMachineTickets/IncomingMachineTicketPage.dart';
 import '../../Widgets/JobStationTickets/JobStationTicketPage.dart';
-import '../../Widgets/Users/UserPage.dart';
+import '../../CBWidgets/Users/UserPage.dart';
 import '../../Widgets/irmsDeliveryOrder/irmsDeliveryOrdersPage.dart';
 import '../Methods.dart';
 import '../Services/SharedPreferences.dart';
@@ -87,10 +87,18 @@ class _DrawerMenuState extends State<DrawerMenu> {
     // Updated permission strings according to requirements.
 
     Map<String, List<String>> rolePermissions = {
-      "Vending Controller": ["Dashboard", "Raise Atlas Ticket", "Atlas Tickets"],
+      "Vending Controller": [
+        "Dashboard",
+        "Raise Atlas Ticket",
+        "Atlas Tickets",
+      ],
       "Salesman": ["Dashboard", "Raise MEM Ticket", "MEM Tickets"],
       "External": ["Dashboard", "Raise External Ticket", "External Tickets"],
-      "Incomingmachinechecker": ["Dashboard", "Raise Incoming Ticket", "Incoming Machines"],
+      "Incomingmachinechecker": [
+        "Dashboard",
+        "Raise Incoming Ticket",
+        "Incoming Machines",
+      ],
       "Technician": [
         // Technician sees only Atlas Tickets, External Tickets and Job Stations.
         "Dashboard",
@@ -191,29 +199,17 @@ class _DrawerMenuState extends State<DrawerMenu> {
     //   print(rolePermissions[role]);
     // }
     Map<String, List<String>> companyRestriction = {
-      "atlas": [
-        "Raise Atlas Ticket",
-        "Atlas Tickets",
-      ],
+      "atlas": ["Raise Atlas Ticket", "Atlas Tickets"],
       "irms": [
         "Raise External Ticket",
         "Raise Incoming Ticket",
         "External Tickets",
         "Job Stations",
-        "Incoming Machines"
+        "Incoming Machines",
       ],
-      "etika": [
-        "Raise MEM Ticket",
-        "MEM Tickets",
-      ],
-      "external": [
-        "Raise External Ticket",
-        "External Tickets",
-      ],
-      "External": [
-        "Raise External Ticket",
-        "External Tickets",
-      ],
+      "etika": ["Raise MEM Ticket", "MEM Tickets"],
+      "external": ["Raise External Ticket", "External Tickets"],
+      "External": ["Raise External Ticket", "External Tickets"],
     };
 
     // admin super bypass companyType
@@ -289,8 +285,16 @@ class _DrawerMenuState extends State<DrawerMenu> {
           // Atlas Tickets Section.
           if (hasAccess(role, "Raise Atlas Ticket", companyType: companyType) ||
               hasAccess(role, "Raise MEM Ticket", companyType: companyType) ||
-              hasAccess(role, "Raise External Ticket", companyType: companyType) ||
-              hasAccess(role, "Raise Incoming Ticket", companyType: companyType))
+              hasAccess(
+                role,
+                "Raise External Ticket",
+                companyType: companyType,
+              ) ||
+              hasAccess(
+                role,
+                "Raise Incoming Ticket",
+                companyType: companyType,
+              ))
             ListTile(
               leading: const Icon(Icons.support_outlined),
               title: const Text('Raise a Ticket'),
@@ -298,7 +302,8 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 Navigator.pop(context);
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => QrCodeScanner(companyType: companyType,),
+                    builder: (context) =>
+                        QrCodeScanner(companyType: companyType),
                   ),
                 );
               },
@@ -337,8 +342,11 @@ class _DrawerMenuState extends State<DrawerMenu> {
               title: const Text('Incoming Machines'),
               initiallyExpanded: false,
               children: [
-
-                if (hasAccess(role, "Incoming Machines", companyType: companyType))
+                if (hasAccess(
+                  role,
+                  "Incoming Machines",
+                  companyType: companyType,
+                ))
                   ListTile(
                     leading: Icon(Icons.ad_units_outlined),
                     title: const Text('Tickets'),

@@ -8,7 +8,7 @@ import '../../../Utils/Globals.dart' as globals;
 import '../../../Utils/Services/Response.dart';
 import '../../../Utils/Services/Results.dart';
 import '../../../Utils/Services/SchemaService.dart';
-import '../../../Widgets/Users/User.dart';
+import '../../../CBWidgets/Users/User.dart';
 import 'Profile.dart';
 import 'ProfileService.dart';
 
@@ -46,8 +46,9 @@ class ProfileProvider with ChangeNotifier {
   }
 
   Future<Response> find(String key, String value) async {
-    final Result result =
-        await ProfileService(query: query.replaceAll(' ', "").replaceAll('\n', "")).fetchByKeyValue(key, value);
+    final Result result = await ProfileService(
+      query: query.replaceAll(' ', "").replaceAll('\n', ""),
+    ).fetchByKeyValue(key, value);
     if (result.error == null) {
       List<Profile>? profiles = result.data;
       if (profiles!.isNotEmpty) {
@@ -58,13 +59,16 @@ class ProfileProvider with ChangeNotifier {
       }
       return Response(
         data: profiles,
-          msg:
-              "Success: found key=$key & value=$value => count=${profiles.length}",
-          statusCode: result.statusCode);
+        msg:
+            "Success: found key=$key & value=$value => count=${profiles.length}",
+        statusCode: result.statusCode,
+      );
     } else {
       logger.i("Profile find : ${result.error}");
       return Response(
-          msg: "Failed: to find key=$key & value=$value", error: result.error);
+        msg: "Failed: to find key=$key & value=$value",
+        error: result.error,
+      );
     }
   }
 
@@ -74,26 +78,29 @@ class ProfileProvider with ChangeNotifier {
       Profile? data = result.data;
       profilesBox.put(data?.id, data!);
       return Response(
-          msg: "Success: created profile ${item.name}",
-          statusCode: result.statusCode);
+        msg: "Success: created profile ${item.name}",
+        statusCode: result.statusCode,
+      );
     } else {
       logger.i("Profile create : ${result.error}");
       return Response(
-          msg: "Failed: creating profile ${item.name}", error: result.error);
+        msg: "Failed: creating profile ${item.name}",
+        error: result.error,
+      );
     }
   }
 
-  Future<Response> fetchOneAndSave(
-    String id,
-  ) async {
-    final Result result = await ProfileService(query: query.replaceAll(' ', "").replaceAll('\n', "")).fetchById(id);
+  Future<Response> fetchOneAndSave(String id) async {
+    final Result result = await ProfileService(
+      query: query.replaceAll(' ', "").replaceAll('\n', ""),
+    ).fetchById(id);
     if (result.error == null) {
       Profile? data = result.data;
       profilesBox.put(data?.id, data!);
       return Response(
-          data: data,
-          msg: "Success: saved profile $id",
-          statusCode: result.statusCode
+        data: data,
+        msg: "Success: saved profile $id",
+        statusCode: result.statusCode,
       );
     } else {
       logger.i("Profile get one : ${result.error}");
@@ -105,17 +112,20 @@ class ProfileProvider with ChangeNotifier {
     String? userPref = await getPref("user");
     User user = User.fromJson(jsonDecode(userPref!));
     final Result result = await ProfileService(
-            query:
-                "userId=${user.id}&${query.replaceAll(' ', "").replaceAll('\n', "")}")
-        .fetchAll();
+      query:
+          "userId=${user.id}&${query.replaceAll(' ', "").replaceAll('\n', "")}",
+    ).fetchAll();
     if (result.error == null) {
       List<Profile>? profiles = result.data;
 
-      profiles
-          ?.forEach((Profile profile) => profilesBox.put(profile.id, profile));
+      profiles?.forEach(
+        (Profile profile) => profilesBox.put(profile.id, profile),
+      );
       loadFromHive();
       return Response(
-          msg: "Success: fetched all", statusCode: result.statusCode);
+        msg: "Success: fetched all",
+        statusCode: result.statusCode,
+      );
     } else {
       logger.i("Profiles get all : ${result.error}");
       return Response(msg: "Failed: fetch all", error: result.error);
@@ -123,8 +133,9 @@ class ProfileProvider with ChangeNotifier {
   }
 
   Future<Response> regex(String key, String value) async {
-    final Result result =
-    await ProfileService(query: query).fetchByRegex(key, value);
+    final Result result = await ProfileService(
+      query: query,
+    ).fetchByRegex(key, value);
     if (result.error == null) {
       List<Profile>? profiles = result.data;
       if (profiles!.isNotEmpty) {
@@ -134,13 +145,16 @@ class ProfileProvider with ChangeNotifier {
         loadFromHive();
       }
       return Response(
-          msg:
-          "Success: found key=$key & value=$value => count=${profiles.length}",
-          statusCode: result.statusCode);
+        msg:
+            "Success: found key=$key & value=$value => count=${profiles.length}",
+        statusCode: result.statusCode,
+      );
     } else {
       logger.i("Profile get one : ${result.error}");
       return Response(
-          msg: "Failed: to find key=$key & value=$value", error: result.error);
+        msg: "Failed: to find key=$key & value=$value",
+        error: result.error,
+      );
     }
   }
 
@@ -150,7 +164,9 @@ class ProfileProvider with ChangeNotifier {
       Profile? data = result.data;
       profilesBox.put(data?.id, data!);
       return Response(
-          msg: "Success: updated profile $id", statusCode: result.statusCode);
+        msg: "Success: updated profile $id",
+        statusCode: result.statusCode,
+      );
     } else {
       logger.i("Profile update : ${result.error}");
       return Response(msg: "Failed: updating profile $id", error: result.error);
@@ -163,7 +179,9 @@ class ProfileProvider with ChangeNotifier {
       profilesBox.delete(id);
       loadFromHive();
       return Response(
-          msg: "Success: deleted profile $id", statusCode: result.statusCode);
+        msg: "Success: deleted profile $id",
+        statusCode: result.statusCode,
+      );
     } else {
       logger.i("Profile delete : ${result.error}");
       return Response(msg: "Failed: deleting profile $id", error: result.error);
@@ -176,9 +194,10 @@ class ProfileProvider with ChangeNotifier {
     _isLoading = false;
     if (result.error == null) {
       return Response(
-          data: result.data,
-          msg: "Success: schema of users",
-          statusCode: result.statusCode);
+        data: result.data,
+        msg: "Success: schema of users",
+        statusCode: result.statusCode,
+      );
     } else {
       logger.i("Profile schema data: ${result.data}");
       logger.i("Profile schema error: ${result.error}");

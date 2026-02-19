@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../Utils/Methods.dart';
 import '../../../Utils/Services/SharedPreferences.dart';
-import '../../../Widgets/Users/User.dart';
+import '../../../CBWidgets/Users/User.dart';
 import 'NotificationProvider.dart'; // Contains NotificationProvider & CBNotification
 
 class NotificationPage extends StatelessWidget {
@@ -14,8 +14,9 @@ class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => NotificationProvider(),
-        child: MaterialApp(title: 'Notification App', home: NotificationList()));
+      create: (context) => NotificationProvider(),
+      child: MaterialApp(title: 'Notification App', home: NotificationList()),
+    );
   }
 }
 
@@ -44,9 +45,15 @@ class _NotificationListState extends State<NotificationList> {
 
     _user = User.fromJson(jsonDecode(await getPref("user") ?? ""));
 
-    final notificationProvider = Provider.of<NotificationProvider>(context, listen: false);
-    List<CBNotification> result = notificationProvider.notifications.reversed.toList();
-    result = result.where((notification) => notification.toUser?.sId == _user?.id).toList();
+    final notificationProvider = Provider.of<NotificationProvider>(
+      context,
+      listen: false,
+    );
+    List<CBNotification> result = notificationProvider.notifications.reversed
+        .toList();
+    result = result
+        .where((notification) => notification.toUser?.sId == _user?.id)
+        .toList();
 
     setState(() {
       _isLoading = false;
@@ -57,7 +64,9 @@ class _NotificationListState extends State<NotificationList> {
   @override
   Widget build(BuildContext context) {
     // Log the number of notifications loaded from the provider
-    debugPrint("NotificationList build: ${_userNotifications.length} notifications loaded.");
+    debugPrint(
+      "NotificationList build: ${_userNotifications.length} notifications loaded.",
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -69,7 +78,7 @@ class _NotificationListState extends State<NotificationList> {
               debugPrint("Mark all as read tapped");
             },
             child: const Text("Mark all as read"),
-          )
+          ),
         ],
       ),
       body: _isLoading
@@ -101,7 +110,9 @@ class _NotificationListState extends State<NotificationList> {
         title: Text(
           "${notification.content} by ${notification.createdBy?.name}",
           style: TextStyle(
-            fontWeight: notification.read! ? FontWeight.normal : FontWeight.bold,
+            fontWeight: notification.read!
+                ? FontWeight.normal
+                : FontWeight.bold,
           ),
         ),
         subtitle: Text(

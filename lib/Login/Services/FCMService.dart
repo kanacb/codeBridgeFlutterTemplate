@@ -9,7 +9,7 @@ import '../../Utils/Globals.dart' as globals;
 import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Services/SharedPreferences.dart';
-import '../../Widgets/Users/User.dart';
+import '../../CBWidgets/Users/User.dart';
 
 class FCMService {
   Logger logger = globals.logger;
@@ -19,17 +19,17 @@ class FCMService {
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
     final DarwinInitializationSettings initializationSettingsDarwin =
-    DarwinInitializationSettings(
-      requestAlertPermission: true,
-      requestBadgePermission: true,
-      requestSoundPermission: true,
-    );
+        DarwinInitializationSettings(
+          requestAlertPermission: true,
+          requestBadgePermission: true,
+          requestSoundPermission: true,
+        );
 
     final InitializationSettings initializationSettings =
         InitializationSettings(
-      android: initializationSettingsAndroid,
-          iOS: initializationSettingsDarwin
-    );
+          android: initializationSettingsAndroid,
+          iOS: initializationSettingsDarwin,
+        );
 
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
@@ -37,12 +37,12 @@ class FCMService {
       initializationSettings,
       onDidReceiveNotificationResponse:
           (NotificationResponse notificationResponse) async {
-        final String? payload = notificationResponse.payload;
-        if (payload != null) {
-          print('Notification Payload: $payload');
-          // Navigate to a specific screen or perform any action
-        }
-      },
+            final String? payload = notificationResponse.payload;
+            if (payload != null) {
+              print('Notification Payload: $payload');
+              // Navigate to a specific screen or perform any action
+            }
+          },
     );
   }
 
@@ -96,37 +96,47 @@ class FCMService {
   }
 
   static Future saveFcmToken(
-      String? fcmId, User user, String accessToken) async {
+    String? fcmId,
+    User user,
+    String accessToken,
+  ) async {
     final http.Response response;
     final device = getDevice();
     try {
-      response = await http.post(Uri.parse('${globals.api}/fcm'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer $accessToken',
-          },
-          body: jsonEncode(<String, dynamic>{
-            'fcmId': fcmId,
-            'valid': true,
-            'device': device,
-            "createdBy": user.id
-          }),
-          encoding: Encoding.getByName("Utf8Codec"));
+      response = await http.post(
+        Uri.parse('${globals.api}/fcm'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $accessToken',
+        },
+        body: jsonEncode(<String, dynamic>{
+          'fcmId': fcmId,
+          'valid': true,
+          'device': device,
+          "createdBy": user.id,
+        }),
+        encoding: Encoding.getByName("Utf8Codec"),
+      );
     } on HttpException catch (f) {
       return Response(
-          msg: "Failed: saveFcmToken server error", error: f.toString());
+        msg: "Failed: saveFcmToken server error",
+        error: f.toString(),
+      );
     } on http.ClientException catch (f) {
       return Response(
-          msg: "Failed: saveFcmToken client error", error: f.toString());
+        msg: "Failed: saveFcmToken client error",
+        error: f.toString(),
+      );
     }
 
     try {
       if (response.statusCode >= 200 && response.statusCode < 300) {
         final result = jsonDecode(response.body);
         return Response(
-            msg: "Success: fcm token saved",
-            data: result,
-            statusCode: response.statusCode);
+          msg: "Success: fcm token saved",
+          data: result,
+          statusCode: response.statusCode,
+        );
       } else {
         return Response(msg: "Failed: fcm token save", error: "error");
       }
@@ -156,14 +166,15 @@ class FCMService {
   static void showNotification(RemoteMessage message) {
     const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
-      'channel_id',
-      'channel_name',
-      importance: Importance.max,
-      priority: Priority.high,
-    );
+          'channel_id',
+          'channel_name',
+          importance: Importance.max,
+          priority: Priority.high,
+        );
 
-    const NotificationDetails notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: androidNotificationDetails,
+    );
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
     flutterLocalNotificationsPlugin.show(

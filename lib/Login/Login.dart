@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../App/Dash/DashMain.dart';
-import '../Widgets/DataInitializer/AppInitializerWidget.dart';
+import '../CBWidgets/DataInitializer/AppInitializerWidget.dart';
 import 'Services/FCMService.dart';
 import '../Utils/Services/Response.dart';
 import '../Utils/Dialogs/SnackBars.dart';
@@ -74,10 +74,9 @@ class _Login extends State<Login> {
               ? Center(child: CircularProgressIndicator())
               : SizedBox.shrink(),
           Form(
-            autovalidateMode:
-                shouldValidate
-                    ? AutovalidateMode.always
-                    : AutovalidateMode.disabled,
+            autovalidateMode: shouldValidate
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
             key: key,
             child: SingleChildScrollView(
               child: Padding(
@@ -132,10 +131,9 @@ class _Login extends State<Login> {
                               email = value!;
                           },
                           decoration: InputDecoration(
-                            hintText:
-                                staffIdLogin
-                                    ? "Enter your valid staff id"
-                                    : 'Enter your registered email',
+                            hintText: staffIdLogin
+                                ? "Enter your valid staff id"
+                                : 'Enter your registered email',
                             hintStyle: const TextStyle(color: Colors.grey),
                             fillColor: Colors.white60,
                             filled: true,
@@ -146,12 +144,13 @@ class _Login extends State<Login> {
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              20,
-                              24,
-                              20,
-                              24,
-                            ),
+                            contentPadding:
+                                const EdgeInsetsDirectional.fromSTEB(
+                                  20,
+                                  24,
+                                  20,
+                                  24,
+                                ),
                           ),
                         ),
                         const SizedBox(height: 20.0),
@@ -189,12 +188,13 @@ class _Login extends State<Login> {
                               borderRadius: BorderRadius.circular(8),
                             ),
                             filled: false,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              20,
-                              24,
-                              20,
-                              24,
-                            ),
+                            contentPadding:
+                                const EdgeInsetsDirectional.fromSTEB(
+                                  20,
+                                  24,
+                                  20,
+                                  24,
+                                ),
                             suffixIcon: IconButton(
                               onPressed: () {
                                 setState(() {
@@ -283,9 +283,8 @@ class _Login extends State<Login> {
                                                 color: Colors.greenAccent,
                                                 width: 1,
                                               ),
-                                              borderRadius: BorderRadius.circular(
-                                                35,
-                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(35),
                                             ),
                                             content: Text(
                                               "Welcome onboard AIMS. Get ready to be awed.",
@@ -296,7 +295,9 @@ class _Login extends State<Login> {
                                             ),
                                             showCloseIcon: true,
                                             elevation: 2,
-                                            duration: const Duration(seconds: 5),
+                                            duration: const Duration(
+                                              seconds: 5,
+                                            ),
                                             behavior: SnackBarBehavior.floating,
                                             margin: const EdgeInsets.all(5),
                                           ),
@@ -304,7 +305,9 @@ class _Login extends State<Login> {
                                         Navigator.of(context).pushReplacement(
                                           utils.createRoute(
                                             context,
-                                            AppInitializerWidget(child: Dashboard(i: 1)),
+                                            AppInitializerWidget(
+                                              child: Dashboard(i: 1),
+                                            ),
                                           ),
                                         );
                                       }
@@ -320,15 +323,16 @@ class _Login extends State<Login> {
                                                 color: Colors.redAccent,
                                                 width: 1,
                                               ),
-                                              borderRadius: BorderRadius.circular(
-                                                35,
-                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(35),
                                             ),
                                             content: Text(
                                               "Login - ${response.msg}",
                                             ),
                                             elevation: 2,
-                                            duration: const Duration(seconds: 3),
+                                            duration: const Duration(
+                                              seconds: 3,
+                                            ),
                                             behavior: SnackBarBehavior.floating,
                                             margin: const EdgeInsets.all(5),
                                           ),
@@ -366,7 +370,10 @@ class _Login extends State<Login> {
                           },
                           child: const Text(
                             ' Sign up now',
-                            style: TextStyle(fontSize: 16.0, color: Colors.blue),
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.blue,
+                            ),
                           ),
                         ),
                       ],
@@ -404,7 +411,9 @@ class _Login extends State<Login> {
                               ),
                             ],
                           ),
-                          SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.1,
+                          ),
                           const Text(
                             "© 2024 CodeBridge Sdn Bhd. All rights reserved.",
                             style: TextStyle(color: Colors.grey, fontSize: 12),

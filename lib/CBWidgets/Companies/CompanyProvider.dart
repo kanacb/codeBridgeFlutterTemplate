@@ -1,4 +1,4 @@
-import '../../Widgets/DataInitializer/DataFetchable.dart';
+import '../DataInitializer/DataFetchable.dart';
 import '../../Utils/Services/SchemaService.dart';
 import 'package:logger/logger.dart';
 import '../../Utils/Services/Response.dart';
@@ -47,15 +47,17 @@ class CompanyProvider with ChangeNotifier implements DataFetchable {
       hiveBox.put(data?.id, data!);
       loadCompanysFromHive();
       return Response(
-          data: data,
-          msg: "Success: created atlas ticket ${item.name}",
-          statusCode: result.statusCode);
+        data: data,
+        msg: "Success: created atlas ticket ${item.name}",
+        statusCode: result.statusCode,
+      );
     } else {
       _isLoading = false;
       logger.i("Companies create : ${result.error}");
       return Response(
-          msg: "Failed: creating atlas ticket ${item.name}",
-          error: result.error);
+        msg: "Failed: creating atlas ticket ${item.name}",
+        error: result.error,
+      );
     }
   }
 
@@ -67,13 +69,17 @@ class CompanyProvider with ChangeNotifier implements DataFetchable {
       hiveBox.put(data?.id, data!);
       loadCompanysFromHive();
       return Response(
-          data: data,
-          msg: "Success: saved atlas ticket $id",
-          statusCode: result.statusCode);
+        data: data,
+        msg: "Success: saved atlas ticket $id",
+        statusCode: result.statusCode,
+      );
     } else {
       _isLoading = false;
       logger.i("Atlas Ticket get one : ${result.error}");
-      return Response(msg: "Failed: saving atlas ticket $id", error: result.error);
+      return Response(
+        msg: "Failed: saving atlas ticket $id",
+        error: result.error,
+      );
     }
   }
 
@@ -90,10 +96,15 @@ class CompanyProvider with ChangeNotifier implements DataFetchable {
       });
       loadCompanysFromHive();
       return Response(
-          msg: "Success: fetched all atlas tickets", statusCode: result.statusCode);
+        msg: "Success: fetched all atlas tickets",
+        statusCode: result.statusCode,
+      );
     } else {
       _isLoading = false;
-      return Response(msg: "Failed: fetch all atlas tickets", error: result.error);
+      return Response(
+        msg: "Failed: fetch all atlas tickets",
+        error: result.error,
+      );
     }
   }
 
@@ -105,11 +116,16 @@ class CompanyProvider with ChangeNotifier implements DataFetchable {
       hiveBox.put(data?.id, data!);
       loadCompanysFromHive();
       return Response(
-          msg: "Success: updated atlas ticket $id", statusCode: result.statusCode);
+        msg: "Success: updated atlas ticket $id",
+        statusCode: result.statusCode,
+      );
     } else {
       _isLoading = false;
       logger.i("Companies update : ${result.error}");
-      return Response(msg: "Failed: updating atlas ticket $id", error: result.error);
+      return Response(
+        msg: "Failed: updating atlas ticket $id",
+        error: result.error,
+      );
     }
   }
 
@@ -121,10 +137,15 @@ class CompanyProvider with ChangeNotifier implements DataFetchable {
       hiveBox.delete(id);
       loadCompanysFromHive();
       return Response(
-          msg: "Success: deleted atlas ticket $id", statusCode: result.statusCode);
+        msg: "Success: deleted atlas ticket $id",
+        statusCode: result.statusCode,
+      );
     } else {
       logger.i("Companies delete : ${result.error}");
-      return Response(msg: "Failed: deleting atlas ticket $id", error: result.error);
+      return Response(
+        msg: "Failed: deleting atlas ticket $id",
+        error: result.error,
+      );
     }
   }
 
@@ -134,14 +155,14 @@ class CompanyProvider with ChangeNotifier implements DataFetchable {
     _isLoading = false;
     if (result.error == null) {
       return Response(
-          data: result.data,
-          msg: "Success: schema of atlas tickets",
-          statusCode: result.statusCode);
+        data: result.data,
+        msg: "Success: schema of atlas tickets",
+        statusCode: result.statusCode,
+      );
     } else {
       logger.i("Companies schema data: ${result.data}");
       logger.i("Companies schema error: ${result.error}");
       return Response(msg: "Failed: CompanysSchema", error: result.error);
     }
   }
-
 }

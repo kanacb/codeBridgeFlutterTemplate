@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../Widgets/Users/User.dart';
+import '../../../CBWidgets/Users/User.dart';
 import 'ProfileList.dart';
 import 'ProfileProvider.dart'; // Assuming this handles data logic
 import '../../../Utils/Services/SharedPreferences.dart';
-
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -17,7 +16,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   void initState() {
-
     super.initState();
     loadUser();
   }
@@ -48,43 +46,43 @@ class _ProfilePageState extends State<ProfilePage> {
         body: user == null
             ? const Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // User Details Section
-              UserDetails(user: user!),
-              const Divider(thickness: 1, height: 20),
-
-              // Tabs for additional info
-              DefaultTabController(
-                length: 2,
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TabBar(
-                      labelColor: Theme.of(context).primaryColor,
-                      unselectedLabelColor: Colors.grey,
-                      indicatorColor: Theme.of(context).primaryColor,
-                      tabs: const [
-                        Tab(text: 'Profile'),
-                        Tab(text: 'Logins'),
-                      ],
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.6,
-                      child: TabBarView(
+                    // User Details Section
+                    UserDetails(user: user!),
+                    const Divider(thickness: 1, height: 20),
+
+                    // Tabs for additional info
+                    DefaultTabController(
+                      length: 2,
+                      child: Column(
                         children: [
-                          ProfileNotifier(),
-                          Center(child: Text('Login history')),
+                          TabBar(
+                            labelColor: Theme.of(context).primaryColor,
+                            unselectedLabelColor: Colors.grey,
+                            indicatorColor: Theme.of(context).primaryColor,
+                            tabs: const [
+                              Tab(text: 'Profile'),
+                              Tab(text: 'Logins'),
+                            ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.6,
+                            child: TabBarView(
+                              children: [
+                                ProfileNotifier(),
+                                Center(child: Text('Login history')),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
-        ),
       ),
     );
   }
@@ -100,10 +98,7 @@ class UserDetails extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Email',
-          style: TextStyle(color: Colors.grey, fontSize: 14),
-        ),
+        const Text('Email', style: TextStyle(color: Colors.grey, fontSize: 14)),
         Text(
           user.email ?? '',
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -138,4 +133,5 @@ class UserDetails extends StatelessWidget {
     );
   }
 }
+
 //small comment

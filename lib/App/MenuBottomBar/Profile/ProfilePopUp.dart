@@ -8,7 +8,7 @@ import '../../../Login/Services/authService.dart';
 import '../../../Utils/Dialogs/SnackBars.dart';
 import '../../../Utils/Services/SharedPreferences.dart'; // Contains savePref and getPref
 import '../../../Utils/Validators.dart';
-import '../../../Widgets/Users/User.dart';
+import '../../../CBWidgets/Users/User.dart';
 import '../../Dash/DashMain.dart';
 import 'Profile.dart';
 import 'ProfilePage.dart';
@@ -16,8 +16,7 @@ import 'ProfilePage.dart';
 class ProfilePopUp extends StatefulWidget {
   final BuildContext parentContext;
 
-  const ProfilePopUp({
-    Key? key, required this.parentContext}) : super(key: key);
+  const ProfilePopUp({Key? key, required this.parentContext}) : super(key: key);
 
   @override
   State<ProfilePopUp> createState() => _ProfilePopUpState();
@@ -92,7 +91,9 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
   Widget build(BuildContext context) {
     final profileProvider = Provider.of<ProfileProvider>(context);
     final profiles = profileProvider.profiles;
-    final filteredProfiles = profiles.where((profile) => profile.userId.id == user?.id).toList();
+    final filteredProfiles = profiles
+        .where((profile) => profile.userId.id == user?.id)
+        .toList();
     _enabled = profiles.isEmpty;
 
     return SingleChildScrollView(
@@ -178,10 +179,9 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
     print("DEBUG: Profile tile - ${profile.name} selected: $isSelected");
 
     // Build the image URL or use a default image.
-    String imageUrl =
-        (profile.image != null && profile.image!.isNotEmpty)
-            ? profile.image!
-            : '';
+    String imageUrl = (profile.image != null && profile.image!.isNotEmpty)
+        ? profile.image!
+        : '';
 
     return InkWell(
       onTap: () {
@@ -192,9 +192,9 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
 
         bool isDashboard = widget.parentContext.widget is Dashboard;
         if (!isDashboard) {
-          Navigator.of(widget.parentContext).pushReplacement(
-            MaterialPageRoute(builder: (_) => Dashboard(i: 1)),
-          );
+          Navigator.of(
+            widget.parentContext,
+          ).pushReplacement(MaterialPageRoute(builder: (_) => Dashboard(i: 1)));
         }
       },
       child: Container(
@@ -219,13 +219,12 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
             children: [
               CircleAvatar(
                 radius: 20.0,
-                backgroundImage:
-                    Validators.isValidUri(imageUrl)
-                        ? NetworkImage(imageUrl)
-                        : const AssetImage("assets/images/avatar1.png")
-                            as ImageProvider,
+                backgroundImage: Validators.isValidUri(imageUrl)
+                    ? NetworkImage(imageUrl)
+                    : const AssetImage("assets/images/avatar1.png")
+                          as ImageProvider,
               ),
-              Text(profile.role?.name ?? "")
+              Text(profile.role?.name ?? ""),
             ],
           ),
           title: Padding(
@@ -270,16 +269,14 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
                 const SizedBox(height: 4.0),
                 Text(
                   profile.company?.name ?? "No Company",
-                  style: const TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.green,
-                  ),
+                  style: const TextStyle(fontSize: 14.0, color: Colors.green),
                 ),
               ],
             ),
           ),
-          trailing:
-              isSelected ? const Icon(Icons.check, color: Colors.blue) : null,
+          trailing: isSelected
+              ? const Icon(Icons.check, color: Colors.blue)
+              : null,
         ),
       ),
     );

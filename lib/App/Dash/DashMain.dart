@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import '../../Utils/Services/Response.dart';
-import '../../Widgets/DataInitializer/DataInitializer.dart';
+import '../../CBWidgets/DataInitializer/DataInitializer.dart';
 
-import '../../Widgets/Users/User.dart';
+import '../../CBWidgets/Users/User.dart';
 import '/../../App/Dash/CardSelection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -74,11 +74,19 @@ class _DashboardState extends State<Dashboard> {
     _user = User.fromJson(jsonDecode(await getPref("user") ?? ""));
 
     // save into the provider so can be access in NotificationPage
-    final notificationProvider = Provider.of<NotificationProvider>(context, listen: false);
-    Response response = await notificationProvider.fetchByToUserAndSave(_user?.id ?? "");
+    final notificationProvider = Provider.of<NotificationProvider>(
+      context,
+      listen: false,
+    );
+    Response response = await notificationProvider.fetchByToUserAndSave(
+      _user?.id ?? "",
+    );
     List<CBNotification> result = response.data;
 
-    _unreadCount = result.where((notification) => notification.read == false).toList().length;
+    _unreadCount = result
+        .where((notification) => notification.read == false)
+        .toList()
+        .length;
 
     setState(() {
       _isLoadingNotifications = false;
@@ -88,7 +96,8 @@ class _DashboardState extends State<Dashboard> {
 
   // Bottom navigation on tap – if index 3 (Profile), show a bottom sheet.
   void _onTabTapped(int index) {
-    if (index == 1) { //todo check this back to 3, since i've commented out search and inbox
+    if (index == 1) {
+      //todo check this back to 3, since i've commented out search and inbox
       _showBottomSheet();
     } else {
       setState(() {
@@ -140,10 +149,9 @@ class _DashboardState extends State<Dashboard> {
       appBar: _buildAppBar(),
       drawer: DrawerMenu(),
       // Show NewUserDash or ExistingUserDash based on the _isNewUser flag.
-      body:
-          _isNewUser
-              ? _newBodies[_currentIndex]
-              : _existingBodies[_currentIndex],
+      body: _isNewUser
+          ? _newBodies[_currentIndex]
+          : _existingBodies[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         showUnselectedLabels: true,
@@ -191,18 +199,16 @@ class _DashboardState extends State<Dashboard> {
         ],
       ),
       // "Manage Cards" button appears only for existing users.
-      floatingActionButton:
-          !_isNewUser
-              ? FloatingActionButton(
-                onPressed:
-                    () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const CardSelectionPage(),
-                      ),
-                    ),
-                child: const Icon(Icons.credit_card),
-              )
-              : null,
+      floatingActionButton: !_isNewUser
+          ? FloatingActionButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const CardSelectionPage(),
+                ),
+              ),
+              child: const Icon(Icons.credit_card),
+            )
+          : null,
     );
   }
 
@@ -229,7 +235,10 @@ class _DashboardState extends State<Dashboard> {
             alignment: Alignment.topCenter,
           ),
           SizedBox(width: 10),
-          Text("AIMS", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
+          Text(
+            "AIMS",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+          ),
         ],
       ),
       // actions: [
@@ -249,10 +258,10 @@ class _DashboardState extends State<Dashboard> {
         IconButton(
           icon: _isLoadingNotifications
               ? const SizedBox(
-            height: 24,
-            width: 24,
-            child: CircularProgressIndicator(strokeWidth: 2),
-          )
+                  height: 24,
+                  width: 24,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
               : const Icon(Icons.notifications),
           onPressed: _isLoadingNotifications ? null : _showNotificationSheet,
         ),
@@ -268,10 +277,7 @@ class _DashboardState extends State<Dashboard> {
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                constraints: const BoxConstraints(
-                  minWidth: 18,
-                  minHeight: 18,
-                ),
+                constraints: const BoxConstraints(minWidth: 18, minHeight: 18),
                 child: Text(
                   _unreadCount.toString(),
                   style: const TextStyle(
@@ -295,7 +301,7 @@ class _DashboardState extends State<Dashboard> {
       enableDrag: true,
       context: context,
       builder: (BuildContext _) {
-        return ProfilePopUp(parentContext: context,);
+        return ProfilePopUp(parentContext: context);
       },
     );
   }

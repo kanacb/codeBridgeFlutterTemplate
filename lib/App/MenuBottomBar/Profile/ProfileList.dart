@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import '../../../Utils/Dialogs/SnackBars.dart';
 import '../../../Utils/PageUtils.dart';
 import '../../../Utils/Services/Response.dart';
-import '../../../Widgets/Users/User.dart';
+import '../../../CBWidgets/Users/User.dart';
 import '../../../Utils/Dialogs/DeleteDialog.dart';
 import 'Profile.dart';
 import 'ProfileAdd.dart';
@@ -20,8 +20,9 @@ class ProfileNotifier extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => ProfileProvider(),
-        child: MaterialApp(title: 'Profile App', home: ProfileList()));
+      create: (context) => ProfileProvider(),
+      child: MaterialApp(title: 'Profile App', home: ProfileList()),
+    );
   }
 }
 
@@ -73,8 +74,10 @@ class _ProfileListState extends State<ProfileList> {
 
   @override
   Widget build(BuildContext context) {
-    final profileProvider =
-        Provider.of<ProfileProvider>(context, listen: false);
+    final profileProvider = Provider.of<ProfileProvider>(
+      context,
+      listen: false,
+    );
     List<Profile> filteredProfiles = [];
     print("len profiles");
     print(profileProvider.profiles.length.toString());
@@ -87,128 +90,128 @@ class _ProfileListState extends State<ProfileList> {
       body: profileProvider.isLoading
           ? const Center(child: CircularProgressIndicator())
           : filteredProfiles.isEmpty
-              ? const Center(child: Text('No profiles available'))
-              : ListView.builder(
-                  itemCount: filteredProfiles.length,
-                  itemBuilder: (context, index) {
-                    final Profile profile = filteredProfiles[index];
-                    return Card(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+          ? const Center(child: Text('No profiles available'))
+          : ListView.builder(
+              itemCount: filteredProfiles.length,
+              itemBuilder: (context, index) {
+                final Profile profile = filteredProfiles[index];
+                return Card(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
                               children: [
-                                Row(
-                                  children: [
-                                    Checkbox(
-                                      value: _selected[index],
-                                      onChanged: (value) {
-                                        setState(() {
-                                          _selected[index] = !_selected[index];
-                                        });
-                                      },
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        profile.name,
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ),
-                                    // IconButton(
-                                    //   icon: const Icon(Icons.edit, color: Colors.red),
-                                    //   onPressed: () {
-                                    //     Navigator.of(context).push(
-                                    //       utils.createRoute(
-                                    //         context,
-                                    //         ProfileEdit(profile: profile),
-                                    //       ),
-                                    //     );
-                                    //   },
-                                    // ),
-                                    // IconButton(
-                                    //   icon: const Icon(Icons.delete, color: Colors.red),
-                                    //   onPressed: () {
-                                    //     showDialog<String>(
-                                    //       context: context,
-                                    //       builder: (BuildContext context) => DeleteDialog(
-                                    //         title: "Delete Profile",
-                                    //         content: "Are you sure?",
-                                    //         pos: "Yes",
-                                    //         neg: "Cancel",
-                                    //         id: profile.id!,
-                                    //         answer: _delete,
-                                    //       ),
-                                    //     );
-                                    //   },
-                                    // ),
-                                  ],
-                                ),
-                                const SizedBox(height: 8),
-                                // Text(
-                                //   '${profile.company?.name}',
-                                //   style: const TextStyle(color: Colors.grey),
-                                // ),
-                                // profile.branch?.name != null
-                                //     ? Text(
-                                //         'Branch: ${profile.branch?.name}',
-                                //         style:
-                                //             const TextStyle(color: Colors.grey),
-                                //       )
-                                //     : SizedBox.shrink(),
-                                const SizedBox(height: 8),
-                                GestureDetector(
-                                  onTap: () {
+                                Checkbox(
+                                  value: _selected[index],
+                                  onChanged: (value) {
                                     setState(() {
-                                      _showMore[index] = !_showMore[index];
+                                      _selected[index] = !_selected[index];
                                     });
                                   },
+                                ),
+                                Expanded(
                                   child: Text(
-                                    _showMore[index]
-                                        ? 'Show less'
-                                        : 'Show more',
+                                    profile.name,
                                     style: const TextStyle(
-                                      color: Colors.red,
                                       fontWeight: FontWeight.bold,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ),
-                                _showMore[index]
-                                    ? Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          // profile.position?.name != null
-                                          //     ? Text(
-                                          //         'Role: ${profile.position?.name}',
-                                          //         style: const TextStyle(
-                                          //             color: Colors.grey),
-                                          //       )
-                                          //     : SizedBox.shrink(),
-                                          // profile.section?.name != null
-                                          //     ? Text(
-                                          //         'section: ${profile.section?.name}',
-                                          //         style: const TextStyle(
-                                          //             color: Colors.grey),
-                                          //       )
-                                          //     : SizedBox.shrink(),
-                                        ],
-                                      )
-                                    : const SizedBox(),
+                                // IconButton(
+                                //   icon: const Icon(Icons.edit, color: Colors.red),
+                                //   onPressed: () {
+                                //     Navigator.of(context).push(
+                                //       utils.createRoute(
+                                //         context,
+                                //         ProfileEdit(profile: profile),
+                                //       ),
+                                //     );
+                                //   },
+                                // ),
+                                // IconButton(
+                                //   icon: const Icon(Icons.delete, color: Colors.red),
+                                //   onPressed: () {
+                                //     showDialog<String>(
+                                //       context: context,
+                                //       builder: (BuildContext context) => DeleteDialog(
+                                //         title: "Delete Profile",
+                                //         content: "Are you sure?",
+                                //         pos: "Yes",
+                                //         neg: "Cancel",
+                                //         id: profile.id!,
+                                //         answer: _delete,
+                                //       ),
+                                //     );
+                                //   },
+                                // ),
                               ],
                             ),
-                          ),
-                        ],
+                            const SizedBox(height: 8),
+                            // Text(
+                            //   '${profile.company?.name}',
+                            //   style: const TextStyle(color: Colors.grey),
+                            // ),
+                            // profile.branch?.name != null
+                            //     ? Text(
+                            //         'Branch: ${profile.branch?.name}',
+                            //         style:
+                            //             const TextStyle(color: Colors.grey),
+                            //       )
+                            //     : SizedBox.shrink(),
+                            const SizedBox(height: 8),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _showMore[index] = !_showMore[index];
+                                });
+                              },
+                              child: Text(
+                                _showMore[index] ? 'Show less' : 'Show more',
+                                style: const TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            _showMore[index]
+                                ? Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      // profile.position?.name != null
+                                      //     ? Text(
+                                      //         'Role: ${profile.position?.name}',
+                                      //         style: const TextStyle(
+                                      //             color: Colors.grey),
+                                      //       )
+                                      //     : SizedBox.shrink(),
+                                      // profile.section?.name != null
+                                      //     ? Text(
+                                      //         'section: ${profile.section?.name}',
+                                      //         style: const TextStyle(
+                                      //             color: Colors.grey),
+                                      //       )
+                                      //     : SizedBox.shrink(),
+                                    ],
+                                  )
+                                : const SizedBox(),
+                          ],
+                        ),
                       ),
-                    );
-                  },
-                ),
+                    ],
+                  ),
+                );
+              },
+            ),
     );
   }
 
@@ -224,26 +227,22 @@ class _ProfileListState extends State<ProfileList> {
             onChanged: (value) {
               setState(() {
                 _allSelected = value!;
-                _selected =
-                    List<bool>.filled(200, _allSelected, growable: true);
+                _selected = List<bool>.filled(
+                  200,
+                  _allSelected,
+                  growable: true,
+                );
               });
             },
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).push(
-                utils.createRoute(
-                    context,
-                    ProfileAdd(
-                      resource: [],
-                    )),
-              );
+              Navigator.of(
+                context,
+              ).push(utils.createRoute(context, ProfileAdd(resource: [])));
             },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            child: const Text(
-              "Add",
-              style: TextStyle(color: Colors.white),
-            ),
+            child: const Text("Add", style: TextStyle(color: Colors.white)),
           ),
         ],
       ),

@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:hive/hive.dart';
 import '../../../Utils/Services/IdName.dart';
-import '../../../Widgets/Addresses/Address.dart';
-import '../../../Widgets/Phones/Phone.dart';
-import '../../../Widgets/Users/User.dart';
+import '../../../CBWidgets/Addresses/Address.dart';
+import '../../../CBWidgets/Phones/Phone.dart';
+import '../../../CBWidgets/Users/User.dart';
 
 part 'Profile.g.dart';
 
@@ -70,7 +70,7 @@ class Profile {
     required this.userId,
     this.hod,
     this.hos,
-     this.role,
+    this.role,
     this.position,
     this.skills,
     this.bio,
@@ -88,7 +88,7 @@ class Profile {
   factory Profile.fromJson(Map<String, dynamic> map) {
     // Handle image: if it's a list, take the first element, otherwise use it directly.
     String? imageValue = '';
-    if(map['image'] != null){
+    if (map['image'] != null) {
       if (map['image'] is List) {
         final list = map['image'] as List;
         imageValue = list.isNotEmpty ? list[0].toString() : "";
@@ -104,13 +104,17 @@ class Profile {
       hod: map['hod'], // assuming this is a bool already
       hos: map['hos'], // assuming this is a bool already
       role: map["role"] != null ? IdName.fromJson(map['role']) : null,
-      position: map['position'] != null ? IdName.fromJson(map['position']) : null,
+      position: map['position'] != null
+          ? IdName.fromJson(map['position'])
+          : null,
       skills: map['skills'] is List ? List<String>.from(map['skills']) : [],
       bio: map['bio'] ?? "",
       image: imageValue,
       branch: map['branch'] != null ? IdName.fromJson(map['branch']) : null,
       company: map['company'] != null ? IdName.fromJson(map['company']) : null,
-      department: map['department'] != null ? IdName.fromJson(map['department']) : null,
+      department: map['department'] != null
+          ? IdName.fromJson(map['department'])
+          : null,
       section: map['section'] != null ? IdName.fromJson(map['section']) : null,
       address: map['address'] != null ? Address.fromJson(map['address']) : null,
       phone: map['phone'] != null ? Phone.fromJson(map['phone']) : null,
@@ -143,7 +147,6 @@ class Profile {
     data['role'] = role;
     return data;
   }
-
 
   @override
   String toString() =>

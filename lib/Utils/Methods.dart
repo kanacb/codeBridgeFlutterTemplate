@@ -5,8 +5,8 @@ import 'package:intl/intl.dart';
 import '../../Widgets/AtlasMachines/AtlasMachines.dart';
 import '../App/MenuBottomBar/Profile/Profile.dart';
 import '../App/MenuBottomBar/Profile/ProfileProvider.dart';
-import '../Widgets/Companies/Companies.dart';
-import '../Widgets/Companies/CompanyProvider.dart';
+import '../CBWidgets/Companies/Companies.dart';
+import '../CBWidgets/Companies/CompanyProvider.dart';
 import '../Widgets/VendingMachine/VendingMachine.dart';
 import '../Widgets/VendingMachine/VendingMachineProvider.dart';
 import 'Services/SharedPreferences.dart';
@@ -44,19 +44,21 @@ class Methods {
 
   static Companies? getCompanyFromProfile(Profile profile) {
     final companies = CompanyProvider().data;
-    return companies
-        .where((i) => i.id == profile.company?.sId)
-        .firstOrNull;
+    return companies.where((i) => i.id == profile.company?.sId).firstOrNull;
   }
 
   static VendingMachine getVM(AtlasMachines machine) {
     final vendingMachines = VendingMachineProvider().data;
-    VendingMachine vm = vendingMachines
-        .firstWhere((i) => i.id == machine.vendingMachineType?.sId);
+    VendingMachine vm = vendingMachines.firstWhere(
+      (i) => i.id == machine.vendingMachineType?.sId,
+    );
     return vm;
   }
 
-  static String encodeQueryParameters(Map<String, dynamic> params, [String prefix = '']) {
+  static String encodeQueryParameters(
+    Map<String, dynamic> params, [
+    String prefix = '',
+  ]) {
     List<String> pairs = [];
 
     params.forEach((key, value) {
@@ -70,28 +72,38 @@ class Methods {
           if (item is Map<String, dynamic>) {
             pairs.add(encodeQueryParameters(item, '$newKey[$i]'));
           } else {
-            pairs.add('${Uri.encodeQueryComponent('$newKey[$i]')}=${Uri.encodeQueryComponent(item.toString())}');
+            pairs.add(
+              '${Uri.encodeQueryComponent('$newKey[$i]')}=${Uri.encodeQueryComponent(item.toString())}',
+            );
           }
         }
       } else {
-        pairs.add('${Uri.encodeQueryComponent(newKey)}=${Uri.encodeQueryComponent(value.toString())}');
+        pairs.add(
+          '${Uri.encodeQueryComponent(newKey)}=${Uri.encodeQueryComponent(value.toString())}',
+        );
       }
     });
 
     return pairs.join('&');
   }
 
-  static String formatDateTime(DateTime? dateTimeUtc, {String fallback = "Not Started"}) {
-    if(dateTimeUtc == null) return fallback;
+  static String formatDateTime(
+    DateTime? dateTimeUtc, {
+    String fallback = "Not Started",
+  }) {
+    if (dateTimeUtc == null) return fallback;
     final dateTime = dateTimeUtc.toLocal();
     return DateFormat("dd/MM/yyyy, HH:mm:ss").format(dateTime);
   }
 
   static String cleanQuery(String url) {
     return url
-        .replaceAll('\n', '')       // Remove newline characters
-        .replaceAll('\r', '')       // Remove carriage return (for Windows-style newlines)
-        .replaceAll(' ', '')        // Remove spaces
-        .trim();                    // Trim leading/trailing whitespace
+        .replaceAll('\n', '') // Remove newline characters
+        .replaceAll(
+          '\r',
+          '',
+        ) // Remove carriage return (for Windows-style newlines)
+        .replaceAll(' ', '') // Remove spaces
+        .trim(); // Trim leading/trailing whitespace
   }
 }

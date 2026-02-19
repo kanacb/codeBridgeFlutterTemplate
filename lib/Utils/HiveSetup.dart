@@ -1,26 +1,26 @@
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import '../Widgets/Positions/Positions.dart';
-import '../Widgets/Positions/PositionsProvider.dart';
-import '../Widgets/Branches/Branches.dart';
-import '../Widgets/Companies/Companies.dart';
-import '../Widgets/Companies/CompanyProvider.dart';
-import '../Widgets/Phones/Phone.dart';
+import '../CBWidgets/Positions/Positions.dart';
+import '../CBWidgets/Positions/PositionsProvider.dart';
+import '../CBWidgets/Branches/Branches.dart';
+import '../CBWidgets/Companies/Companies.dart';
+import '../CBWidgets/Companies/CompanyProvider.dart';
+import '../CBWidgets/Phones/Phone.dart';
 import '../App/MenuBottomBar/Profile/ProfileProvider.dart';
 import '../App/MenuBottomBar/Profile/Profile.dart';
 import '../App/MenuBottomBar/Inbox/Inbox.dart';
 import '../App/MenuBottomBar/Inbox/InboxProvider.dart';
 import '../App/Dash/Notifications/CBNotification.dart';
 import '../App/Dash/Notifications/NotificationProvider.dart';
-import '../Widgets/Comments/CommentProvider.dart';
-import '../Widgets/Comments/Comment.dart';
-import '../Widgets/UserInvites/UserInvite.dart';
-import '../Widgets/UserInvites/UserInviteProvider.dart';
-import '../Widgets/DocumentsStorage/DocumentStorage.dart';
-import '../Widgets/DocumentsStorage/DocumentStorageProvider.dart';
-import '../Widgets/Users/User.dart';
-import '../Widgets/Users/UserProvider.dart';
+import '../CBWidgets/Comments/CommentProvider.dart';
+import '../CBWidgets/Comments/Comment.dart';
+import '../CBWidgets/UserInvites/UserInvite.dart';
+import '../CBWidgets/UserInvites/UserInviteProvider.dart';
+import '../CBWidgets/DocumentsStorage/DocumentStorage.dart';
+import '../CBWidgets/DocumentsStorage/DocumentStorageProvider.dart';
+import '../CBWidgets/Users/User.dart';
+import '../CBWidgets/Users/UserProvider.dart';
 import 'Services/IdName.dart';
 // ~cb-add-service-imports~
 // ~cb-add-provider-imports~
@@ -52,7 +52,7 @@ class HiveSetup {
     if (!Hive.isAdapterRegistered(6)) {
       Hive.registerAdapter(DocumentStorageAdapter());
     }
-   
+
     if (!Hive.isAdapterRegistered(19)) {
       Hive.registerAdapter(IdNameAdapter());
     }

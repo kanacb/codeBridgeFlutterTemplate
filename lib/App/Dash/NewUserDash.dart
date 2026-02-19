@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../Utils/Services/SharedPreferences.dart';
-import '../../Widgets/Users/User.dart';
+import '../../CBWidgets/Users/User.dart';
 import 'CardSelection.dart';
 import 'ManageCardPage.dart';
 
@@ -70,10 +70,7 @@ class _NewUserDashState extends State<NewUserDash> {
             enabled: _enabled,
             child: Text(
               "Welcome, ${_user?.name ?? 'User'}",
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 27,
-              ),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
             ),
           ),
           const SizedBox(height: 20),
@@ -98,8 +95,7 @@ class _NewUserDashState extends State<NewUserDash> {
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
               side: const BorderSide(color: Colors.red),
-              padding:
-              const EdgeInsets.symmetric(horizontal: 60, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 12),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),

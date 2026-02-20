@@ -66,8 +66,42 @@ class HiveSetup {
 
     // ~cb-add-service-adapters~
 
-    // Open required boxes
+    if (!Hive.isAdapterRegistered(23)) {
+      Hive.registerAdapter(ProfilesAdapter());
+    }
 
+    if (!Hive.isAdapterRegistered(23)) {
+      Hive.registerAdapter(InboxAdapter());
+    }
+
+    if (!Hive.isAdapterRegistered(23)) {
+      Hive.registerAdapter(CommentsAdapter());
+    }
+
+    if (!Hive.isAdapterRegistered(23)) {
+      Hive.registerAdapter(CBNotificationAdapter());
+    }
+
+    if (!Hive.isAdapterRegistered(23)) {
+      Hive.registerAdapter(DocumentStorageAdapter());
+    }
+
+    // Open required boxes
+    if (!Hive.isBoxOpen('profilesBox')) {
+      await Hive.openBox<Profile>('profilesBox');
+    }
+    if (!Hive.isBoxOpen('inboxesBox')) {
+      await Hive.openBox<Inbox>('inboxesBox');
+    }
+    if (!Hive.isBoxOpen('commentsBox')) {
+      await Hive.openBox<Comment>('commentsBox');
+    }
+    if (!Hive.isBoxOpen('notificationsBox')) {
+      await Hive.openBox<CBNotification>('notificationsBox');
+    }
+    if (!Hive.isBoxOpen('documentsStorageBox')) {
+      await Hive.openBox<DocumentStorage>('documentsStorageBox');
+    }
     // ~cb-add-hivebox~
   }
 

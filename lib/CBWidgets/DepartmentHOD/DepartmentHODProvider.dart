@@ -139,7 +139,7 @@ class DepartmentHODProvider with ChangeNotifier implements DataFetchable{
     } else {
       logger.i("DepartmentHOD::deleteOne, error : ${result.error}");
       return Response(msg: "Failed: deleting DepartmentHOD $id",
-      data : { "id" : $id },
+      data : { "id" : id.toString() },
       subClass: "DepartmentHOD::deleteOne",
       error: result.error);
     }

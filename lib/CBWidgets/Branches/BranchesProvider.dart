@@ -139,7 +139,7 @@ class BranchesProvider with ChangeNotifier implements DataFetchable{
     } else {
       logger.i("Branches::deleteOne, error : ${result.error}");
       return Response(msg: "Failed: deleting Branches $id",
-      data : { "id" : $id },
+      data : { "id" : id.toString() },
       subClass: "Branches::deleteOne",
       error: result.error);
     }

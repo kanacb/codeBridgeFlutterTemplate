@@ -139,7 +139,7 @@ class StepsProvider with ChangeNotifier implements DataFetchable{
     } else {
       logger.i("Steps::deleteOne, error : ${result.error}");
       return Response(msg: "Failed: deleting Steps $id",
-      data : { "id" : $id },
+      data : { "id" : id.toString() },
       subClass: "Steps::deleteOne",
       error: result.error);
     }

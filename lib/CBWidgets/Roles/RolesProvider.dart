@@ -139,7 +139,7 @@ class RolesProvider with ChangeNotifier implements DataFetchable{
     } else {
       logger.i("Roles::deleteOne, error : ${result.error}");
       return Response(msg: "Failed: deleting Roles $id",
-      data : { "id" : $id },
+      data : { "id" : id.toString() },
       subClass: "Roles::deleteOne",
       error: result.error);
     }

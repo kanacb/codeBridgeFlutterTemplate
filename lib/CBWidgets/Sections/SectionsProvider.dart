@@ -139,7 +139,7 @@ class SectionsProvider with ChangeNotifier implements DataFetchable{
     } else {
       logger.i("Sections::deleteOne, error : ${result.error}");
       return Response(msg: "Failed: deleting Sections $id",
-      data : { "id" : $id },
+      data : { "id" : id.toString() },
       subClass: "Sections::deleteOne",
       error: result.error);
     }

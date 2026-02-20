@@ -139,7 +139,7 @@ class PositionsProvider with ChangeNotifier implements DataFetchable{
     } else {
       logger.i("Positions::deleteOne, error : ${result.error}");
       return Response(msg: "Failed: deleting Positions $id",
-      data : { "id" : $id },
+      data : { "id" : id.toString() },
       subClass: "Positions::deleteOne",
       error: result.error);
     }

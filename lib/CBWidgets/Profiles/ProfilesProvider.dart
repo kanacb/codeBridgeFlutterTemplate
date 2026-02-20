@@ -139,7 +139,7 @@ class ProfilesProvider with ChangeNotifier implements DataFetchable{
     } else {
       logger.i("Profiles::deleteOne, error : ${result.error}");
       return Response(msg: "Failed: deleting Profiles $id",
-      data : { "id" : $id },
+      data : { "id" : id.toString() },
       subClass: "Profiles::deleteOne",
       error: result.error);
     }

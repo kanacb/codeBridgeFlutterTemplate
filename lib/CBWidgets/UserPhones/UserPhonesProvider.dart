@@ -139,7 +139,7 @@ class UserPhonesProvider with ChangeNotifier implements DataFetchable{
     } else {
       logger.i("UserPhones::deleteOne, error : ${result.error}");
       return Response(msg: "Failed: deleting UserPhones $id",
-      data : { "id" : $id },
+      data : { "id" : id.toString() },
       subClass: "UserPhones::deleteOne",
       error: result.error);
     }

@@ -139,7 +139,7 @@ class DepartmentAdminProvider with ChangeNotifier implements DataFetchable{
     } else {
       logger.i("DepartmentAdmin::deleteOne, error : ${result.error}");
       return Response(msg: "Failed: deleting DepartmentAdmin $id",
-      data : { "id" : $id },
+      data : { "id" : id.toString() },
       subClass: "DepartmentAdmin::deleteOne",
       error: result.error);
     }

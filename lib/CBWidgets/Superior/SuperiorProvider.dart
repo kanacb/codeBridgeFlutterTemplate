@@ -139,7 +139,7 @@ class SuperiorProvider with ChangeNotifier implements DataFetchable{
     } else {
       logger.i("Superior::deleteOne, error : ${result.error}");
       return Response(msg: "Failed: deleting Superior $id",
-      data : { "id" : $id },
+      data : { "id" : id.toString() },
       subClass: "Superior::deleteOne",
       error: result.error);
     }

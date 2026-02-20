@@ -139,7 +139,7 @@ class TestsProvider with ChangeNotifier implements DataFetchable{
     } else {
       logger.i("Tests::deleteOne, error : ${result.error}");
       return Response(msg: "Failed: deleting Tests $id",
-      data : { "id" : $id },
+      data : { "id" : id.toString() },
       subClass: "Tests::deleteOne",
       error: result.error);
     }

@@ -139,7 +139,7 @@ class StaffinfoProvider with ChangeNotifier implements DataFetchable{
     } else {
       logger.i("Staffinfo::deleteOne, error : ${result.error}");
       return Response(msg: "Failed: deleting Staffinfo $id",
-      data : { "id" : $id },
+      data : { "id" : id.toString() },
       subClass: "Staffinfo::deleteOne",
       error: result.error);
     }

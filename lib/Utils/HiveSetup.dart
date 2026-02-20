@@ -7,7 +7,13 @@ import '../App/MenuBottomBar/Inbox/Inbox.dart';
 import '../App/MenuBottomBar/Inbox/InboxProvider.dart';
 import '../App/Dash/Notifications/CBNotification.dart';
 import '../App/Dash/Notifications/NotificationProvider.dart';
-import 'Services/IdName.dart';
+import '../CBWidgets/Profiles/Profile.dart';
+import '../CBWidgets/Profiles/ProfilesProvider.dart';
+import '../CBWidgets/DocumentsStorage/DocumentStorage.dart';
+import '../CBWidgets/DocumentsStorage/DocumentStorageProvider.dart';
+import '../CBWidgets/Comments/Comment.dart';
+import '../CBWidgets/Comments/CommentProvider.dart';
+import './Services/IdName.dart';
 import '../CBWidgets/Users/Users.dart';
 import '../CBWidgets/Companies/Companies.dart';
 import '../CBWidgets/Branches/Branches.dart';
@@ -64,25 +70,23 @@ class HiveSetup {
 
     // Register adapters
 
-    // ~cb-add-service-adapters~
-
     if (!Hive.isAdapterRegistered(23)) {
       Hive.registerAdapter(ProfilesAdapter());
     }
 
-    if (!Hive.isAdapterRegistered(23)) {
+    if (!Hive.isAdapterRegistered(24)) {
       Hive.registerAdapter(InboxAdapter());
     }
 
-    if (!Hive.isAdapterRegistered(23)) {
+    if (!Hive.isAdapterRegistered(25)) {
       Hive.registerAdapter(CommentsAdapter());
     }
 
-    if (!Hive.isAdapterRegistered(23)) {
+    if (!Hive.isAdapterRegistered(26)) {
       Hive.registerAdapter(CBNotificationAdapter());
     }
 
-    if (!Hive.isAdapterRegistered(23)) {
+    if (!Hive.isAdapterRegistered(27)) {
       Hive.registerAdapter(DocumentStorageAdapter());
     }
 
@@ -102,6 +106,9 @@ class HiveSetup {
     if (!Hive.isBoxOpen('documentsStorageBox')) {
       await Hive.openBox<DocumentStorage>('documentsStorageBox');
     }
+
+    // ~cb-add-service-adapters~
+
     // ~cb-add-hivebox~
   }
 

@@ -4,7 +4,7 @@ import '../Users/User.dart';
 
 part 'DocumentStorage.g.dart';
 
-@HiveType(typeId: 6)
+@HiveType(typeId: 27)
 class DocumentStorage {
   @HiveField(0)
   late final String? id;
@@ -37,40 +37,46 @@ class DocumentStorage {
   @HiveField(14)
   final DateTime updatedAt;
 
-  DocumentStorage(
-      {this.id,
-      this.name,
-      this.size,
-      this.path,
-      this.lastModified,
-      this.lastModifiedDate,
-      this.eTag,
-      this.versionId,
-      this.url,
-      this.tableId,
-      this.tableName,
-      required this.createdBy,
-      required this.updatedBy,
-      required this.createdAt,
-      required this.updatedAt});
+  DocumentStorage({
+    this.id,
+    this.name,
+    this.size,
+    this.path,
+    this.lastModified,
+    this.lastModifiedDate,
+    this.eTag,
+    this.versionId,
+    this.url,
+    this.tableId,
+    this.tableName,
+    required this.createdBy,
+    required this.updatedBy,
+    required this.createdAt,
+    required this.updatedAt,
+  });
 
   factory DocumentStorage.fromJson(Map<String, dynamic> map) {
     return DocumentStorage(
-        id: map['_id'] as String?,
-        name: map['name'],
-        size: map['size'],
-        path: map['path'],
-        lastModified: map['lastModified'],
-        lastModifiedDate: DateTime.parse(map['lastModifiedDate']),
-        eTag: map['eTag'],
-        versionId: map['versionId'],
-        url: map['url'],
-        tableId: map['tableId'],
-        tableName: map['tableName'],
-        createdBy: map['createdBy'] == null ? null : User.fromJson(map['createdBy']),
-        updatedBy: map['updatedBy'] == null ? null : User.fromJson(map['updatedBy']),
-        createdAt: DateTime.parse(map['createdAt']),
-        updatedAt: DateTime.parse(map['updatedAt']));
+      id: map['_id'] as String?,
+      name: map['name'],
+      size: map['size'],
+      path: map['path'],
+      lastModified: map['lastModified'],
+      lastModifiedDate: DateTime.parse(map['lastModifiedDate']),
+      eTag: map['eTag'],
+      versionId: map['versionId'],
+      url: map['url'],
+      tableId: map['tableId'],
+      tableName: map['tableName'],
+      createdBy: map['createdBy'] == null
+          ? null
+          : User.fromJson(map['createdBy']),
+      updatedBy: map['updatedBy'] == null
+          ? null
+          : User.fromJson(map['updatedBy']),
+      createdAt: DateTime.parse(map['createdAt']),
+      updatedAt: DateTime.parse(map['updatedAt']),
+    );
   }
 
   Map<String, dynamic> toJson() {

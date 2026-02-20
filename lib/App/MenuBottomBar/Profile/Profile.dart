@@ -8,7 +8,7 @@ import '../../../CBWidgets/Users/User.dart';
 
 part 'Profile.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 23)
 class Profile {
   @HiveField(0)
   final String id;

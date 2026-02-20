@@ -3,7 +3,7 @@ import '../../../Utils/Services/IdName.dart';
 
 part 'CBNotification.g.dart';
 
-@HiveType(typeId: 5)
+@HiveType(typeId: 26)
 class CBNotification {
   @HiveField(0)
   late final String? id;
@@ -71,10 +71,18 @@ class CBNotification {
       recordId: map['recordId'] as String?,
       read: map['read'] as bool?,
       sent: map['sent'] != null ? DateTime.parse(map['sent']) : null,
-      createdBy: map['createdBy'] != null ? IdName.fromJson(map['createdBy']) : null,
-      updatedBy: map['updatedBy'] != null ? IdName.fromJson(map['updatedBy']) : null,
-      createdAt: map['createdAt'] != null ? DateTime.parse(map['createdAt']) : null,
-      updatedAt: map['updatedAt'] != null ? DateTime.parse(map['updatedAt']) : null,
+      createdBy: map['createdBy'] != null
+          ? IdName.fromJson(map['createdBy'])
+          : null,
+      updatedBy: map['updatedBy'] != null
+          ? IdName.fromJson(map['updatedBy'])
+          : null,
+      createdAt: map['createdAt'] != null
+          ? DateTime.parse(map['createdAt'])
+          : null,
+      updatedAt: map['updatedAt'] != null
+          ? DateTime.parse(map['updatedAt'])
+          : null,
     );
   }
 

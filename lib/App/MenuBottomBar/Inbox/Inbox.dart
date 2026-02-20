@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 
 part 'Inbox.g.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 24)
 class Inbox {
   @HiveField(0)
   final String id; // maps to "_id"

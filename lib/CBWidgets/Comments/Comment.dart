@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 part 'Comment.g.dart';
 
-@HiveType(typeId: 3)
+@HiveType(typeId: 25)
 class Comment {
   @HiveField(0)
   late final String? id;
@@ -29,26 +29,27 @@ class Comment {
   late final DateTime? updatedAt;
 
   Comment({
-     this.id,
+    this.id,
     required this.text,
-     this.recordId,
-     this.resolved,
-     this.createdBy,
-     this.updatedBy,
-     this.createdAt,
-     this.updatedAt,
+    this.recordId,
+    this.resolved,
+    this.createdBy,
+    this.updatedBy,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory Comment.fromJson(Map<String, dynamic> map) {
     return Comment(
-        id: map["_id"],
-        text: map["text"],
-        recordId: map["recordId"],
-        resolved: map["resolved"],
-        createdBy: map['createdBy'],
-        updatedBy: map['updatedBy'],
-        createdAt: DateTime.parse(map['createdAt']),
-        updatedAt: DateTime.parse(map['updatedAt']));
+      id: map["_id"],
+      text: map["text"],
+      recordId: map["recordId"],
+      resolved: map["resolved"],
+      createdBy: map['createdBy'],
+      updatedBy: map['updatedBy'],
+      createdAt: DateTime.parse(map['createdAt']),
+      updatedAt: DateTime.parse(map['updatedAt']),
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -67,5 +68,4 @@ class Comment {
   @override
   String toString() =>
       '{"id": "$id", "text" : "$text", "recordId" : $recordId, "resolved" : "$resolved.toString()", "createdAt" : "$createdAt", "updateAt" : "$updatedAt"}';
-
 }

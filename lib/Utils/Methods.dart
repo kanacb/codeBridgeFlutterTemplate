@@ -3,8 +3,8 @@ import 'package:intl/intl.dart';
 
 import '../App/MenuBottomBar/Profile/Profile.dart';
 import '../App/MenuBottomBar/Profile/ProfileProvider.dart';
-import '../CBWidgets/Companies/Companies.dart';
-import '../CBWidgets/Companies/CompanyProvider.dart';
+import '../CBWidgets/Companies/Company.dart';
+import '../CBWidgets/Companies/CompaniesProvider.dart';
 import 'Services/SharedPreferences.dart';
 
 class Methods {
@@ -26,8 +26,8 @@ class Methods {
     }
   }
 
-  static Companies? getCompanyFromMachine(dynamic object) {
-    final companies = CompanyProvider().data;
+  static Company? getCompanyFromMachine(dynamic object) {
+    final companies = CompaniesProvider().data;
 
     try {
       final companyId = object.ownership.companyId.sId as String;
@@ -38,8 +38,8 @@ class Methods {
     }
   }
 
-  static Companies? getCompanyFromProfile(Profile profile) {
-    final companies = CompanyProvider().data;
+  static Company? getCompanyFromProfile(Profile profile) {
+    final companies = CompaniesProvider().data;
     return companies.where((i) => i.id == profile.company?.sId).firstOrNull;
   }
 

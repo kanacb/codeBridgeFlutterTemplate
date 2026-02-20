@@ -1,16 +1,18 @@
+import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'dart:convert';
+import 'dart:developer';
+import 'package:logger/logger.dart';
 import '../../Utils/Methods.dart';
 import '../../Utils/Services/SchemaService.dart';
-import 'package:logger/logger.dart';
 import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
-import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-
+import '../../CBWidgets/DataInitializer/DataFetchable.dart';
 import 'Positions.dart';
 import 'PositionsService.dart';
 
-class PositionsProvider with ChangeNotifier {
+class PositionsProvider with ChangeNotifier implements DataFetchable{
   List<Positions> _data = [];
   Box<Positions> hiveBox = Hive.box<Positions>('positionsBox');
   List<Positions> get data => _data;
@@ -19,30 +21,9 @@ class PositionsProvider with ChangeNotifier {
   bool get isLoading => _isLoading;
 
   String query = "";
-  Map<String, dynamic> mapQuery = {
-    "\$limit": 25000,
-    "\$populate": [
-      {
-        "path": "createdBy",
-        "service": "profiles",
-        "select": ["name"],
-      },
-      {
-        "path": "updatedBy",
-        "service": "profiles",
-        "select": ["name"]
-      },
-      {
-        "path": "roleId",
-        "service": "roles",
-        "select": ["name"]
-      },
-    ],
-  };
 
   PositionsProvider() {
     loadPositionsFromHive();
-    query = Methods.encodeQueryParameters(mapQuery);
   }
 
   void loadPositionsFromHive() {
@@ -60,37 +41,18 @@ class PositionsProvider with ChangeNotifier {
       loadPositionsFromHive();
       return Response(
           data: data,
-          msg: "Success: created Job Station ${item.id}",
+          msg: "Success: Saved Positions",
+          subClass: "Positions::createOneAndSave",
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      logger.i("Positions create : ${result.error}");
+      Positions? data = result.data;
+      logger.i("Failed: creating Positions::createOneAndSave, error: ${result.error}, subClass: Positions::fetchOneAndSave");
       return Response(
-          msg: "Failed: creating Positions ${item.id}",
+          msg: "Failed to create: creating Positions",
+          subClass: "Positions::createOneAndSave",
+          data : jsonEncode(data?.toJson()),
           error: result.error);
-    }
-  }
-
-  Future<Response> fetchByNameAndSave(String name) async {
-    _isLoading = true;
-    final Result result = await PositionsService(query: query).fetchByKeyValue("name", name);
-    if (result.error == null) {
-      List<Positions>? data = result.data;
-      if (data!.isNotEmpty) {
-        for (var position in data) {
-          hiveBox.put(position.id, position);
-        }
-      }
-      loadPositionsFromHive();
-      return Response(
-          data: data,
-          msg: "Success: saved Positions $name",
-          statusCode: result.statusCode);
-    } else {
-      _isLoading = false;
-      logger.i("Positions get one : ${result.error}");
-      return Response(
-          msg: "Failed: saving Positions $name", error: result.error);
     }
   }
 
@@ -102,14 +64,17 @@ class PositionsProvider with ChangeNotifier {
       hiveBox.put(data?.id, data!);
       loadPositionsFromHive();
       return Response(
-          data: data,
-          msg: "Success: saved Positions $id",
-          statusCode: result.statusCode);
+        data: data,
+        msg: "Success: Fetched id:$id",
+        subClass: "Positions::fetchOneAndSave",
+        statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      logger.i("Positions get one : ${result.error}");
-      return Response(
-          msg: "Failed: saving Positions $id", error: result.error);
+      logger.i("Failed: Positions::fetchOneAndSave, error: ${result.error}");
+      return Response(msg: "Failed: Fetching Positions $id", 
+        error: result.error, 
+        subClass: "Positions::fetchOneAndSave",
+        data : { "id" : id});
     }
   }
 
@@ -126,11 +91,15 @@ class PositionsProvider with ChangeNotifier {
       });
       loadPositionsFromHive();
       return Response(
-          msg: "Success: fetched all Positions", statusCode: result.statusCode);
+        msg: "Success: Fetched all Positions",
+        subClass: "Positions::fetchAllAndSave",
+        statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      logger.i("Positions get all error: ${result.error}");
-      return Response(msg: "Failed: fetch all Positions", error: result.error);
+      logger.i("Positions::fetchAllAndSave, error: ${result.error}");
+      return Response(msg: "Failed: Fetched all Positions", 
+        subClass: "Positions::fetchAllAndSave",
+        error: result.error);
     }
   }
 
@@ -142,13 +111,17 @@ class PositionsProvider with ChangeNotifier {
       hiveBox.put(data?.id, data!);
       loadPositionsFromHive();
       return Response(
-          msg: "Success: updated Positions $id",
-          statusCode: result.statusCode);
+        msg: "Success: Updated Positions ${id}", 
+        subClass: "Positions::updateOneAndSave",
+        statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      logger.i("Positions update : ${result.error}");
-      return Response(
-          msg: "Failed: updating Positions $id", error: result.error);
+      logger.i("Positions::updateOneAndSave, update : ${result.error}");
+      return Response(msg: "Failed: updating Positions ${id}",
+        subClass: "Positions::updateOneAndSave",
+        id : id.toString(), 
+        data : jsonEncode(item.toJson()),
+        error: result.error);
     }
   }
 
@@ -161,28 +134,32 @@ class PositionsProvider with ChangeNotifier {
       loadPositionsFromHive();
       return Response(
           msg: "Success: deleted Positions $id",
+          subClass: "Positions::deleteOne", 
           statusCode: result.statusCode);
     } else {
-      logger.i("Positions delete : ${result.error}");
-      return Response(
-          msg: "Failed: deleting Positions $id", error: result.error);
+      logger.i("Positions::deleteOne, error : ${result.error}");
+      return Response(msg: "Failed: deleting Positions $id",
+      data : { "id" : $id },
+      subClass: "Positions::deleteOne",
+      error: result.error);
     }
   }
 
   Future<Response> schema() async {
     _isLoading = true;
-    final Result result = await SchemaService().schema("positionsSchema");
+    final Result result = await SchemaService().schema("PositionsSchema");
     _isLoading = false;
     if (result.error == null) {
       return Response(
           data: result.data,
           msg: "Success: schema of Positions",
+          subClass: "Positions::schema",
           statusCode: result.statusCode);
     } else {
-      logger.i("Positions schema data: ${result.data}");
-      logger.i("Positions schema error: ${result.error}");
-      return Response(
-          msg: "Failed: PositionsSchema", error: result.error);
+      logger.i("~cb-service-name-capitalize::schema, error: ${result.error}");
+      return Response(msg: "Failed: PositionsSchema", 
+      subClass: "Positions::schema",
+      error: result.error);
     }
   }
 }

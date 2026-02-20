@@ -4,9 +4,9 @@ import 'Positions.dart';
 class PositionsService extends CrudService<Positions> {
   PositionsService({String? query = ""})
       : super(
-    'positions', // Endpoint for Positions Parts
+    'positions', // Endpoint for external tickets
     query,
     fromJson: (json) => Positions.fromJson(json),
-    toJson: (positions) => positions.toJson(),
+    toJson: (data) => data.toJson(),
   );
 }

@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'UserPhones.dart';
+import 'UserPhone.dart';
 import 'UserPhonesService.dart';
 
 class UserPhonesProvider with ChangeNotifier implements DataFetchable{
-  List<UserPhones> _data = [];
-  Box<UserPhones> hiveBox = Hive.box<UserPhones>('userPhonesBox');
-  List<UserPhones> get data => _data;
+  List<UserPhone> _data = [];
+  Box<UserPhone> hiveBox = Hive.box<UserPhone>('userPhonesBox');
+  List<UserPhone> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class UserPhonesProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(UserPhones item) async {
+  Future<Response> createOneAndSave(UserPhone item) async {
     _isLoading = true;
     final Result result = await UserPhonesService(query: query).create(item);
     if (result.error == null) {
-      UserPhones? data = result.data;
+      UserPhone? data = result.data;
       hiveBox.put(data?.id, data!);
       loadUserPhonesFromHive();
       return Response(
@@ -46,7 +46,7 @@ class UserPhonesProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      UserPhones? data = result.data;
+      UserPhone? data = result.data;
       logger.i("Failed: creating UserPhones::createOneAndSave, error: ${result.error}, subClass: UserPhones::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating UserPhones",
@@ -60,7 +60,7 @@ class UserPhonesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await UserPhonesService(query: query).fetchById(id);
     if (result.error == null) {
-      UserPhones? data = result.data;
+      UserPhone? data = result.data;
       hiveBox.put(data?.id, data!);
       loadUserPhonesFromHive();
       return Response(
@@ -82,10 +82,10 @@ class UserPhonesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await UserPhonesService(query: query).fetchAll();
     if (result.error == null) {
-      List<UserPhones>? data = result.data;
+      List<UserPhone>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((UserPhones item) {
+      data?.forEach((UserPhone item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class UserPhonesProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, UserPhones item) async {
+  Future<Response> updateOneAndSave(String id, UserPhone item) async {
     _isLoading = true;
     final Result result = await UserPhonesService().update(id, item);
     if (result.error == null) {
-      UserPhones? data = result.data;
+      UserPhone? data = result.data;
       hiveBox.put(data?.id, data!);
       loadUserPhonesFromHive();
       return Response(

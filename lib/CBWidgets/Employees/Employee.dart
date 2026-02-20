@@ -1,51 +1,54 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'Employee.g.dart';
+ 
+@HiveType(typeId: 17)
 
 class Employee {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
+	 
 	final String? empNo;
-	 
 	@HiveField(2)
+	 
 	final String? name;
-	 
 	@HiveField(3)
+	 
 	final String? fullname;
-	 
 	@HiveField(4)
-	final String? company;
 	 
+	final IdName? company;
 	@HiveField(5)
-	final String? department;
 	 
+	final IdName? department;
 	@HiveField(6)
-	final String? section;
 	 
+	final IdName? section;
 	@HiveField(7)
-	final String? position;
 	 
+	final IdName? position;
 	@HiveField(8)
-	final String? supervisor;
 	 
+	final IdName? supervisor;
 	@HiveField(9)
+	 
 	final DateTime? dateJoined;
-	 
 	@HiveField(10)
+	 
 	final DateTime? dateTerminated;
-	 
 	@HiveField(11)
+	 
 	final String? resigned;
-	 
 	@HiveField(12)
+	 
 	final String? empGroup;
-	 
 	@HiveField(13)
-	final String? empCode;
 	 
+	final String? empCode;
 
   Employee({
     this.id,
@@ -70,11 +73,11 @@ class Employee {
 			empNo : map['empNo'] != null ? map['empNo'] as String : "",
 			name : map['name'] != null ? map['name'] as String : "",
 			fullname : map['fullname'] != null ? map['fullname'] as String : "",
-			company : map['company'] as String?,
-			department : map['department'] as String?,
-			section : map['section'] as String?,
-			position : map['position'] as String?,
-			supervisor : map['supervisor'] as String?,
+			company : map['company'] as IdName?,
+			department : map['department'] as IdName?,
+			section : map['section'] as IdName?,
+			position : map['position'] as IdName?,
+			supervisor : map['supervisor'] as IdName?,
 			dateJoined : map['dateJoined'] != null ? DateTime.parse(map['dateJoined']) : null,
 			dateTerminated : map['dateTerminated'] != null ? DateTime.parse(map['dateTerminated']) : null,
 			resigned : map['resigned'] != null ? map['resigned'] as String : "",

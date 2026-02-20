@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'Sections.dart';
+import 'Section.dart';
 import 'SectionsService.dart';
 
 class SectionsProvider with ChangeNotifier implements DataFetchable{
-  List<Sections> _data = [];
-  Box<Sections> hiveBox = Hive.box<Sections>('sectionsBox');
-  List<Sections> get data => _data;
+  List<Section> _data = [];
+  Box<Section> hiveBox = Hive.box<Section>('sectionsBox');
+  List<Section> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class SectionsProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(Sections item) async {
+  Future<Response> createOneAndSave(Section item) async {
     _isLoading = true;
     final Result result = await SectionsService(query: query).create(item);
     if (result.error == null) {
-      Sections? data = result.data;
+      Section? data = result.data;
       hiveBox.put(data?.id, data!);
       loadSectionsFromHive();
       return Response(
@@ -46,7 +46,7 @@ class SectionsProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      Sections? data = result.data;
+      Section? data = result.data;
       logger.i("Failed: creating Sections::createOneAndSave, error: ${result.error}, subClass: Sections::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating Sections",
@@ -60,7 +60,7 @@ class SectionsProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await SectionsService(query: query).fetchById(id);
     if (result.error == null) {
-      Sections? data = result.data;
+      Section? data = result.data;
       hiveBox.put(data?.id, data!);
       loadSectionsFromHive();
       return Response(
@@ -82,10 +82,10 @@ class SectionsProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await SectionsService(query: query).fetchAll();
     if (result.error == null) {
-      List<Sections>? data = result.data;
+      List<Section>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((Sections item) {
+      data?.forEach((Section item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class SectionsProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, Sections item) async {
+  Future<Response> updateOneAndSave(String id, Section item) async {
     _isLoading = true;
     final Result result = await SectionsService().update(id, item);
     if (result.error == null) {
-      Sections? data = result.data;
+      Section? data = result.data;
       hiveBox.put(data?.id, data!);
       loadSectionsFromHive();
       return Response(

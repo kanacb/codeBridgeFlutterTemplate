@@ -198,8 +198,8 @@ class _SuperiorListState extends State<SuperiorList> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Superior: ${item.superior}'),
-Text('Subordinate: ${item.subordinate}'),
+                Text('Superior: ${item.superior?.supervisor}'),
+Text('Subordinate: ${item.subordinate?.empno}'),
               ],
             ),
             trailing: Row(
@@ -211,6 +211,7 @@ Text('Subordinate: ${item.subordinate}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         SuperiorEdit(
+                          superior : item.superior.toString(),,subordinate : item.subordinate.toString(),
                           schema: schemaResponse?.data,
                           data: item
                         )));

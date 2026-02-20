@@ -1,36 +1,39 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'UserAddress.g.dart';
+ 
+@HiveType(typeId: 12)
 
 class UserAddress {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
-	final String? userId;
 	 
+	final IdName? userId;
 	@HiveField(2)
+	 
 	final String? Street1;
-	 
 	@HiveField(3)
+	 
 	final String? Street2;
-	 
 	@HiveField(4)
+	 
 	final String? Poscode;
-	 
 	@HiveField(5)
+	 
 	final String? City;
-	 
 	@HiveField(6)
+	 
 	final String? State;
-	 
 	@HiveField(7)
+	 
 	final String? Province;
-	 
 	@HiveField(8)
-	final String? Country;
 	 
+	final String? Country;
 
   UserAddress({
     this.id,
@@ -47,7 +50,7 @@ class UserAddress {
   factory UserAddress.fromJson(Map<String, dynamic> map) {
     return UserAddress(
       id: map['_id'] as String?,
-			userId : map['userId'] as String?,
+			userId : map['userId'] as IdName?,
 			Street1 : map['Street1'] as String?,
 			Street2 : map['Street2'] as String?,
 			Poscode : map['Poscode'] as String?,

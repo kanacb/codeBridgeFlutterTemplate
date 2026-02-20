@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'UserPhones.dart';
+import 'UserPhone.dart';
 import 'UserPhonesAdd.dart';
 import 'UserPhonesEdit.dart';
 import 'UserPhonesProvider.dart';
@@ -171,7 +171,7 @@ class _UserPhonesListState extends State<UserPhonesList> {
     );
   }
 
-  Widget _buildList(List<UserPhones> data) {
+  Widget _buildList(List<UserPhone> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _UserPhonesListState extends State<UserPhonesList> {
     );
   }
 
-  Widget _buildCard(UserPhones item, int index) {
+  Widget _buildCard(UserPhone item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -198,7 +198,7 @@ class _UserPhonesListState extends State<UserPhonesList> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('User: ${item.userId}'),
+                Text('User: ${item.userId?.name}'),
 Text('Countrycode: ${item.countryCode}'),
 Text('Operatorcode: ${item.operatorCode}'),
 Text('Number: ${item.number}'),
@@ -215,6 +215,7 @@ Text('Is Default: ${item.isDefault}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         UserPhonesEdit(
+                          userId : item.userId.toString(),
                           schema: schemaResponse?.data,
                           data: item
                         )));

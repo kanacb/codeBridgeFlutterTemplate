@@ -3,8 +3,9 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Schema.dart';
 import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
-import 'Profiles.dart';
+import 'Profile.dart';
 import 'ProfilesMain.dart';
+import 'ProfilesProvider.dart';
   
 class ProfilesEdit extends StatefulWidget {
   const ProfilesEdit({
@@ -22,7 +23,7 @@ class ProfilesEdit extends StatefulWidget {
 		required this.phone
   });
   final List<Schema> schema;
-  final Profiles data;
+  final Profile data;
   final String userId;
 	final String department;
 	final String section;
@@ -31,7 +32,7 @@ class ProfilesEdit extends StatefulWidget {
 	final String company;
 	final String branch;
 	final String address;
-	final String phone;,
+	final String phone;
 
   @override
   State<ProfilesEdit> createState() => _ProfilesEditState();
@@ -46,7 +47,7 @@ class _ProfilesEditState extends State<ProfilesEdit> {
   @override
   void initState() {
     super.initState();
-    dynamic initialValue = widget.ticket.toJson();
+    dynamic initialValue = widget.data.toJson();
     // Initialize default values for each field
     for (var field in widget.schema) {
       formData[field.field] = initialValue[field.field];
@@ -56,8 +57,8 @@ class _ProfilesEditState extends State<ProfilesEdit> {
   void saveForm() async {
     ProfilesProvider provider = ProfilesProvider();
     // Handle form submission logic here
-    final data = Profiles.fromJson(formData);
-    Response response = await provider.updateOneAndSave(data.machineId!, data);
+    final data = Profile.fromJson(formData);
+    Response response = await provider.updateOneAndSave(data.id!, data);
     SnackBars snackBar = SnackBars();
     if (response.isSuccess) {
       snackBar.SuccessSnackBar(context, "Successfully updated Profiles");

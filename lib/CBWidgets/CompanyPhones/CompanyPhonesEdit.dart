@@ -3,8 +3,9 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Schema.dart';
 import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
-import 'CompanyPhones.dart';
+import 'CompanyPhone.dart';
 import 'CompanyPhonesMain.dart';
+import 'CompanyPhonesProvider.dart';
   
 class CompanyPhonesEdit extends StatefulWidget {
   const CompanyPhonesEdit({
@@ -14,8 +15,8 @@ class CompanyPhonesEdit extends StatefulWidget {
     required this.companyId
   });
   final List<Schema> schema;
-  final CompanyPhones data;
-  final String companyId;,
+  final CompanyPhone data;
+  final String companyId;
 
   @override
   State<CompanyPhonesEdit> createState() => _CompanyPhonesEditState();
@@ -30,7 +31,7 @@ class _CompanyPhonesEditState extends State<CompanyPhonesEdit> {
   @override
   void initState() {
     super.initState();
-    dynamic initialValue = widget.ticket.toJson();
+    dynamic initialValue = widget.data.toJson();
     // Initialize default values for each field
     for (var field in widget.schema) {
       formData[field.field] = initialValue[field.field];
@@ -40,8 +41,8 @@ class _CompanyPhonesEditState extends State<CompanyPhonesEdit> {
   void saveForm() async {
     CompanyPhonesProvider provider = CompanyPhonesProvider();
     // Handle form submission logic here
-    final data = CompanyPhones.fromJson(formData);
-    Response response = await provider.updateOneAndSave(data.machineId!, data);
+    final data = CompanyPhone.fromJson(formData);
+    Response response = await provider.updateOneAndSave(data.id!, data);
     SnackBars snackBar = SnackBars();
     if (response.isSuccess) {
       snackBar.SuccessSnackBar(context, "Successfully updated Company Phones");

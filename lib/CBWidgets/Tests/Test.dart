@@ -1,27 +1,30 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'Test.g.dart';
+ 
+@HiveType(typeId: 11)
 
 class Test {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
+	 
 	final String? stack;
-	 
 	@HiveField(2)
+	 
 	final String? service;
-	 
 	@HiveField(3)
+	 
 	final int? passed;
-	 
 	@HiveField(4)
+	 
 	final int? failed;
-	 
 	@HiveField(5)
-	final String? notes;
 	 
+	final String? notes;
 
   Test({
     this.id,

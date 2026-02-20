@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'DepartmentHOS.dart';
+import 'DepartmentHO.dart';
 import 'DepartmentHOSAdd.dart';
 import 'DepartmentHOSEdit.dart';
 import 'DepartmentHOSProvider.dart';
@@ -171,7 +171,7 @@ class _DepartmentHOSListState extends State<DepartmentHOSList> {
     );
   }
 
-  Widget _buildList(List<DepartmentHOS> data) {
+  Widget _buildList(List<DepartmentHO> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _DepartmentHOSListState extends State<DepartmentHOSList> {
     );
   }
 
-  Widget _buildCard(DepartmentHOS item, int index) {
+  Widget _buildCard(DepartmentHO item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -210,6 +210,7 @@ class _DepartmentHOSListState extends State<DepartmentHOSList> {
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         DepartmentHOSEdit(
+                          
                           schema: schemaResponse?.data,
                           data: item
                         )));

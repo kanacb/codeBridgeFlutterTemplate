@@ -1,30 +1,33 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'CompanyPhone.g.dart';
+ 
+@HiveType(typeId: 14)
 
 class CompanyPhone {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
-	final String? companyId;
 	 
+	final IdName? companyId;
 	@HiveField(2)
+	 
 	final int? countryCode;
-	 
 	@HiveField(3)
+	 
 	final int? operatorCode;
-	 
 	@HiveField(4)
+	 
 	final int? number;
-	 
 	@HiveField(5)
+	 
 	final String? type;
-	 
 	@HiveField(6)
-	final bool? isDefault;
 	 
+	final bool? isDefault;
 
   CompanyPhone({
     this.id,
@@ -39,7 +42,7 @@ class CompanyPhone {
   factory CompanyPhone.fromJson(Map<String, dynamic> map) {
     return CompanyPhone(
       id: map['_id'] as String?,
-			companyId : map['companyId'] as String?,
+			companyId : map['companyId'] as IdName?,
 			countryCode : map['countryCode'] as int,
 			operatorCode : map['operatorCode'] as int,
 			number : map['number'] as int,

@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'Users.dart';
+import 'User.dart';
 import 'UsersService.dart';
 
 class UsersProvider with ChangeNotifier implements DataFetchable{
-  List<Users> _data = [];
-  Box<Users> hiveBox = Hive.box<Users>('usersBox');
-  List<Users> get data => _data;
+  List<User> _data = [];
+  Box<User> hiveBox = Hive.box<User>('usersBox');
+  List<User> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class UsersProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(Users item) async {
+  Future<Response> createOneAndSave(User item) async {
     _isLoading = true;
     final Result result = await UsersService(query: query).create(item);
     if (result.error == null) {
-      Users? data = result.data;
+      User? data = result.data;
       hiveBox.put(data?.id, data!);
       loadUsersFromHive();
       return Response(
@@ -46,7 +46,7 @@ class UsersProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      Users? data = result.data;
+      User? data = result.data;
       logger.i("Failed: creating Users::createOneAndSave, error: ${result.error}, subClass: Users::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating Users",
@@ -60,7 +60,7 @@ class UsersProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await UsersService(query: query).fetchById(id);
     if (result.error == null) {
-      Users? data = result.data;
+      User? data = result.data;
       hiveBox.put(data?.id, data!);
       loadUsersFromHive();
       return Response(
@@ -82,10 +82,10 @@ class UsersProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await UsersService(query: query).fetchAll();
     if (result.error == null) {
-      List<Users>? data = result.data;
+      List<User>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((Users item) {
+      data?.forEach((User item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class UsersProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, Users item) async {
+  Future<Response> updateOneAndSave(String id, User item) async {
     _isLoading = true;
     final Result result = await UsersService().update(id, item);
     if (result.error == null) {
-      Users? data = result.data;
+      User? data = result.data;
       hiveBox.put(data?.id, data!);
       loadUsersFromHive();
       return Response(

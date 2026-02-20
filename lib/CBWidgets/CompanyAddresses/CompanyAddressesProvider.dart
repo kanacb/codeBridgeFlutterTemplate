@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'CompanyAddresses.dart';
+import 'CompanyAddress.dart';
 import 'CompanyAddressesService.dart';
 
 class CompanyAddressesProvider with ChangeNotifier implements DataFetchable{
-  List<CompanyAddresses> _data = [];
-  Box<CompanyAddresses> hiveBox = Hive.box<CompanyAddresses>('companyAddressesBox');
-  List<CompanyAddresses> get data => _data;
+  List<CompanyAddress> _data = [];
+  Box<CompanyAddress> hiveBox = Hive.box<CompanyAddress>('companyAddressesBox');
+  List<CompanyAddress> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class CompanyAddressesProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(CompanyAddresses item) async {
+  Future<Response> createOneAndSave(CompanyAddress item) async {
     _isLoading = true;
     final Result result = await CompanyAddressesService(query: query).create(item);
     if (result.error == null) {
-      CompanyAddresses? data = result.data;
+      CompanyAddress? data = result.data;
       hiveBox.put(data?.id, data!);
       loadCompanyAddressesFromHive();
       return Response(
@@ -46,7 +46,7 @@ class CompanyAddressesProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      CompanyAddresses? data = result.data;
+      CompanyAddress? data = result.data;
       logger.i("Failed: creating CompanyAddresses::createOneAndSave, error: ${result.error}, subClass: CompanyAddresses::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating CompanyAddresses",
@@ -60,7 +60,7 @@ class CompanyAddressesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await CompanyAddressesService(query: query).fetchById(id);
     if (result.error == null) {
-      CompanyAddresses? data = result.data;
+      CompanyAddress? data = result.data;
       hiveBox.put(data?.id, data!);
       loadCompanyAddressesFromHive();
       return Response(
@@ -82,10 +82,10 @@ class CompanyAddressesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await CompanyAddressesService(query: query).fetchAll();
     if (result.error == null) {
-      List<CompanyAddresses>? data = result.data;
+      List<CompanyAddress>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((CompanyAddresses item) {
+      data?.forEach((CompanyAddress item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class CompanyAddressesProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, CompanyAddresses item) async {
+  Future<Response> updateOneAndSave(String id, CompanyAddress item) async {
     _isLoading = true;
     final Result result = await CompanyAddressesService().update(id, item);
     if (result.error == null) {
-      CompanyAddresses? data = result.data;
+      CompanyAddress? data = result.data;
       hiveBox.put(data?.id, data!);
       loadCompanyAddressesFromHive();
       return Response(

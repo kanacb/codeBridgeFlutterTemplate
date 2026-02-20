@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'Positions.dart';
+import 'Position.dart';
 import 'PositionsService.dart';
 
 class PositionsProvider with ChangeNotifier implements DataFetchable{
-  List<Positions> _data = [];
-  Box<Positions> hiveBox = Hive.box<Positions>('positionsBox');
-  List<Positions> get data => _data;
+  List<Position> _data = [];
+  Box<Position> hiveBox = Hive.box<Position>('positionsBox');
+  List<Position> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class PositionsProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(Positions item) async {
+  Future<Response> createOneAndSave(Position item) async {
     _isLoading = true;
     final Result result = await PositionsService(query: query).create(item);
     if (result.error == null) {
-      Positions? data = result.data;
+      Position? data = result.data;
       hiveBox.put(data?.id, data!);
       loadPositionsFromHive();
       return Response(
@@ -46,7 +46,7 @@ class PositionsProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      Positions? data = result.data;
+      Position? data = result.data;
       logger.i("Failed: creating Positions::createOneAndSave, error: ${result.error}, subClass: Positions::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating Positions",
@@ -60,7 +60,7 @@ class PositionsProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await PositionsService(query: query).fetchById(id);
     if (result.error == null) {
-      Positions? data = result.data;
+      Position? data = result.data;
       hiveBox.put(data?.id, data!);
       loadPositionsFromHive();
       return Response(
@@ -82,10 +82,10 @@ class PositionsProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await PositionsService(query: query).fetchAll();
     if (result.error == null) {
-      List<Positions>? data = result.data;
+      List<Position>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((Positions item) {
+      data?.forEach((Position item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class PositionsProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, Positions item) async {
+  Future<Response> updateOneAndSave(String id, Position item) async {
     _isLoading = true;
     final Result result = await PositionsService().update(id, item);
     if (result.error == null) {
-      Positions? data = result.data;
+      Position? data = result.data;
       hiveBox.put(data?.id, data!);
       loadPositionsFromHive();
       return Response(

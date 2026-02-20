@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'Roles.dart';
+import 'Role.dart';
 import 'RolesAdd.dart';
 import 'RolesEdit.dart';
 import 'RolesProvider.dart';
@@ -171,7 +171,7 @@ class _RolesListState extends State<RolesList> {
     );
   }
 
-  Widget _buildList(List<Roles> data) {
+  Widget _buildList(List<Role> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _RolesListState extends State<RolesList> {
     );
   }
 
-  Widget _buildCard(Roles item, int index) {
+  Widget _buildCard(Role item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -212,6 +212,7 @@ Text('Is default: ${item.isDefault}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         RolesEdit(
+                          
                           schema: schemaResponse?.data,
                           data: item
                         )));

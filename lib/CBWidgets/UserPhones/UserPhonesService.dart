@@ -1,12 +1,12 @@
 import '../../Utils/Services/CrudService.dart';
-import 'UserPhones.dart';
+import 'UserPhone.dart';
 
-class UserPhonesService extends CrudService<UserPhones> {
+class UserPhonesService extends CrudService<UserPhone> {
   UserPhonesService({String? query = ""})
       : super(
     'userPhones', // Endpoint for external tickets
     query,
-    fromJson: (json) => UserPhones.fromJson(json),
+    fromJson: (json) => UserPhone.fromJson(json),
     toJson: (data) => data.toJson(),
   );
 }

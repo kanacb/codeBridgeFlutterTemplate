@@ -3,8 +3,9 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Schema.dart';
 import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
-import 'Steps.dart';
+import 'Step.dart';
 import 'StepsMain.dart';
+import 'StepsProvider.dart';
   
 class StepsEdit extends StatefulWidget {
   const StepsEdit({
@@ -14,8 +15,8 @@ class StepsEdit extends StatefulWidget {
     required this.userGuideID
   });
   final List<Schema> schema;
-  final Steps data;
-  final String userGuideID;,
+  final Step data;
+  final String userGuideID;
 
   @override
   State<StepsEdit> createState() => _StepsEditState();
@@ -30,7 +31,7 @@ class _StepsEditState extends State<StepsEdit> {
   @override
   void initState() {
     super.initState();
-    dynamic initialValue = widget.ticket.toJson();
+    dynamic initialValue = widget.data.toJson();
     // Initialize default values for each field
     for (var field in widget.schema) {
       formData[field.field] = initialValue[field.field];
@@ -40,8 +41,8 @@ class _StepsEditState extends State<StepsEdit> {
   void saveForm() async {
     StepsProvider provider = StepsProvider();
     // Handle form submission logic here
-    final data = Steps.fromJson(formData);
-    Response response = await provider.updateOneAndSave(data.machineId!, data);
+    final data = Step.fromJson(formData);
+    Response response = await provider.updateOneAndSave(data.id!, data);
     SnackBars snackBar = SnackBars();
     if (response.isSuccess) {
       snackBar.SuccessSnackBar(context, "Successfully updated Steps");

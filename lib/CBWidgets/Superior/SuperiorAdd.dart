@@ -95,7 +95,7 @@ class _SuperiorAddState extends State<SuperiorAdd> {
   }
 
   // Helper method to build fields dynamically
-  Object buildField(Schema field) {
+  Widget buildField(Schema field) {
     switch (field.type?.toLowerCase()) {
       case 'string':
         void onChange(value) {
@@ -106,7 +106,7 @@ class _SuperiorAddState extends State<SuperiorAdd> {
         if (field.field.toLowerCase().contains("email")) {
           return utils.buildEmailField(field, onChange, "");
         } else if (field.description!.toLowerCase().contains("isArray")) {
-          return utils.buildCheckboxArray(field, formData, onChange, false);
+          return Column( children: [...utils.buildCheckboxArray(field, formData, onChange, false)]);
         } else {
           return utils.buildTextField(field, onChange, "");
         }

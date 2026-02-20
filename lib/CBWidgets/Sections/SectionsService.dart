@@ -1,12 +1,12 @@
 import '../../Utils/Services/CrudService.dart';
-import 'Sections.dart';
+import 'Section.dart';
 
-class SectionsService extends CrudService<Sections> {
+class SectionsService extends CrudService<Section> {
   SectionsService({String? query = ""})
       : super(
     'sections', // Endpoint for external tickets
     query,
-    fromJson: (json) => Sections.fromJson(json),
+    fromJson: (json) => Section.fromJson(json),
     toJson: (data) => data.toJson(),
   );
 }

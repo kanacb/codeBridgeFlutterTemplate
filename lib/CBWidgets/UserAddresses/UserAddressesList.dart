@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'UserAddresses.dart';
+import 'UserAddress.dart';
 import 'UserAddressesAdd.dart';
 import 'UserAddressesEdit.dart';
 import 'UserAddressesProvider.dart';
@@ -171,7 +171,7 @@ class _UserAddressesListState extends State<UserAddressesList> {
     );
   }
 
-  Widget _buildList(List<UserAddresses> data) {
+  Widget _buildList(List<UserAddress> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _UserAddressesListState extends State<UserAddressesList> {
     );
   }
 
-  Widget _buildCard(UserAddresses item, int index) {
+  Widget _buildCard(UserAddress item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -198,7 +198,7 @@ class _UserAddressesListState extends State<UserAddressesList> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('User: ${item.userId}'),
+                Text('User: ${item.userId?.name}'),
 Text('Street1: ${item.Street1}'),
 Text('Street2: ${item.Street2}'),
 Text('Poscode: ${item.Poscode}'),
@@ -217,6 +217,7 @@ Text('Country: ${item.Country}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         UserAddressesEdit(
+                          userId : item.userId.toString(),
                           schema: schemaResponse?.data,
                           data: item
                         )));

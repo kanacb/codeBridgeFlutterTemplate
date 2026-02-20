@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'Employees.dart';
+import 'Employee.dart';
 import 'EmployeesService.dart';
 
 class EmployeesProvider with ChangeNotifier implements DataFetchable{
-  List<Employees> _data = [];
-  Box<Employees> hiveBox = Hive.box<Employees>('employeesBox');
-  List<Employees> get data => _data;
+  List<Employee> _data = [];
+  Box<Employee> hiveBox = Hive.box<Employee>('employeesBox');
+  List<Employee> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class EmployeesProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(Employees item) async {
+  Future<Response> createOneAndSave(Employee item) async {
     _isLoading = true;
     final Result result = await EmployeesService(query: query).create(item);
     if (result.error == null) {
-      Employees? data = result.data;
+      Employee? data = result.data;
       hiveBox.put(data?.id, data!);
       loadEmployeesFromHive();
       return Response(
@@ -46,7 +46,7 @@ class EmployeesProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      Employees? data = result.data;
+      Employee? data = result.data;
       logger.i("Failed: creating Employees::createOneAndSave, error: ${result.error}, subClass: Employees::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating Employees",
@@ -60,7 +60,7 @@ class EmployeesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await EmployeesService(query: query).fetchById(id);
     if (result.error == null) {
-      Employees? data = result.data;
+      Employee? data = result.data;
       hiveBox.put(data?.id, data!);
       loadEmployeesFromHive();
       return Response(
@@ -82,10 +82,10 @@ class EmployeesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await EmployeesService(query: query).fetchAll();
     if (result.error == null) {
-      List<Employees>? data = result.data;
+      List<Employee>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((Employees item) {
+      data?.forEach((Employee item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class EmployeesProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, Employees item) async {
+  Future<Response> updateOneAndSave(String id, Employee item) async {
     _isLoading = true;
     final Result result = await EmployeesService().update(id, item);
     if (result.error == null) {
-      Employees? data = result.data;
+      Employee? data = result.data;
       hiveBox.put(data?.id, data!);
       loadEmployeesFromHive();
       return Response(

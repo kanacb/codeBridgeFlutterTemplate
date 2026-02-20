@@ -1,21 +1,24 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'Step.g.dart';
+ 
+@HiveType(typeId: 22)
 
 class Step {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
-	final String? userGuideID;
 	 
+	final IdName? userGuideID;
 	@HiveField(2)
+	 
 	final String? Steps;
-	 
 	@HiveField(3)
-	final String? Description;
 	 
+	final String? Description;
 
   Step({
     this.id,
@@ -27,7 +30,7 @@ class Step {
   factory Step.fromJson(Map<String, dynamic> map) {
     return Step(
       id: map['_id'] as String?,
-			userGuideID : map['userGuideID'] as String?,
+			userGuideID : map['userGuideID'] as IdName?,
 			Steps : map['Steps'] != null ? map['Steps'] as String : "",
 			Description : map['Description'] != null ? map['Description'] as String : ""
     );

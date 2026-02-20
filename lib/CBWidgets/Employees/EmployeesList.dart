@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'Employees.dart';
+import 'Employee.dart';
 import 'EmployeesAdd.dart';
 import 'EmployeesEdit.dart';
 import 'EmployeesProvider.dart';
@@ -171,7 +171,7 @@ class _EmployeesListState extends State<EmployeesList> {
     );
   }
 
-  Widget _buildList(List<Employees> data) {
+  Widget _buildList(List<Employee> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _EmployeesListState extends State<EmployeesList> {
     );
   }
 
-  Widget _buildCard(Employees item, int index) {
+  Widget _buildCard(Employee item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -201,11 +201,11 @@ class _EmployeesListState extends State<EmployeesList> {
                 Text('Emp No: ${item.empNo}'),
 Text('Name: ${item.name}'),
 Text('Fullname: ${item.fullname}'),
-Text('Company: ${item.company}'),
-Text('Department: ${item.department}'),
-Text('Section: ${item.section}'),
-Text('Position: ${item.position}'),
-Text('Supervisor: ${item.supervisor}'),
+Text('Company: ${item.company?.name}'),
+Text('Department: ${item.department?.name}'),
+Text('Section: ${item.section?.name}'),
+Text('Position: ${item.position?.name}'),
+Text('Supervisor: ${item.supervisor?.name}'),
 Text('Date Joined: ${item.dateJoined}'),
 Text('Date Terminated: ${item.dateTerminated}'),
 Text('Resigned: ${item.resigned}'),
@@ -222,6 +222,7 @@ Text('Emp Code: ${item.empCode}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         EmployeesEdit(
+                          company : item.company.toString(),,department : item.department.toString(),,section : item.section.toString(),,position : item.position.toString(),,supervisor : item.supervisor.toString(),
                           schema: schemaResponse?.data,
                           data: item
                         )));

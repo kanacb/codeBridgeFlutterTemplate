@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'DepartmentHO.g.dart';
+ 
+@HiveType(typeId: 21)
 
 class DepartmentHO {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
-	final String? name;
 	 
+	final String? name;
 
   DepartmentHO({
     this.id,

@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'Profiles.dart';
+import 'Profile.dart';
 import 'ProfilesAdd.dart';
 import 'ProfilesEdit.dart';
 import 'ProfilesProvider.dart';
@@ -171,7 +171,7 @@ class _ProfilesListState extends State<ProfilesList> {
     );
   }
 
-  Widget _buildList(List<Profiles> data) {
+  Widget _buildList(List<Profile> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _ProfilesListState extends State<ProfilesList> {
     );
   }
 
-  Widget _buildCard(Profiles item, int index) {
+  Widget _buildCard(Profile item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -199,20 +199,20 @@ class _ProfilesListState extends State<ProfilesList> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Name: ${item.name}'),
-Text('User: ${item.userId}'),
+Text('User: ${item.userId?.name}'),
 Text('Image: ${item.image}'),
 Text('Bio: ${item.bio}'),
-Text('Department: ${item.department}'),
+Text('Department: ${item.department?.name}'),
 Text('Head of Department: ${item.hod}'),
-Text('Section: ${item.section}'),
+Text('Section: ${item.section?.name}'),
 Text('Head of Section: ${item.hos}'),
-Text('Position: ${item.position}'),
-Text('Manager: ${item.manager}'),
-Text('Company: ${item.company}'),
-Text('Branch: ${item.branch}'),
+Text('Position: ${item.position?.name}'),
+Text('Manager: ${item.manager?.name}'),
+Text('Company: ${item.company?.name}'),
+Text('Branch: ${item.branch?.name}'),
 Text('Skills: ${item.skills}'),
-Text('Address: ${item.address}'),
-Text('Phone: ${item.phone}'),
+Text('Address: ${item.address?.Street1}'),
+Text('Phone: ${item.phone?.number}'),
               ],
             ),
             trailing: Row(
@@ -224,6 +224,7 @@ Text('Phone: ${item.phone}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         ProfilesEdit(
+                          userId : item.userId.toString(),,department : item.department.toString(),,section : item.section.toString(),,position : item.position.toString(),,manager : item.manager.toString(),,company : item.company.toString(),,branch : item.branch.toString(),,address : item.address.toString(),,phone : item.phone.toString(),
                           schema: schemaResponse?.data,
                           data: item
                         )));

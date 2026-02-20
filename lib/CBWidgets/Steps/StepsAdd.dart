@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
   import '../../Utils/Services/Schema.dart';
   import '../../Utils/Dialogs/SnackBars.dart';
   import '../../Utils/PageUtils.dart';
-  import 'Steps.dart';
+  import 'Step.dart';
   import 'StepsProvider.dart';
     
 class StepsAdd extends StatefulWidget {
@@ -29,7 +29,7 @@ class _StepsAddState extends State<StepsAdd> {
 
   void saveForm() async {
     StepsProvider provider = StepsProvider();
-    final data = Steps.fromJson(formData);
+    final data = Step.fromJson(formData);
     Response response = await provider.createOneAndSave(data);
 
     SnackBars snackBar = SnackBars();
@@ -95,7 +95,7 @@ class _StepsAddState extends State<StepsAdd> {
   }
 
   // Helper method to build fields dynamically
-  Object buildField(Schema field) {
+  Widget buildField(Schema field) {
     switch (field.type?.toLowerCase()) {
       case 'string':
         void onChange(value) {
@@ -106,7 +106,7 @@ class _StepsAddState extends State<StepsAdd> {
         if (field.field.toLowerCase().contains("email")) {
           return utils.buildEmailField(field, onChange, "");
         } else if (field.description!.toLowerCase().contains("isArray")) {
-          return utils.buildCheckboxArray(field, formData, onChange, false);
+          return Column( children: [...utils.buildCheckboxArray(field, formData, onChange, false)]);
         } else {
           return utils.buildTextField(field, onChange, "");
         }

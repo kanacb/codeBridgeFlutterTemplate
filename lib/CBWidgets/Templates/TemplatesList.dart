@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'Templates.dart';
+import 'Template.dart';
 import 'TemplatesAdd.dart';
 import 'TemplatesEdit.dart';
 import 'TemplatesProvider.dart';
@@ -171,7 +171,7 @@ class _TemplatesListState extends State<TemplatesList> {
     );
   }
 
-  Widget _buildList(List<Templates> data) {
+  Widget _buildList(List<Template> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _TemplatesListState extends State<TemplatesList> {
     );
   }
 
-  Widget _buildCard(Templates item, int index) {
+  Widget _buildCard(Template item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -214,6 +214,7 @@ Text('Image: ${item.image}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         TemplatesEdit(
+                          
                           schema: schemaResponse?.data,
                           data: item
                         )));

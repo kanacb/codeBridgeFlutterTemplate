@@ -5,6 +5,7 @@ import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
 import 'DepartmentHOD.dart';
 import 'DepartmentHODMain.dart';
+import 'DepartmentHODProvider.dart';
   
 class DepartmentHODEdit extends StatefulWidget {
   const DepartmentHODEdit({
@@ -15,7 +16,7 @@ class DepartmentHODEdit extends StatefulWidget {
   });
   final List<Schema> schema;
   final DepartmentHOD data;
-  ,
+  
 
   @override
   State<DepartmentHODEdit> createState() => _DepartmentHODEditState();
@@ -30,7 +31,7 @@ class _DepartmentHODEditState extends State<DepartmentHODEdit> {
   @override
   void initState() {
     super.initState();
-    dynamic initialValue = widget.ticket.toJson();
+    dynamic initialValue = widget.data.toJson();
     // Initialize default values for each field
     for (var field in widget.schema) {
       formData[field.field] = initialValue[field.field];
@@ -41,7 +42,7 @@ class _DepartmentHODEditState extends State<DepartmentHODEdit> {
     DepartmentHODProvider provider = DepartmentHODProvider();
     // Handle form submission logic here
     final data = DepartmentHOD.fromJson(formData);
-    Response response = await provider.updateOneAndSave(data.machineId!, data);
+    Response response = await provider.updateOneAndSave(data.id!, data);
     SnackBars snackBar = SnackBars();
     if (response.isSuccess) {
       snackBar.SuccessSnackBar(context, "Successfully updated Department Hod");

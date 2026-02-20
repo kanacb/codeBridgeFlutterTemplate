@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'Companies.dart';
+import 'Company.dart';
 import 'CompaniesService.dart';
 
 class CompaniesProvider with ChangeNotifier implements DataFetchable{
-  List<Companies> _data = [];
-  Box<Companies> hiveBox = Hive.box<Companies>('companiesBox');
-  List<Companies> get data => _data;
+  List<Company> _data = [];
+  Box<Company> hiveBox = Hive.box<Company>('companiesBox');
+  List<Company> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class CompaniesProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(Companies item) async {
+  Future<Response> createOneAndSave(Company item) async {
     _isLoading = true;
     final Result result = await CompaniesService(query: query).create(item);
     if (result.error == null) {
-      Companies? data = result.data;
+      Company? data = result.data;
       hiveBox.put(data?.id, data!);
       loadCompaniesFromHive();
       return Response(
@@ -46,7 +46,7 @@ class CompaniesProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      Companies? data = result.data;
+      Company? data = result.data;
       logger.i("Failed: creating Companies::createOneAndSave, error: ${result.error}, subClass: Companies::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating Companies",
@@ -60,7 +60,7 @@ class CompaniesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await CompaniesService(query: query).fetchById(id);
     if (result.error == null) {
-      Companies? data = result.data;
+      Company? data = result.data;
       hiveBox.put(data?.id, data!);
       loadCompaniesFromHive();
       return Response(
@@ -82,10 +82,10 @@ class CompaniesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await CompaniesService(query: query).fetchAll();
     if (result.error == null) {
-      List<Companies>? data = result.data;
+      List<Company>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((Companies item) {
+      data?.forEach((Company item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class CompaniesProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, Companies item) async {
+  Future<Response> updateOneAndSave(String id, Company item) async {
     _isLoading = true;
     final Result result = await CompaniesService().update(id, item);
     if (result.error == null) {
-      Companies? data = result.data;
+      Company? data = result.data;
       hiveBox.put(data?.id, data!);
       loadCompaniesFromHive();
       return Response(

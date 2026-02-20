@@ -1,18 +1,21 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'Superior.g.dart';
+ 
+@HiveType(typeId: 18)
 
 class Superior {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
-	final String? superior;
 	 
+	final IdName? superior;
 	@HiveField(2)
-	final String? subordinate;
 	 
+	final IdName? subordinate;
 
   Superior({
     this.id,
@@ -23,8 +26,8 @@ class Superior {
   factory Superior.fromJson(Map<String, dynamic> map) {
     return Superior(
       id: map['_id'] as String?,
-			superior : map['superior'] as String?,
-			subordinate : map['subordinate'] as String?
+			superior : map['superior'] as IdName?,
+			subordinate : map['subordinate'] as IdName?
     );
   }
 

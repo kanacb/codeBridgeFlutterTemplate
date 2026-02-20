@@ -1,27 +1,30 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'Template.g.dart';
+ 
+@HiveType(typeId: 10)
 
 class Template {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
+	 
 	final String? name;
-	 
 	@HiveField(2)
+	 
 	final String? subject;
-	 
 	@HiveField(3)
+	 
 	final String? body;
-	 
 	@HiveField(4)
+	 
 	final String? variables;
-	 
 	@HiveField(5)
-	final String? image;
 	 
+	final String? image;
 
   Template({
     this.id,

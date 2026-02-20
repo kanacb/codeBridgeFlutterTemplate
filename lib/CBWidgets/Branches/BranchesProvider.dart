@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'Branches.dart';
+import 'Branch.dart';
 import 'BranchesService.dart';
 
 class BranchesProvider with ChangeNotifier implements DataFetchable{
-  List<Branches> _data = [];
-  Box<Branches> hiveBox = Hive.box<Branches>('branchesBox');
-  List<Branches> get data => _data;
+  List<Branch> _data = [];
+  Box<Branch> hiveBox = Hive.box<Branch>('branchesBox');
+  List<Branch> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class BranchesProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(Branches item) async {
+  Future<Response> createOneAndSave(Branch item) async {
     _isLoading = true;
     final Result result = await BranchesService(query: query).create(item);
     if (result.error == null) {
-      Branches? data = result.data;
+      Branch? data = result.data;
       hiveBox.put(data?.id, data!);
       loadBranchesFromHive();
       return Response(
@@ -46,7 +46,7 @@ class BranchesProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      Branches? data = result.data;
+      Branch? data = result.data;
       logger.i("Failed: creating Branches::createOneAndSave, error: ${result.error}, subClass: Branches::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating Branches",
@@ -60,7 +60,7 @@ class BranchesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await BranchesService(query: query).fetchById(id);
     if (result.error == null) {
-      Branches? data = result.data;
+      Branch? data = result.data;
       hiveBox.put(data?.id, data!);
       loadBranchesFromHive();
       return Response(
@@ -82,10 +82,10 @@ class BranchesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await BranchesService(query: query).fetchAll();
     if (result.error == null) {
-      List<Branches>? data = result.data;
+      List<Branch>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((Branches item) {
+      data?.forEach((Branch item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class BranchesProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, Branches item) async {
+  Future<Response> updateOneAndSave(String id, Branch item) async {
     _isLoading = true;
     final Result result = await BranchesService().update(id, item);
     if (result.error == null) {
-      Branches? data = result.data;
+      Branch? data = result.data;
       hiveBox.put(data?.id, data!);
       loadBranchesFromHive();
       return Response(

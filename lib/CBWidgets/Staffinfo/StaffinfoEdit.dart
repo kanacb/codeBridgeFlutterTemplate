@@ -5,6 +5,7 @@ import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
 import 'Staffinfo.dart';
 import 'StaffinfoMain.dart';
+import 'StaffinfoProvider.dart';
   
 class StaffinfoEdit extends StatefulWidget {
   const StaffinfoEdit({
@@ -15,7 +16,7 @@ class StaffinfoEdit extends StatefulWidget {
   });
   final List<Schema> schema;
   final Staffinfo data;
-  ,
+  
 
   @override
   State<StaffinfoEdit> createState() => _StaffinfoEditState();
@@ -30,7 +31,7 @@ class _StaffinfoEditState extends State<StaffinfoEdit> {
   @override
   void initState() {
     super.initState();
-    dynamic initialValue = widget.ticket.toJson();
+    dynamic initialValue = widget.data.toJson();
     // Initialize default values for each field
     for (var field in widget.schema) {
       formData[field.field] = initialValue[field.field];
@@ -41,7 +42,7 @@ class _StaffinfoEditState extends State<StaffinfoEdit> {
     StaffinfoProvider provider = StaffinfoProvider();
     // Handle form submission logic here
     final data = Staffinfo.fromJson(formData);
-    Response response = await provider.updateOneAndSave(data.machineId!, data);
+    Response response = await provider.updateOneAndSave(data.id!, data);
     SnackBars snackBar = SnackBars();
     if (response.isSuccess) {
       snackBar.SuccessSnackBar(context, "Successfully updated Staffinfo");

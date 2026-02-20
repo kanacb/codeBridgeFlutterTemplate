@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'Templates.dart';
+import 'Template.dart';
 import 'TemplatesService.dart';
 
 class TemplatesProvider with ChangeNotifier implements DataFetchable{
-  List<Templates> _data = [];
-  Box<Templates> hiveBox = Hive.box<Templates>('templatesBox');
-  List<Templates> get data => _data;
+  List<Template> _data = [];
+  Box<Template> hiveBox = Hive.box<Template>('templatesBox');
+  List<Template> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class TemplatesProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(Templates item) async {
+  Future<Response> createOneAndSave(Template item) async {
     _isLoading = true;
     final Result result = await TemplatesService(query: query).create(item);
     if (result.error == null) {
-      Templates? data = result.data;
+      Template? data = result.data;
       hiveBox.put(data?.id, data!);
       loadTemplatesFromHive();
       return Response(
@@ -46,7 +46,7 @@ class TemplatesProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      Templates? data = result.data;
+      Template? data = result.data;
       logger.i("Failed: creating Templates::createOneAndSave, error: ${result.error}, subClass: Templates::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating Templates",
@@ -60,7 +60,7 @@ class TemplatesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await TemplatesService(query: query).fetchById(id);
     if (result.error == null) {
-      Templates? data = result.data;
+      Template? data = result.data;
       hiveBox.put(data?.id, data!);
       loadTemplatesFromHive();
       return Response(
@@ -82,10 +82,10 @@ class TemplatesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await TemplatesService(query: query).fetchAll();
     if (result.error == null) {
-      List<Templates>? data = result.data;
+      List<Template>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((Templates item) {
+      data?.forEach((Template item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class TemplatesProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, Templates item) async {
+  Future<Response> updateOneAndSave(String id, Template item) async {
     _isLoading = true;
     final Result result = await TemplatesService().update(id, item);
     if (result.error == null) {
-      Templates? data = result.data;
+      Template? data = result.data;
       hiveBox.put(data?.id, data!);
       loadTemplatesFromHive();
       return Response(

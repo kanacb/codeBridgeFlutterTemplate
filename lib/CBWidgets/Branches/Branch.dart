@@ -1,21 +1,24 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'Branch.g.dart';
+ 
+@HiveType(typeId: 4)
 
 class Branch {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
-	final String? companyId;
 	 
+	final IdName? companyId;
 	@HiveField(2)
+	 
 	final String? name;
-	 
 	@HiveField(3)
-	final bool? isDefault;
 	 
+	final bool? isDefault;
 
   Branch({
     this.id,
@@ -27,7 +30,7 @@ class Branch {
   factory Branch.fromJson(Map<String, dynamic> map) {
     return Branch(
       id: map['_id'] as String?,
-			companyId : map['companyId'] as String?,
+			companyId : map['companyId'] as IdName?,
 			name : map['name'] as String?,
 			isDefault : map['isDefault'] as bool
     );

@@ -1,12 +1,12 @@
 import '../../Utils/Services/CrudService.dart';
-import 'Templates.dart';
+import 'Template.dart';
 
-class TemplatesService extends CrudService<Templates> {
+class TemplatesService extends CrudService<Template> {
   TemplatesService({String? query = ""})
       : super(
     'templates', // Endpoint for external tickets
     query,
-    fromJson: (json) => Templates.fromJson(json),
+    fromJson: (json) => Template.fromJson(json),
     toJson: (data) => data.toJson(),
   );
 }

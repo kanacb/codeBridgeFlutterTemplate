@@ -1,21 +1,24 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'Role.g.dart';
+ 
+@HiveType(typeId: 7)
 
 class Role {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
+	 
 	final String? name;
-	 
 	@HiveField(2)
+	 
 	final String? description;
-	 
 	@HiveField(3)
-	final bool? isDefault;
 	 
+	final bool? isDefault;
 
   Role({
     this.id,

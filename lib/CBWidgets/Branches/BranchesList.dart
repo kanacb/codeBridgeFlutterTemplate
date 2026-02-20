@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'Branches.dart';
+import 'Branch.dart';
 import 'BranchesAdd.dart';
 import 'BranchesEdit.dart';
 import 'BranchesProvider.dart';
@@ -171,7 +171,7 @@ class _BranchesListState extends State<BranchesList> {
     );
   }
 
-  Widget _buildList(List<Branches> data) {
+  Widget _buildList(List<Branch> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _BranchesListState extends State<BranchesList> {
     );
   }
 
-  Widget _buildCard(Branches item, int index) {
+  Widget _buildCard(Branch item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -198,7 +198,7 @@ class _BranchesListState extends State<BranchesList> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Company: ${item.companyId}'),
+                Text('Company: ${item.companyId?.name}'),
 Text('Name: ${item.name}'),
 Text('Is default: ${item.isDefault}'),
               ],
@@ -212,6 +212,7 @@ Text('Is default: ${item.isDefault}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         BranchesEdit(
+                          companyId : item.companyId.toString(),
                           schema: schemaResponse?.data,
                           data: item
                         )));

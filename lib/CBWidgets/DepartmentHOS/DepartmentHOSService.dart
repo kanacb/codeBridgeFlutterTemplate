@@ -1,12 +1,12 @@
 import '../../Utils/Services/CrudService.dart';
-import 'DepartmentHOS.dart';
+import 'DepartmentHO.dart';
 
-class DepartmentHOSService extends CrudService<DepartmentHOS> {
+class DepartmentHOSService extends CrudService<DepartmentHO> {
   DepartmentHOSService({String? query = ""})
       : super(
     'departmentHOS', // Endpoint for external tickets
     query,
-    fromJson: (json) => DepartmentHOS.fromJson(json),
+    fromJson: (json) => DepartmentHO.fromJson(json),
     toJson: (data) => data.toJson(),
   );
 }

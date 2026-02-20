@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'CompanyAddresses.dart';
+import 'CompanyAddress.dart';
 import 'CompanyAddressesAdd.dart';
 import 'CompanyAddressesEdit.dart';
 import 'CompanyAddressesProvider.dart';
@@ -171,7 +171,7 @@ class _CompanyAddressesListState extends State<CompanyAddressesList> {
     );
   }
 
-  Widget _buildList(List<CompanyAddresses> data) {
+  Widget _buildList(List<CompanyAddress> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _CompanyAddressesListState extends State<CompanyAddressesList> {
     );
   }
 
-  Widget _buildCard(CompanyAddresses item, int index) {
+  Widget _buildCard(CompanyAddress item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -198,7 +198,7 @@ class _CompanyAddressesListState extends State<CompanyAddressesList> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Company: ${item.companyId}'),
+                Text('Company: ${item.companyId?.name}'),
 Text('Street1: ${item.Street1}'),
 Text('Street2: ${item.Street2}'),
 Text('Poscode: ${item.Poscode}'),
@@ -218,6 +218,7 @@ Text('Is Default: ${item.isDefault}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         CompanyAddressesEdit(
+                          companyId : item.companyId.toString(),
                           schema: schemaResponse?.data,
                           data: item
                         )));

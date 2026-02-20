@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'Sections.dart';
+import 'Section.dart';
 import 'SectionsAdd.dart';
 import 'SectionsEdit.dart';
 import 'SectionsProvider.dart';
@@ -171,7 +171,7 @@ class _SectionsListState extends State<SectionsList> {
     );
   }
 
-  Widget _buildList(List<Sections> data) {
+  Widget _buildList(List<Section> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _SectionsListState extends State<SectionsList> {
     );
   }
 
-  Widget _buildCard(Sections item, int index) {
+  Widget _buildCard(Section item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -198,7 +198,7 @@ class _SectionsListState extends State<SectionsList> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Department: ${item.departmentId}'),
+                Text('Department: ${item.departmentId?.name}'),
 Text('Name: ${item.name}'),
 Text('Code: ${item.code}'),
 Text('Is default: ${item.isDefault}'),
@@ -213,6 +213,7 @@ Text('Is default: ${item.isDefault}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         SectionsEdit(
+                          departmentId : item.departmentId.toString(),
                           schema: schemaResponse?.data,
                           data: item
                         )));

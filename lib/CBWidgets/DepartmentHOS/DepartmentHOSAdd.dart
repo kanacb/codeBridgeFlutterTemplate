@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
   import '../../Utils/Services/Schema.dart';
   import '../../Utils/Dialogs/SnackBars.dart';
   import '../../Utils/PageUtils.dart';
-  import 'DepartmentHOS.dart';
+  import 'DepartmentHO.dart';
   import 'DepartmentHOSProvider.dart';
     
 class DepartmentHOSAdd extends StatefulWidget {
@@ -29,7 +29,7 @@ class _DepartmentHOSAddState extends State<DepartmentHOSAdd> {
 
   void saveForm() async {
     DepartmentHOSProvider provider = DepartmentHOSProvider();
-    final data = DepartmentHOS.fromJson(formData);
+    final data = DepartmentHO.fromJson(formData);
     Response response = await provider.createOneAndSave(data);
 
     SnackBars snackBar = SnackBars();
@@ -95,7 +95,7 @@ class _DepartmentHOSAddState extends State<DepartmentHOSAdd> {
   }
 
   // Helper method to build fields dynamically
-  Object buildField(Schema field) {
+  Widget buildField(Schema field) {
     switch (field.type?.toLowerCase()) {
       case 'string':
         void onChange(value) {
@@ -106,7 +106,7 @@ class _DepartmentHOSAddState extends State<DepartmentHOSAdd> {
         if (field.field.toLowerCase().contains("email")) {
           return utils.buildEmailField(field, onChange, "");
         } else if (field.description!.toLowerCase().contains("isArray")) {
-          return utils.buildCheckboxArray(field, formData, onChange, false);
+          return Column( children: [...utils.buildCheckboxArray(field, formData, onChange, false)]);
         } else {
           return utils.buildTextField(field, onChange, "");
         }

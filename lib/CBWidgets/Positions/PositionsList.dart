@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'Positions.dart';
+import 'Position.dart';
 import 'PositionsAdd.dart';
 import 'PositionsEdit.dart';
 import 'PositionsProvider.dart';
@@ -171,7 +171,7 @@ class _PositionsListState extends State<PositionsList> {
     );
   }
 
-  Widget _buildList(List<Positions> data) {
+  Widget _buildList(List<Position> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _PositionsListState extends State<PositionsList> {
     );
   }
 
-  Widget _buildCard(Positions item, int index) {
+  Widget _buildCard(Position item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -198,7 +198,7 @@ class _PositionsListState extends State<PositionsList> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Role: ${item.roleId}'),
+                Text('Role: ${item.roleId?.name}'),
 Text('Name: ${item.name}'),
 Text('Description: ${item.description}'),
 Text('Abbr: ${item.abbr}'),
@@ -214,6 +214,7 @@ Text('Is default: ${item.isDefault}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         PositionsEdit(
+                          roleId : item.roleId.toString(),
                           schema: schemaResponse?.data,
                           data: item
                         )));

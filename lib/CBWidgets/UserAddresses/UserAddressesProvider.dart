@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'UserAddresses.dart';
+import 'UserAddress.dart';
 import 'UserAddressesService.dart';
 
 class UserAddressesProvider with ChangeNotifier implements DataFetchable{
-  List<UserAddresses> _data = [];
-  Box<UserAddresses> hiveBox = Hive.box<UserAddresses>('userAddressesBox');
-  List<UserAddresses> get data => _data;
+  List<UserAddress> _data = [];
+  Box<UserAddress> hiveBox = Hive.box<UserAddress>('userAddressesBox');
+  List<UserAddress> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class UserAddressesProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(UserAddresses item) async {
+  Future<Response> createOneAndSave(UserAddress item) async {
     _isLoading = true;
     final Result result = await UserAddressesService(query: query).create(item);
     if (result.error == null) {
-      UserAddresses? data = result.data;
+      UserAddress? data = result.data;
       hiveBox.put(data?.id, data!);
       loadUserAddressesFromHive();
       return Response(
@@ -46,7 +46,7 @@ class UserAddressesProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      UserAddresses? data = result.data;
+      UserAddress? data = result.data;
       logger.i("Failed: creating UserAddresses::createOneAndSave, error: ${result.error}, subClass: UserAddresses::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating UserAddresses",
@@ -60,7 +60,7 @@ class UserAddressesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await UserAddressesService(query: query).fetchById(id);
     if (result.error == null) {
-      UserAddresses? data = result.data;
+      UserAddress? data = result.data;
       hiveBox.put(data?.id, data!);
       loadUserAddressesFromHive();
       return Response(
@@ -82,10 +82,10 @@ class UserAddressesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await UserAddressesService(query: query).fetchAll();
     if (result.error == null) {
-      List<UserAddresses>? data = result.data;
+      List<UserAddress>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((UserAddresses item) {
+      data?.forEach((UserAddress item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class UserAddressesProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, UserAddresses item) async {
+  Future<Response> updateOneAndSave(String id, UserAddress item) async {
     _isLoading = true;
     final Result result = await UserAddressesService().update(id, item);
     if (result.error == null) {
-      UserAddresses? data = result.data;
+      UserAddress? data = result.data;
       hiveBox.put(data?.id, data!);
       loadUserAddressesFromHive();
       return Response(

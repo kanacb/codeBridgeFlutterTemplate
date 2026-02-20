@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'DepartmentHOS.dart';
+import 'DepartmentHO.dart';
 import 'DepartmentHOSService.dart';
 
 class DepartmentHOSProvider with ChangeNotifier implements DataFetchable{
-  List<DepartmentHOS> _data = [];
-  Box<DepartmentHOS> hiveBox = Hive.box<DepartmentHOS>('departmentHOSBox');
-  List<DepartmentHOS> get data => _data;
+  List<DepartmentHO> _data = [];
+  Box<DepartmentHO> hiveBox = Hive.box<DepartmentHO>('departmentHOSBox');
+  List<DepartmentHO> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class DepartmentHOSProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(DepartmentHOS item) async {
+  Future<Response> createOneAndSave(DepartmentHO item) async {
     _isLoading = true;
     final Result result = await DepartmentHOSService(query: query).create(item);
     if (result.error == null) {
-      DepartmentHOS? data = result.data;
+      DepartmentHO? data = result.data;
       hiveBox.put(data?.id, data!);
       loadDepartmentHOSFromHive();
       return Response(
@@ -46,7 +46,7 @@ class DepartmentHOSProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      DepartmentHOS? data = result.data;
+      DepartmentHO? data = result.data;
       logger.i("Failed: creating DepartmentHOS::createOneAndSave, error: ${result.error}, subClass: DepartmentHOS::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating DepartmentHOS",
@@ -60,7 +60,7 @@ class DepartmentHOSProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await DepartmentHOSService(query: query).fetchById(id);
     if (result.error == null) {
-      DepartmentHOS? data = result.data;
+      DepartmentHO? data = result.data;
       hiveBox.put(data?.id, data!);
       loadDepartmentHOSFromHive();
       return Response(
@@ -82,10 +82,10 @@ class DepartmentHOSProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await DepartmentHOSService(query: query).fetchAll();
     if (result.error == null) {
-      List<DepartmentHOS>? data = result.data;
+      List<DepartmentHO>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((DepartmentHOS item) {
+      data?.forEach((DepartmentHO item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class DepartmentHOSProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, DepartmentHOS item) async {
+  Future<Response> updateOneAndSave(String id, DepartmentHO item) async {
     _isLoading = true;
     final Result result = await DepartmentHOSService().update(id, item);
     if (result.error == null) {
-      DepartmentHOS? data = result.data;
+      DepartmentHO? data = result.data;
       hiveBox.put(data?.id, data!);
       loadDepartmentHOSFromHive();
       return Response(

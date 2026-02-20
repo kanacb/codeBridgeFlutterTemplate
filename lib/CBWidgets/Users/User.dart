@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
+import '../../Utils/Services/IdName.dart';
+ 
+part 'User.g.dart';
+ 
 @HiveType(typeId: 2)
 
 class User {
@@ -8,17 +11,17 @@ class User {
 	final String? id;
 	 
 	@HiveField(1)
+	 
 	final String? name;
-	 
 	@HiveField(2)
+	 
 	final String? email;
-	 
 	@HiveField(3)
+	 
 	final String? password;
-	 
 	@HiveField(4)
-	final bool? status;
 	 
+	final bool? status;
 
   User({
     this.id,

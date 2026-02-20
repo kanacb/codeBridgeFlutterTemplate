@@ -5,6 +5,7 @@ import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
 import 'UserGuide.dart';
 import 'UserGuideMain.dart';
+import 'UserGuideProvider.dart';
   
 class UserGuideEdit extends StatefulWidget {
   const UserGuideEdit({
@@ -15,7 +16,7 @@ class UserGuideEdit extends StatefulWidget {
   });
   final List<Schema> schema;
   final UserGuide data;
-  ,
+  
 
   @override
   State<UserGuideEdit> createState() => _UserGuideEditState();
@@ -30,7 +31,7 @@ class _UserGuideEditState extends State<UserGuideEdit> {
   @override
   void initState() {
     super.initState();
-    dynamic initialValue = widget.ticket.toJson();
+    dynamic initialValue = widget.data.toJson();
     // Initialize default values for each field
     for (var field in widget.schema) {
       formData[field.field] = initialValue[field.field];
@@ -41,7 +42,7 @@ class _UserGuideEditState extends State<UserGuideEdit> {
     UserGuideProvider provider = UserGuideProvider();
     // Handle form submission logic here
     final data = UserGuide.fromJson(formData);
-    Response response = await provider.updateOneAndSave(data.machineId!, data);
+    Response response = await provider.updateOneAndSave(data.id!, data);
     SnackBars snackBar = SnackBars();
     if (response.isSuccess) {
       snackBar.SuccessSnackBar(context, "Successfully updated User Guide");

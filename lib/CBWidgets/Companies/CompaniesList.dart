@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'Companies.dart';
+import 'Company.dart';
 import 'CompaniesAdd.dart';
 import 'CompaniesEdit.dart';
 import 'CompaniesProvider.dart';
@@ -171,7 +171,7 @@ class _CompaniesListState extends State<CompaniesList> {
     );
   }
 
-  Widget _buildList(List<Companies> data) {
+  Widget _buildList(List<Company> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _CompaniesListState extends State<CompaniesList> {
     );
   }
 
-  Widget _buildCard(Companies item, int index) {
+  Widget _buildCard(Company item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -214,6 +214,7 @@ Text('Is default: ${item.isdefault}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         CompaniesEdit(
+                          
                           schema: schemaResponse?.data,
                           data: item
                         )));

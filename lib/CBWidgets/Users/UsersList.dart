@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'Users.dart';
+import 'User.dart';
 import 'UsersAdd.dart';
 import 'UsersEdit.dart';
 import 'UsersProvider.dart';
@@ -171,7 +171,7 @@ class _UsersListState extends State<UsersList> {
     );
   }
 
-  Widget _buildList(List<Users> data) {
+  Widget _buildList(List<User> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _UsersListState extends State<UsersList> {
     );
   }
 
-  Widget _buildCard(Users item, int index) {
+  Widget _buildCard(User item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -213,6 +213,7 @@ Text('Status: ${item.status}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         UsersEdit(
+                          
                           schema: schemaResponse?.data,
                           data: item
                         )));

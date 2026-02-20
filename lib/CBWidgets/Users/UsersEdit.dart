@@ -3,8 +3,9 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Schema.dart';
 import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
-import 'Users.dart';
+import 'User.dart';
 import 'UsersMain.dart';
+import 'UsersProvider.dart';
   
 class UsersEdit extends StatefulWidget {
   const UsersEdit({
@@ -14,8 +15,8 @@ class UsersEdit extends StatefulWidget {
     
   });
   final List<Schema> schema;
-  final Users data;
-  ,
+  final User data;
+  
 
   @override
   State<UsersEdit> createState() => _UsersEditState();
@@ -30,7 +31,7 @@ class _UsersEditState extends State<UsersEdit> {
   @override
   void initState() {
     super.initState();
-    dynamic initialValue = widget.ticket.toJson();
+    dynamic initialValue = widget.data.toJson();
     // Initialize default values for each field
     for (var field in widget.schema) {
       formData[field.field] = initialValue[field.field];
@@ -40,8 +41,8 @@ class _UsersEditState extends State<UsersEdit> {
   void saveForm() async {
     UsersProvider provider = UsersProvider();
     // Handle form submission logic here
-    final data = Users.fromJson(formData);
-    Response response = await provider.updateOneAndSave(data.machineId!, data);
+    final data = User.fromJson(formData);
+    Response response = await provider.updateOneAndSave(data.id!, data);
     SnackBars snackBar = SnackBars();
     if (response.isSuccess) {
       snackBar.SuccessSnackBar(context, "Successfully updated Users");

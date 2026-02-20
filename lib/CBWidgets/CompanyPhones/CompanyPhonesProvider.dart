@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'CompanyPhones.dart';
+import 'CompanyPhone.dart';
 import 'CompanyPhonesService.dart';
 
 class CompanyPhonesProvider with ChangeNotifier implements DataFetchable{
-  List<CompanyPhones> _data = [];
-  Box<CompanyPhones> hiveBox = Hive.box<CompanyPhones>('companyPhonesBox');
-  List<CompanyPhones> get data => _data;
+  List<CompanyPhone> _data = [];
+  Box<CompanyPhone> hiveBox = Hive.box<CompanyPhone>('companyPhonesBox');
+  List<CompanyPhone> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class CompanyPhonesProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(CompanyPhones item) async {
+  Future<Response> createOneAndSave(CompanyPhone item) async {
     _isLoading = true;
     final Result result = await CompanyPhonesService(query: query).create(item);
     if (result.error == null) {
-      CompanyPhones? data = result.data;
+      CompanyPhone? data = result.data;
       hiveBox.put(data?.id, data!);
       loadCompanyPhonesFromHive();
       return Response(
@@ -46,7 +46,7 @@ class CompanyPhonesProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      CompanyPhones? data = result.data;
+      CompanyPhone? data = result.data;
       logger.i("Failed: creating CompanyPhones::createOneAndSave, error: ${result.error}, subClass: CompanyPhones::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating CompanyPhones",
@@ -60,7 +60,7 @@ class CompanyPhonesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await CompanyPhonesService(query: query).fetchById(id);
     if (result.error == null) {
-      CompanyPhones? data = result.data;
+      CompanyPhone? data = result.data;
       hiveBox.put(data?.id, data!);
       loadCompanyPhonesFromHive();
       return Response(
@@ -82,10 +82,10 @@ class CompanyPhonesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await CompanyPhonesService(query: query).fetchAll();
     if (result.error == null) {
-      List<CompanyPhones>? data = result.data;
+      List<CompanyPhone>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((CompanyPhones item) {
+      data?.forEach((CompanyPhone item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class CompanyPhonesProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, CompanyPhones item) async {
+  Future<Response> updateOneAndSave(String id, CompanyPhone item) async {
     _isLoading = true;
     final Result result = await CompanyPhonesService().update(id, item);
     if (result.error == null) {
-      CompanyPhones? data = result.data;
+      CompanyPhone? data = result.data;
       hiveBox.put(data?.id, data!);
       loadCompanyPhonesFromHive();
       return Response(

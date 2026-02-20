@@ -1,18 +1,21 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'UserGuide.g.dart';
+ 
+@HiveType(typeId: 23)
 
 class UserGuide {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
+	 
 	final String? serviceName;
-	 
 	@HiveField(2)
-	final DateTime? expiry;
 	 
+	final DateTime? expiry;
 
   UserGuide({
     this.id,

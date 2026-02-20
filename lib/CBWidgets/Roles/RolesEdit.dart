@@ -3,8 +3,9 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Schema.dart';
 import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
-import 'Roles.dart';
+import 'Role.dart';
 import 'RolesMain.dart';
+import 'RolesProvider.dart';
   
 class RolesEdit extends StatefulWidget {
   const RolesEdit({
@@ -14,8 +15,8 @@ class RolesEdit extends StatefulWidget {
     
   });
   final List<Schema> schema;
-  final Roles data;
-  ,
+  final Role data;
+  
 
   @override
   State<RolesEdit> createState() => _RolesEditState();
@@ -30,7 +31,7 @@ class _RolesEditState extends State<RolesEdit> {
   @override
   void initState() {
     super.initState();
-    dynamic initialValue = widget.ticket.toJson();
+    dynamic initialValue = widget.data.toJson();
     // Initialize default values for each field
     for (var field in widget.schema) {
       formData[field.field] = initialValue[field.field];
@@ -40,8 +41,8 @@ class _RolesEditState extends State<RolesEdit> {
   void saveForm() async {
     RolesProvider provider = RolesProvider();
     // Handle form submission logic here
-    final data = Roles.fromJson(formData);
-    Response response = await provider.updateOneAndSave(data.machineId!, data);
+    final data = Role.fromJson(formData);
+    Response response = await provider.updateOneAndSave(data.id!, data);
     SnackBars snackBar = SnackBars();
     if (response.isSuccess) {
       snackBar.SuccessSnackBar(context, "Successfully updated Roles");

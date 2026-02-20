@@ -1,12 +1,12 @@
 import '../../Utils/Services/CrudService.dart';
-import 'Steps.dart';
+import 'Step.dart';
 
-class StepsService extends CrudService<Steps> {
+class StepsService extends CrudService<Step> {
   StepsService({String? query = ""})
       : super(
     'steps', // Endpoint for external tickets
     query,
-    fromJson: (json) => Steps.fromJson(json),
+    fromJson: (json) => Step.fromJson(json),
     toJson: (data) => data.toJson(),
   );
 }

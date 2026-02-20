@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'Profiles.dart';
+import 'Profile.dart';
 import 'ProfilesService.dart';
 
 class ProfilesProvider with ChangeNotifier implements DataFetchable{
-  List<Profiles> _data = [];
-  Box<Profiles> hiveBox = Hive.box<Profiles>('profilesBox');
-  List<Profiles> get data => _data;
+  List<Profile> _data = [];
+  Box<Profile> hiveBox = Hive.box<Profile>('profilesBox');
+  List<Profile> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class ProfilesProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(Profiles item) async {
+  Future<Response> createOneAndSave(Profile item) async {
     _isLoading = true;
     final Result result = await ProfilesService(query: query).create(item);
     if (result.error == null) {
-      Profiles? data = result.data;
+      Profile? data = result.data;
       hiveBox.put(data?.id, data!);
       loadProfilesFromHive();
       return Response(
@@ -46,7 +46,7 @@ class ProfilesProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      Profiles? data = result.data;
+      Profile? data = result.data;
       logger.i("Failed: creating Profiles::createOneAndSave, error: ${result.error}, subClass: Profiles::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating Profiles",
@@ -60,7 +60,7 @@ class ProfilesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await ProfilesService(query: query).fetchById(id);
     if (result.error == null) {
-      Profiles? data = result.data;
+      Profile? data = result.data;
       hiveBox.put(data?.id, data!);
       loadProfilesFromHive();
       return Response(
@@ -82,10 +82,10 @@ class ProfilesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await ProfilesService(query: query).fetchAll();
     if (result.error == null) {
-      List<Profiles>? data = result.data;
+      List<Profile>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((Profiles item) {
+      data?.forEach((Profile item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class ProfilesProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, Profiles item) async {
+  Future<Response> updateOneAndSave(String id, Profile item) async {
     _isLoading = true;
     final Result result = await ProfilesService().update(id, item);
     if (result.error == null) {
-      Profiles? data = result.data;
+      Profile? data = result.data;
       hiveBox.put(data?.id, data!);
       loadProfilesFromHive();
       return Response(

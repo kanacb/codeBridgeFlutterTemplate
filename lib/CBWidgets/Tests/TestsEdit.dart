@@ -3,8 +3,9 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Schema.dart';
 import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
-import 'Tests.dart';
+import 'Test.dart';
 import 'TestsMain.dart';
+import 'TestsProvider.dart';
   
 class TestsEdit extends StatefulWidget {
   const TestsEdit({
@@ -14,8 +15,8 @@ class TestsEdit extends StatefulWidget {
     
   });
   final List<Schema> schema;
-  final Tests data;
-  ,
+  final Test data;
+  
 
   @override
   State<TestsEdit> createState() => _TestsEditState();
@@ -30,7 +31,7 @@ class _TestsEditState extends State<TestsEdit> {
   @override
   void initState() {
     super.initState();
-    dynamic initialValue = widget.ticket.toJson();
+    dynamic initialValue = widget.data.toJson();
     // Initialize default values for each field
     for (var field in widget.schema) {
       formData[field.field] = initialValue[field.field];
@@ -40,8 +41,8 @@ class _TestsEditState extends State<TestsEdit> {
   void saveForm() async {
     TestsProvider provider = TestsProvider();
     // Handle form submission logic here
-    final data = Tests.fromJson(formData);
-    Response response = await provider.updateOneAndSave(data.machineId!, data);
+    final data = Test.fromJson(formData);
+    Response response = await provider.updateOneAndSave(data.id!, data);
     SnackBars snackBar = SnackBars();
     if (response.isSuccess) {
       snackBar.SuccessSnackBar(context, "Successfully updated Tests");

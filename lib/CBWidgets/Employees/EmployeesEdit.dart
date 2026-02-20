@@ -3,8 +3,9 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Schema.dart';
 import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
-import 'Employees.dart';
+import 'Employee.dart';
 import 'EmployeesMain.dart';
+import 'EmployeesProvider.dart';
   
 class EmployeesEdit extends StatefulWidget {
   const EmployeesEdit({
@@ -18,12 +19,12 @@ class EmployeesEdit extends StatefulWidget {
 		required this.supervisor
   });
   final List<Schema> schema;
-  final Employees data;
+  final Employee data;
   final String company;
 	final String department;
 	final String section;
 	final String position;
-	final String supervisor;,
+	final String supervisor;
 
   @override
   State<EmployeesEdit> createState() => _EmployeesEditState();
@@ -38,7 +39,7 @@ class _EmployeesEditState extends State<EmployeesEdit> {
   @override
   void initState() {
     super.initState();
-    dynamic initialValue = widget.ticket.toJson();
+    dynamic initialValue = widget.data.toJson();
     // Initialize default values for each field
     for (var field in widget.schema) {
       formData[field.field] = initialValue[field.field];
@@ -48,8 +49,8 @@ class _EmployeesEditState extends State<EmployeesEdit> {
   void saveForm() async {
     EmployeesProvider provider = EmployeesProvider();
     // Handle form submission logic here
-    final data = Employees.fromJson(formData);
-    Response response = await provider.updateOneAndSave(data.machineId!, data);
+    final data = Employee.fromJson(formData);
+    Response response = await provider.updateOneAndSave(data.id!, data);
     SnackBars snackBar = SnackBars();
     if (response.isSuccess) {
       snackBar.SuccessSnackBar(context, "Successfully updated Employees");

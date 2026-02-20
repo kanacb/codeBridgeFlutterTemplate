@@ -1,57 +1,60 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'Profile.g.dart';
+ 
+@HiveType(typeId: 9)
 
 class Profile {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
+	 
 	final String? name;
-	 
 	@HiveField(2)
-	final String? userId;
 	 
+	final IdName? userId;
 	@HiveField(3)
+	 
 	final String? image;
-	 
 	@HiveField(4)
+	 
 	final String? bio;
-	 
 	@HiveField(5)
-	final String? department;
 	 
+	final IdName? department;
 	@HiveField(6)
+	 
 	final bool? hod;
-	 
 	@HiveField(7)
-	final String? section;
 	 
+	final IdName? section;
 	@HiveField(8)
+	 
 	final bool? hos;
-	 
 	@HiveField(9)
-	final String? position;
 	 
+	final IdName? position;
 	@HiveField(10)
-	final String? manager;
 	 
+	final IdName? manager;
 	@HiveField(11)
-	final String? company;
 	 
+	final IdName? company;
 	@HiveField(12)
-	final String? branch;
 	 
+	final IdName? branch;
 	@HiveField(13)
+	 
 	final String? skills;
-	 
 	@HiveField(14)
-	final String? address;
 	 
+	final IdName? address;
 	@HiveField(15)
-	final String? phone;
 	 
+	final IdName? phone;
 
   Profile({
     this.id,
@@ -76,20 +79,20 @@ class Profile {
     return Profile(
       id: map['_id'] as String?,
 			name : map['name'] != null ? map['name'] as String : "",
-			userId : map['userId'] as String?,
+			userId : map['userId'] as IdName?,
 			image : map['image'] != null ? map['image'] as String : "",
 			bio : map['bio'] as String?,
-			department : map['department'] != null ? map['department'] as String : "",
+			department : map['department'] != null ? map['department'] as ObjectId : "",
 			hod : map['hod'] as bool,
-			section : map['section'] as String?,
+			section : map['section'] as IdName?,
 			hos : map['hos'] as bool,
-			position : map['position'] != null ? map['position'] as String : "",
-			manager : map['manager'] as String?,
-			company : map['company'] != null ? map['company'] as String : "",
-			branch : map['branch'] as String?,
+			position : map['position'] != null ? map['position'] as ObjectId : "",
+			manager : map['manager'] as IdName?,
+			company : map['company'] != null ? map['company'] as ObjectId : "",
+			branch : map['branch'] as IdName?,
 			skills : map['skills'] as String?,
-			address : map['address'] as String?,
-			phone : map['phone'] as String?
+			address : map['address'] as IdName?,
+			phone : map['phone'] as IdName?
     );
   }
 

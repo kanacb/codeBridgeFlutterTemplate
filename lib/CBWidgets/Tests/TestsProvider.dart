@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'Tests.dart';
+import 'Test.dart';
 import 'TestsService.dart';
 
 class TestsProvider with ChangeNotifier implements DataFetchable{
-  List<Tests> _data = [];
-  Box<Tests> hiveBox = Hive.box<Tests>('testsBox');
-  List<Tests> get data => _data;
+  List<Test> _data = [];
+  Box<Test> hiveBox = Hive.box<Test>('testsBox');
+  List<Test> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class TestsProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(Tests item) async {
+  Future<Response> createOneAndSave(Test item) async {
     _isLoading = true;
     final Result result = await TestsService(query: query).create(item);
     if (result.error == null) {
-      Tests? data = result.data;
+      Test? data = result.data;
       hiveBox.put(data?.id, data!);
       loadTestsFromHive();
       return Response(
@@ -46,7 +46,7 @@ class TestsProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      Tests? data = result.data;
+      Test? data = result.data;
       logger.i("Failed: creating Tests::createOneAndSave, error: ${result.error}, subClass: Tests::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating Tests",
@@ -60,7 +60,7 @@ class TestsProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await TestsService(query: query).fetchById(id);
     if (result.error == null) {
-      Tests? data = result.data;
+      Test? data = result.data;
       hiveBox.put(data?.id, data!);
       loadTestsFromHive();
       return Response(
@@ -82,10 +82,10 @@ class TestsProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await TestsService(query: query).fetchAll();
     if (result.error == null) {
-      List<Tests>? data = result.data;
+      List<Test>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((Tests item) {
+      data?.forEach((Test item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class TestsProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, Tests item) async {
+  Future<Response> updateOneAndSave(String id, Test item) async {
     _isLoading = true;
     final Result result = await TestsService().update(id, item);
     if (result.error == null) {
-      Tests? data = result.data;
+      Test? data = result.data;
       hiveBox.put(data?.id, data!);
       loadTestsFromHive();
       return Response(

@@ -198,8 +198,8 @@ class _DepartmentAdminListState extends State<DepartmentAdminList> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('DepartmentId: ${item.departmentId}'),
-Text('EmployeeId: ${item.employeeId}'),
+                Text('DepartmentId: ${item.departmentId?.name}'),
+Text('EmployeeId: ${item.employeeId?.name}'),
               ],
             ),
             trailing: Row(
@@ -211,6 +211,7 @@ Text('EmployeeId: ${item.employeeId}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         DepartmentAdminEdit(
+                          departmentId : item.departmentId.toString(),,employeeId : item.employeeId.toString(),
                           schema: schemaResponse?.data,
                           data: item
                         )));

@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'Steps.dart';
+import 'Step.dart';
 import 'StepsAdd.dart';
 import 'StepsEdit.dart';
 import 'StepsProvider.dart';
@@ -171,7 +171,7 @@ class _StepsListState extends State<StepsList> {
     );
   }
 
-  Widget _buildList(List<Steps> data) {
+  Widget _buildList(List<Step> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _StepsListState extends State<StepsList> {
     );
   }
 
-  Widget _buildCard(Steps item, int index) {
+  Widget _buildCard(Step item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -198,7 +198,7 @@ class _StepsListState extends State<StepsList> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('UserGuideID: ${item.userGuideID}'),
+                Text('UserGuideID: ${item.userGuideID?.serviceName}'),
 Text('Steps: ${item.Steps}'),
 Text('Description: ${item.Description}'),
               ],
@@ -212,6 +212,7 @@ Text('Description: ${item.Description}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         StepsEdit(
+                          userGuideID : item.userGuideID.toString(),
                           schema: schemaResponse?.data,
                           data: item
                         )));

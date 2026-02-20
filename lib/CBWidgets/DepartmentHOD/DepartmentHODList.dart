@@ -210,6 +210,7 @@ class _DepartmentHODListState extends State<DepartmentHODList> {
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         DepartmentHODEdit(
+                          
                           schema: schemaResponse?.data,
                           data: item
                         )));

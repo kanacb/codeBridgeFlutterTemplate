@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'Steps.dart';
+import 'Step.dart';
 import 'StepsService.dart';
 
 class StepsProvider with ChangeNotifier implements DataFetchable{
-  List<Steps> _data = [];
-  Box<Steps> hiveBox = Hive.box<Steps>('stepsBox');
-  List<Steps> get data => _data;
+  List<Step> _data = [];
+  Box<Step> hiveBox = Hive.box<Step>('stepsBox');
+  List<Step> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class StepsProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(Steps item) async {
+  Future<Response> createOneAndSave(Step item) async {
     _isLoading = true;
     final Result result = await StepsService(query: query).create(item);
     if (result.error == null) {
-      Steps? data = result.data;
+      Step? data = result.data;
       hiveBox.put(data?.id, data!);
       loadStepsFromHive();
       return Response(
@@ -46,7 +46,7 @@ class StepsProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      Steps? data = result.data;
+      Step? data = result.data;
       logger.i("Failed: creating Steps::createOneAndSave, error: ${result.error}, subClass: Steps::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating Steps",
@@ -60,7 +60,7 @@ class StepsProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await StepsService(query: query).fetchById(id);
     if (result.error == null) {
-      Steps? data = result.data;
+      Step? data = result.data;
       hiveBox.put(data?.id, data!);
       loadStepsFromHive();
       return Response(
@@ -82,10 +82,10 @@ class StepsProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await StepsService(query: query).fetchAll();
     if (result.error == null) {
-      List<Steps>? data = result.data;
+      List<Step>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((Steps item) {
+      data?.forEach((Step item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class StepsProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, Steps item) async {
+  Future<Response> updateOneAndSave(String id, Step item) async {
     _isLoading = true;
     final Result result = await StepsService().update(id, item);
     if (result.error == null) {
-      Steps? data = result.data;
+      Step? data = result.data;
       hiveBox.put(data?.id, data!);
       loadStepsFromHive();
       return Response(

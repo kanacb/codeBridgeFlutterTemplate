@@ -5,6 +5,7 @@ import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
 import 'Superior.dart';
 import 'SuperiorMain.dart';
+import 'SuperiorProvider.dart';
   
 class SuperiorEdit extends StatefulWidget {
   const SuperiorEdit({
@@ -17,7 +18,7 @@ class SuperiorEdit extends StatefulWidget {
   final List<Schema> schema;
   final Superior data;
   final String superior;
-	final String subordinate;,
+	final String subordinate;
 
   @override
   State<SuperiorEdit> createState() => _SuperiorEditState();
@@ -32,7 +33,7 @@ class _SuperiorEditState extends State<SuperiorEdit> {
   @override
   void initState() {
     super.initState();
-    dynamic initialValue = widget.ticket.toJson();
+    dynamic initialValue = widget.data.toJson();
     // Initialize default values for each field
     for (var field in widget.schema) {
       formData[field.field] = initialValue[field.field];
@@ -43,7 +44,7 @@ class _SuperiorEditState extends State<SuperiorEdit> {
     SuperiorProvider provider = SuperiorProvider();
     // Handle form submission logic here
     final data = Superior.fromJson(formData);
-    Response response = await provider.updateOneAndSave(data.machineId!, data);
+    Response response = await provider.updateOneAndSave(data.id!, data);
     SnackBars snackBar = SnackBars();
     if (response.isSuccess) {
       snackBar.SuccessSnackBar(context, "Successfully updated Superior");

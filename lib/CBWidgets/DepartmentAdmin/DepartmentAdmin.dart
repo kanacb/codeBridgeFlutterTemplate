@@ -1,18 +1,21 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'DepartmentAdmin.g.dart';
+ 
+@HiveType(typeId: 19)
 
 class DepartmentAdmin {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
-	final String? departmentId;
 	 
+	final IdName? departmentId;
 	@HiveField(2)
-	final String? employeeId;
 	 
+	final IdName? employeeId;
 
   DepartmentAdmin({
     this.id,
@@ -23,8 +26,8 @@ class DepartmentAdmin {
   factory DepartmentAdmin.fromJson(Map<String, dynamic> map) {
     return DepartmentAdmin(
       id: map['_id'] as String?,
-			departmentId : map['departmentId'] as String?,
-			employeeId : map['employeeId'] as String?
+			departmentId : map['departmentId'] as IdName?,
+			employeeId : map['employeeId'] as IdName?
     );
   }
 

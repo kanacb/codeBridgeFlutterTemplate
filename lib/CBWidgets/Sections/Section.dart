@@ -1,24 +1,27 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'Section.g.dart';
+ 
+@HiveType(typeId: 6)
 
 class Section {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
-	final String? departmentId;
 	 
+	final IdName? departmentId;
 	@HiveField(2)
+	 
 	final String? name;
-	 
 	@HiveField(3)
+	 
 	final String? code;
-	 
 	@HiveField(4)
-	final bool? isDefault;
 	 
+	final bool? isDefault;
 
   Section({
     this.id,
@@ -31,7 +34,7 @@ class Section {
   factory Section.fromJson(Map<String, dynamic> map) {
     return Section(
       id: map['_id'] as String?,
-			departmentId : map['departmentId'] as String?,
+			departmentId : map['departmentId'] as IdName?,
 			name : map['name'] as String?,
 			code : map['code'] as String?,
 			isDefault : map['isDefault'] as bool

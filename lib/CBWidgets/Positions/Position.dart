@@ -1,27 +1,30 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'Position.g.dart';
+ 
+@HiveType(typeId: 8)
 
 class Position {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
-	final String? roleId;
 	 
+	final IdName? roleId;
 	@HiveField(2)
+	 
 	final String? name;
-	 
 	@HiveField(3)
+	 
 	final String? description;
-	 
 	@HiveField(4)
+	 
 	final String? abbr;
-	 
 	@HiveField(5)
-	final bool? isDefault;
 	 
+	final bool? isDefault;
 
   Position({
     this.id,
@@ -35,7 +38,7 @@ class Position {
   factory Position.fromJson(Map<String, dynamic> map) {
     return Position(
       id: map['_id'] as String?,
-			roleId : map['roleId'] as String?,
+			roleId : map['roleId'] as IdName?,
 			name : map['name'] as String?,
 			description : map['description'] as String?,
 			abbr : map['abbr'] as String?,

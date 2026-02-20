@@ -3,8 +3,9 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Schema.dart';
 import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
-import 'Positions.dart';
+import 'Position.dart';
 import 'PositionsMain.dart';
+import 'PositionsProvider.dart';
   
 class PositionsEdit extends StatefulWidget {
   const PositionsEdit({
@@ -14,8 +15,8 @@ class PositionsEdit extends StatefulWidget {
     required this.roleId
   });
   final List<Schema> schema;
-  final Positions data;
-  final String roleId;,
+  final Position data;
+  final String roleId;
 
   @override
   State<PositionsEdit> createState() => _PositionsEditState();
@@ -30,7 +31,7 @@ class _PositionsEditState extends State<PositionsEdit> {
   @override
   void initState() {
     super.initState();
-    dynamic initialValue = widget.ticket.toJson();
+    dynamic initialValue = widget.data.toJson();
     // Initialize default values for each field
     for (var field in widget.schema) {
       formData[field.field] = initialValue[field.field];
@@ -40,8 +41,8 @@ class _PositionsEditState extends State<PositionsEdit> {
   void saveForm() async {
     PositionsProvider provider = PositionsProvider();
     // Handle form submission logic here
-    final data = Positions.fromJson(formData);
-    Response response = await provider.updateOneAndSave(data.machineId!, data);
+    final data = Position.fromJson(formData);
+    Response response = await provider.updateOneAndSave(data.id!, data);
     SnackBars snackBar = SnackBars();
     if (response.isSuccess) {
       snackBar.SuccessSnackBar(context, "Successfully updated Positions");

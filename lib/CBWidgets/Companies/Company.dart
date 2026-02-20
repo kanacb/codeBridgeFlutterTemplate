@@ -1,27 +1,30 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
-
-@HiveType(typeId: 2)
+import '../../Utils/Services/IdName.dart';
+ 
+part 'Company.g.dart';
+ 
+@HiveType(typeId: 3)
 
 class Company {
   @HiveField(0)
 	final String? id;
 	 
 	@HiveField(1)
+	 
 	final String? name;
-	 
 	@HiveField(2)
+	 
 	final String? companyNo;
-	 
 	@HiveField(3)
+	 
 	final int? newCompanyNumber;
-	 
 	@HiveField(4)
+	 
 	final DateTime? DateIncorporated;
-	 
 	@HiveField(5)
-	final bool? isdefault;
 	 
+	final bool? isdefault;
 
   Company({
     this.id,

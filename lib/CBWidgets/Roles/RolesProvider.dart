@@ -9,13 +9,13 @@ import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/Results.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../CBWidgets/DataInitializer/DataFetchable.dart';
-import 'Roles.dart';
+import 'Role.dart';
 import 'RolesService.dart';
 
 class RolesProvider with ChangeNotifier implements DataFetchable{
-  List<Roles> _data = [];
-  Box<Roles> hiveBox = Hive.box<Roles>('rolesBox');
-  List<Roles> get data => _data;
+  List<Role> _data = [];
+  Box<Role> hiveBox = Hive.box<Role>('rolesBox');
+  List<Role> get data => _data;
   Logger logger = globals.logger;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -32,11 +32,11 @@ class RolesProvider with ChangeNotifier implements DataFetchable{
     notifyListeners();
   }
 
-  Future<Response> createOneAndSave(Roles item) async {
+  Future<Response> createOneAndSave(Role item) async {
     _isLoading = true;
     final Result result = await RolesService(query: query).create(item);
     if (result.error == null) {
-      Roles? data = result.data;
+      Role? data = result.data;
       hiveBox.put(data?.id, data!);
       loadRolesFromHive();
       return Response(
@@ -46,7 +46,7 @@ class RolesProvider with ChangeNotifier implements DataFetchable{
           statusCode: result.statusCode);
     } else {
       _isLoading = false;
-      Roles? data = result.data;
+      Role? data = result.data;
       logger.i("Failed: creating Roles::createOneAndSave, error: ${result.error}, subClass: Roles::fetchOneAndSave");
       return Response(
           msg: "Failed to create: creating Roles",
@@ -60,7 +60,7 @@ class RolesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await RolesService(query: query).fetchById(id);
     if (result.error == null) {
-      Roles? data = result.data;
+      Role? data = result.data;
       hiveBox.put(data?.id, data!);
       loadRolesFromHive();
       return Response(
@@ -82,10 +82,10 @@ class RolesProvider with ChangeNotifier implements DataFetchable{
     _isLoading = true;
     final Result result = await RolesService(query: query).fetchAll();
     if (result.error == null) {
-      List<Roles>? data = result.data;
+      List<Role>? data = result.data;
       var isEmpty = false;
       if (_data.isEmpty) isEmpty = true;
-      data?.forEach((Roles item) {
+      data?.forEach((Role item) {
         hiveBox.put(item.id, item);
         if (isEmpty) _data.add(item);
       });
@@ -103,11 +103,11 @@ class RolesProvider with ChangeNotifier implements DataFetchable{
     }
   }
 
-  Future<Response> updateOneAndSave(String id, Roles item) async {
+  Future<Response> updateOneAndSave(String id, Role item) async {
     _isLoading = true;
     final Result result = await RolesService().update(id, item);
     if (result.error == null) {
-      Roles? data = result.data;
+      Role? data = result.data;
       hiveBox.put(data?.id, data!);
       loadRolesFromHive();
       return Response(

@@ -12,7 +12,7 @@ import '../../Utils/Services/ServiceFilterByMenu.dart';
 import '../../Utils/Services/ServiceFieldsMenu.dart';
 import '../../Utils/Services/ServiceSortByMenu.dart';
 import '../../Utils/Services/ServiceMoreMenu.dart';
-import 'Tests.dart';
+import 'Test.dart';
 import 'TestsAdd.dart';
 import 'TestsEdit.dart';
 import 'TestsProvider.dart';
@@ -171,7 +171,7 @@ class _TestsListState extends State<TestsList> {
     );
   }
 
-  Widget _buildList(List<Tests> data) {
+  Widget _buildList(List<Test> data) {
     return ListView.builder(
       itemCount: data.length,
       itemBuilder: (context, index) {
@@ -181,7 +181,7 @@ class _TestsListState extends State<TestsList> {
     );
   }
 
-  Widget _buildCard(Tests item, int index) {
+  Widget _buildCard(Test item, int index) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
@@ -214,6 +214,7 @@ Text('Notes: ${item.notes}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         TestsEdit(
+                          
                           schema: schemaResponse?.data,
                           data: item
                         )));

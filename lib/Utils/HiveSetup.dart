@@ -63,43 +63,7 @@ class HiveSetup {
     await Hive.initFlutter();
 
     // Register adapters
-    if (!Hive.isAdapterRegistered(0)) {
-      Hive.registerAdapter(UserAdapter());
-    }
-    if (!Hive.isAdapterRegistered(1)) {
-      Hive.registerAdapter(ProfileAdapter());
-    }
-    if (!Hive.isAdapterRegistered(2)) {
-      Hive.registerAdapter(InboxAdapter());
-    }
-    if (!Hive.isAdapterRegistered(3)) {
-      Hive.registerAdapter(CommentAdapter());
-    }
-    if (!Hive.isAdapterRegistered(4)) {
-      Hive.registerAdapter(UserInviteAdapter());
-    }
-    if (!Hive.isAdapterRegistered(5)) {
-      Hive.registerAdapter(CBNotificationAdapter()); // 5
-    }
-    if (!Hive.isAdapterRegistered(6)) {
-      Hive.registerAdapter(DocumentStorageAdapter());
-    }
 
-    if (!Hive.isAdapterRegistered(19)) {
-      Hive.registerAdapter(IdNameAdapter());
-    }
-    if (!Hive.isAdapterRegistered(37)) {
-      Hive.registerAdapter(BranchesAdapter());
-    }
-    if (!Hive.isAdapterRegistered(38)) {
-      Hive.registerAdapter(CompaniesAdapter());
-    }
-    if (!Hive.isAdapterRegistered(56)) {
-      Hive.registerAdapter(PositionsAdapter());
-    }
-    if (!Hive.isAdapterRegistered(57)) {
-      Hive.registerAdapter(PhoneAdapter());
-    }
     // ~cb-add-service-adapters~
 
     // Open required boxes

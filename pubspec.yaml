@@ -1,5 +1,5 @@
-name: aims
-description: "Atlas IRM Solutions App"
+name: ~cb-project-name~
+description: ~cb-project-description~
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+13
 environment:

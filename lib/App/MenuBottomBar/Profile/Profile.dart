@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:hive/hive.dart';
 import '../../../Utils/Services/IdName.dart';
-import '../../../CBWidgets/UserAddresses/UserAddresses.dart';
-import '../../../CBWidgets/UserPhones/UserPhones.dart';
+import '../../../CBWidgets/UserAddresses/UserAddress.dart';
+import '../../../CBWidgets/UserPhones/UserPhone.dart';
 import '../../../CBWidgets/Users/User.dart';
 
 part 'Profile.g.dart';
@@ -53,10 +53,10 @@ class Profile {
   late final IdName? section;
 
   @HiveField(14)
-  late final UserAddresses? address;
+  late final UserAddress? address;
 
   @HiveField(15)
-  late final UserPhones? phone;
+  late final UserPhone? phone;
 
   @HiveField(16)
   final DateTime createdAt;
@@ -117,9 +117,9 @@ class Profile {
           : null,
       section: map['section'] != null ? IdName.fromJson(map['section']) : null,
       address: map['address'] != null
-          ? UserAddresses.fromJson(map['address'])
+          ? UserAddress.fromJson(map['address'])
           : null,
-      phone: map['phone'] != null ? UserPhones.fromJson(map['phone']) : null,
+      phone: map['phone'] != null ? UserPhone.fromJson(map['phone']) : null,
       createdAt: DateTime.parse(map['createdAt']),
       updatedAt: DateTime.parse(map['updatedAt']),
     );

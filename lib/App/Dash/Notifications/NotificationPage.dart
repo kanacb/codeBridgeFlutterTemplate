@@ -1,8 +1,8 @@
 import 'dart:convert';
-
-import 'package:aims/App/Dash/Notifications/CBNotification.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../App/Dash/Notifications/CBNotification.dart';
 import '../../../Utils/Methods.dart';
 import '../../../Utils/Services/SharedPreferences.dart';
 import '../../../CBWidgets/Users/User.dart';

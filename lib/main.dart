@@ -1,9 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 import 'Login/Services/authService.dart';
 import 'App/Dash/DashMain.dart';
 import 'Login/Login.dart';
@@ -16,7 +16,9 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await HiveSetup.initializeHive();
   ByteData data = await PlatformAssetBundle().load('assets/ca/fullchain.pem');
-  SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
+  SecurityContext.defaultContext.setTrustedCertificatesBytes(
+    data.buffer.asUint8List(),
+  );
 
   AuthService auth = AuthService();
   bool isLoggedIn = false;
@@ -28,14 +30,12 @@ void main() async {
     isLoggedIn = await auth.reauthenticate();
   }
 
-
   runApp(
     MultiProvider(
       providers: HiveSetup().providers(),
-      child:
-          isLoggedIn
-              ? MyAppDashBoard(status: isLoggedIn)
-              : MyAppLogin(status: isLoggedIn),
+      child: isLoggedIn
+          ? MyAppDashBoard(status: isLoggedIn)
+          : MyAppLogin(status: isLoggedIn),
     ),
   );
 }

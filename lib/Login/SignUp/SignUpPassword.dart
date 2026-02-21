@@ -7,7 +7,7 @@ import '../../Utils/PageUtils.dart';
 import '../../Utils/Validators.dart';
 import '../../Utils/Dialogs/BuildSvgIcon.dart';
 import '../../CBWidgets/Users/User.dart';
-import '../../CBWidgets/Users/UserProvider.dart';
+import '../../CBWidgets/Users/UsersProvider.dart';
 
 class SignUpPassword extends StatefulWidget {
   const SignUpPassword({super.key, required this.name, required this.email});

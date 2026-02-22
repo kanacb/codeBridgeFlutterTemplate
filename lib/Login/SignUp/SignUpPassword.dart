@@ -49,7 +49,7 @@ class _SignUpPasswordState extends State<SignUpPassword> {
     formData['createdAt'] = DateTime.now().toUtc().toIso8601String();
     formData['updatedAt'] = DateTime.now().toUtc().toIso8601String();
     print('Form Data: $formData');
-    UserProvider userProvider = UserProvider();
+    UsersProvider userProvider = UsersProvider();
     // Handle form submission logic here
     final data = User.fromJson(formData);
     Response response = await userProvider.createOneAndSave(data);

@@ -77,7 +77,7 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
     String profileJson = jsonEncode(profile.toJson());
     print("DEBUG: ProfilePopUp - Saving profile: $profileJson");
 
-    await savePref("selectedProfile", profile.id);
+    await savePref("selectedProfile", profile.id.toString());
 
     // Verify if the value was actually stored
     final storedProfileString = await getPref("selectedProfile");
@@ -91,7 +91,7 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
     final profileProvider = Provider.of<ProfilesProvider>(context);
     final profiles = profileProvider.data;
     final filteredProfiles = profiles
-        .where((profile) => profile.userId.id == user?.id)
+        .where((profile) => profile.userId?.id == user?.id)
         .toList();
     _enabled = profiles.isEmpty;
 

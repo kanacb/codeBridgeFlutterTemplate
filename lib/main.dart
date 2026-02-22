@@ -15,10 +15,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await HiveSetup.initializeHive();
-  ByteData data = await PlatformAssetBundle().load('assets/ca/fullchain.pem');
-  SecurityContext.defaultContext.setTrustedCertificatesBytes(
-    data.buffer.asUint8List(),
-  );
+  // ByteData data = await PlatformAssetBundle().load('assets/ca/fullchain.pem');
+  // SecurityContext.defaultContext.setTrustedCertificatesBytes(
+  //   data.buffer.asUint8List(),
+  // );
 
   AuthService auth = AuthService();
   bool isLoggedIn = false;

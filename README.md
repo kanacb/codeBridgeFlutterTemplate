@@ -3,16 +3,45 @@
 ## Run the following commands
 
 ### Steps to get started
-flutter pub get
-dart run build_runner build --delete-conflicting-outputs
+
 flutter create --org com.cb.standard --platforms=android,ios,windows,macos,linux .
+dart run change_app_package_name:main com.cb.standard
+
 Register with Firebase and Create Android App
 Download the google-services.json into android/app folder
+update /lib/firebase-options.dart with values from
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    storageBucket: '',
+  );
 
+check if this gradle version is correct
+distributionUrl=https\://services.gradle.org/distributions/gradle-9.3.0-all.zip
+
+check if the below is correct
 Place the package name in local.properties and pubspec.yaml file
 
+Update android/app/build.gradle
+====== start ======
+compileOptions {
+        isCoreLibraryDesugaringEnabled  = true 
+        // Change 1.8 to VERSION_17
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 
-dart run change_app_package_name:main com.cb.standard
+kotlinOptions {
+        // Change '1.8' to '17'
+        jvmTarget = '17'
+    }
+
+====== end ======
+
+#change to java17
+In VS Code / Android Studio: Go to Settings > Build, Execution, Deployment > Build Tools > Gradle. Change the Gradle JDK to JDK 17.
 
 ## Getting Started
 

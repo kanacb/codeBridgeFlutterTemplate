@@ -21,8 +21,8 @@ import '../../Utils/Globals.dart' as globals;
 import '../../Utils/Services/SharedPreferences.dart';
 import '../../Utils/PageUtils.dart';
 import '../MenuBottomBar/Inbox/InboxPage.dart';
-import '../MenuBottomBar/Profile/ProfilePopUp.dart';
-import '../MenuBottomBar/Profile/ProfileProvider.dart';
+import '../../Widgets/Profiles/ProfilesProvider.dart';
+import '../../Widgets/Profiles/Profile.dart';
 import '../MenuBottomBar/Search/Search.dart';
 import 'Notifications/CBNotification.dart';
 

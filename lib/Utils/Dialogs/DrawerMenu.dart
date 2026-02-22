@@ -31,23 +31,26 @@ class _DrawerMenuState extends State<DrawerMenu> {
     var storedProfile = await getPref("selectedProfile");
     if (storedProfile != null) {
       try {
-        final profiles = ProfileProvider().profiles;
+        final profiles = ProfilesProvider().data;
         Profile profile = profiles.firstWhere((p) => p.id == storedProfile);
         // Print the profile JSON so you can see what was loaded.
         setState(() {
           _selectedProfile = profile;
         });
       } catch (e) {
-        savePref("selectedProfile", ProfileProvider().profiles.first.id);
+        savePref(
+          "selectedProfile",
+          ProfilesProvider().data.first.id.toString(),
+        );
         setState(() {
-          _selectedProfile = ProfileProvider().profiles.first;
+          _selectedProfile = ProfilesProvider().data.first;
         });
         print("DEBUG: Error parsing stored profile: $e");
       }
     } else {
-      savePref("selectedProfile", ProfileProvider().profiles.first.id);
+      savePref("selectedProfile", ProfilesProvider().data.first.id.toString());
       setState(() {
-        _selectedProfile = ProfileProvider().profiles.first;
+        _selectedProfile = ProfilesProvider().data.first;
       });
     }
   }

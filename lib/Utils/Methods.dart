@@ -12,7 +12,7 @@ class Methods {
     var storedProfile = await getPref("selectedProfile");
     if (storedProfile != null) {
       try {
-        final profiles = ProfileProvider().profiles;
+        final profiles = ProfilesProvider().data;
         Profile profile = profiles.firstWhere((p) => p.id == storedProfile);
         // Print the profile JSON so you can see what was loaded.
         return profile;
@@ -40,7 +40,7 @@ class Methods {
 
   static Company? getCompanyFromProfile(Profile profile) {
     final companies = CompaniesProvider().data;
-    return companies.where((i) => i.id == profile.company?.sId).firstOrNull;
+    return companies.where((i) => i.id == profile.company?.id).firstOrNull;
   }
 
   static String encodeQueryParameters(

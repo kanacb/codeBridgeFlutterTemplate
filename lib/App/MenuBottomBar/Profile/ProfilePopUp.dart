@@ -52,7 +52,7 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
 
     if (storedProfileString != null && storedProfileString.isNotEmpty) {
       try {
-        final profiles = ProfilesProvider().profiles;
+        final profiles = ProfilesProvider().data;
         Profile profile = profiles.firstWhere(
           (p) => p.id == storedProfileString,
         );
@@ -66,9 +66,9 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
     } else {
       print("DEBUG: ProfilePopUp - No stored profile found.");
       setState(() {
-        _selectedProfile = ProfilesProvider().profiles.first;
+        _selectedProfile = ProfilesProvider().data.first;
       });
-      _saveSelectedProfile(ProfilesProvider().profiles.first);
+      _saveSelectedProfile(ProfilesProvider().data.first);
     }
   }
 
@@ -89,7 +89,7 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
   @override
   Widget build(BuildContext context) {
     final profileProvider = Provider.of<ProfilesProvider>(context);
-    final profiles = profileProvider.profiles;
+    final profiles = profileProvider.data;
     final filteredProfiles = profiles
         .where((profile) => profile.userId.id == user?.id)
         .toList();

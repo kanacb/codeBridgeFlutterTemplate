@@ -7,7 +7,8 @@ flutter pub get
 dart run build_runner build --delete-conflicting-outputs
 Register with Firebase and Create Android App
 Download the google-services.json into android/app folder
-
+Place the package name in local.properties and pubspec.yaml file
+dart run change_app_package_name:main com.cb.standard
 
 ## Getting Started
 

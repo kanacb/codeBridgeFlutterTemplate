@@ -13,7 +13,7 @@ class DataInitializer {
   final Map<String, DataFetchable> Function(BuildContext) _providerMap =
       (ctx) => {
         //'companies': Provider.of<CompanyProvider>(ctx, listen: false),
-        // Add more mappings here
+        // ~cb-data-initializer-provider-map~
       };
 
   // Method to initialize all providers' fetchAllAndSave methods

@@ -20,17 +20,20 @@ Logger logger = Logger(
 // ip Home 192.168.1.19
 // ip Office 192.168.100.19
 
-// localhost
-// const String api = 'http://localhost:3030';
-
-// sit
-// const String api = 'https://stg.atlasirmscom.my';
+// dev
+const String api = 'http://localhost:3030';
 
 // prd
-const String api = 'https://prd.atlasirmscom.my';
+// const String api = 'http://localhost:4030';
 
-// test
-// const String api = 'https://cb-prd.atlasirmscom.my';
+// stg
+// const String api = 'http://localhost:5030';
+
+// sit
+// const String api = 'http://localhost:6030';
+
+// uat
+// const String api = 'http://localhost:7030';
 
 // whatsapp urls
 const String whatsappIOS = 'whatsapp://wa.me/60122222222';

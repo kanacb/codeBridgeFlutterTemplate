@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:rename/platform_file_editors/abs_platform_file_editor.dart';
 
 import 'DataFetchable.dart';
+// ~cb-data-initializer-provider-import~
 
 class DataInitializer {
   final BuildContext context;

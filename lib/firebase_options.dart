@@ -30,49 +30,49 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCJnR9MY-4Rz2qYzJmh9p8pO8w4ytT69z4',
-    appId: '1:312140727021:web:8c6dd8d173deed4f38c2e4',
-    messagingSenderId: '312140727021',
-    projectId: 'kana-colombo-test',
-    authDomain: 'kana-colombo-test.firebaseapp.com',
-    storageBucket: 'kana-colombo-test.firebasestorage.app',
-    measurementId: 'G-P8ZMRHRR9D',
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    storageBucket: '',
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAlIJKjNMkYfIVq7_WXmf2JYuSK9osYet0',
-    appId: '1:312140727021:android:df92e01340da661638c2e4',
-    messagingSenderId: '312140727021',
-    projectId: 'kana-colombo-test',
-    storageBucket: 'kana-colombo-test.firebasestorage.app',
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    authDomain: '',
+    storageBucket: '',
+    measurementId: '',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA-z3YZ3CDNeGoWMfBN1tu8UgTQrVQtJPo',
-    appId: '1:312140727021:ios:23784542ae4933bf38c2e4',
-    messagingSenderId: '312140727021',
-    projectId: 'kana-colombo-test',
-    storageBucket: 'kana-colombo-test.firebasestorage.app',
-    iosBundleId: 'com.codebridge.apps.kanacolombotest',
+    apiKey: '-',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    storageBucket: '',
+    iosBundleId: '',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyA-z3YZ3CDNeGoWMfBN1tu8UgTQrVQtJPo',
-    appId: '1:312140727021:ios:92c4fbc1a0486e6338c2e4',
-    messagingSenderId: '312140727021',
-    projectId: 'kana-colombo-test',
-    storageBucket: 'kana-colombo-test.firebasestorage.app',
-    iosBundleId: 'com.cb.project.template.codebridgeFlutterAllInOnePlatform',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    storageBucket: '',
+    iosBundleId: '',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCJnR9MY-4Rz2qYzJmh9p8pO8w4ytT69z4',
-    appId: '1:312140727021:web:e9846f3c3399229638c2e4',
-    messagingSenderId: '312140727021',
-    projectId: 'kana-colombo-test',
-    authDomain: 'kana-colombo-test.firebaseapp.com',
-    storageBucket: 'kana-colombo-test.firebasestorage.app',
-    measurementId: 'G-HP7M5JRW9B',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    authDomain: '',
+    storageBucket: '',
+    measurementId: '',
   );
 }

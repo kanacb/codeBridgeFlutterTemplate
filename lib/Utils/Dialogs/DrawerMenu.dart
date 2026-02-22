@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import '../Methods.dart';
 import '../Services/SharedPreferences.dart';
 import '../../App/Dash/DashMain.dart';
-import '../../App/MenuBottomBar/Profile/Profile.dart';
-import '../../App/MenuBottomBar/Profile/ProfileProvider.dart';
+import '../../Widgets/Profiles/ProfilesProvider.dart';
+import '../../Widgets/Profiles/Profile.dart';
 import '../../CBWidgets/Users/UsersMain.dart';
 
 // ~cb-service-widget~

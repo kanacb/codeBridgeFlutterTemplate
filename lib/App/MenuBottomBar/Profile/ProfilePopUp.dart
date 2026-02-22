@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import '../../../App/MenuBottomBar/Profile/ProfileProvider.dart';
 import '../../../Login/Login.dart';
 import '../../../Login/Services/authService.dart';
 import '../../../Utils/Dialogs/SnackBars.dart';
@@ -10,7 +9,8 @@ import '../../../Utils/Services/SharedPreferences.dart'; // Contains savePref an
 import '../../../Utils/Validators.dart';
 import '../../../CBWidgets/Users/User.dart';
 import '../../Dash/DashMain.dart';
-import '../../../CBWidgets/Profile.dart';
+import '../../../Widgets/Profiles/ProfilesProvider.dart';
+import '../../../Widgets/Profiles/Profile.dart';
 
 class ProfilePopUp extends StatefulWidget {
   final BuildContext parentContext;

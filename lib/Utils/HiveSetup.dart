@@ -1,8 +1,8 @@
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import '../App/MenuBottomBar/Profile/ProfileProvider.dart';
-import '../App/MenuBottomBar/Profile/Profile.dart';
+import '../Widgets/Profiles/ProfilesProvider.dart';
+import '../Widgets/Profiles/Profile.dart';
 import '../App/MenuBottomBar/Inbox/Inbox.dart';
 import '../App/MenuBottomBar/Inbox/InboxProvider.dart';
 import '../App/Dash/Notifications/CBNotification.dart';

@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
-import '../App/MenuBottomBar/Profile/Profile.dart';
-import '../App/MenuBottomBar/Profile/ProfileProvider.dart';
-import '../CBWidgets/Companies/Company.dart';
-import '../CBWidgets/Companies/CompaniesProvider.dart';
+import '../Widgets/Profiles/ProfilesProvider.dart';
+import '../Widgets/Profiles/Profile.dart';
+import '../Widgets/Companies/Company.dart';
+import '../Widgets/Companies/CompaniesProvider.dart';
 import 'Services/SharedPreferences.dart';
 
 class Methods {

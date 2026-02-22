@@ -52,7 +52,7 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
 
     if (storedProfileString != null && storedProfileString.isNotEmpty) {
       try {
-        final profiles = ProfileProvider().profiles;
+        final profiles = ProfilesProvider().profiles;
         Profile profile = profiles.firstWhere(
           (p) => p.id == storedProfileString,
         );
@@ -66,9 +66,9 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
     } else {
       print("DEBUG: ProfilePopUp - No stored profile found.");
       setState(() {
-        _selectedProfile = ProfileProvider().profiles.first;
+        _selectedProfile = ProfilesProvider().profiles.first;
       });
-      _saveSelectedProfile(ProfileProvider().profiles.first);
+      _saveSelectedProfile(ProfilesProvider().profiles.first);
     }
   }
 
@@ -88,7 +88,7 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
 
   @override
   Widget build(BuildContext context) {
-    final profileProvider = Provider.of<ProfileProvider>(context);
+    final profileProvider = Provider.of<ProfilesProvider>(context);
     final profiles = profileProvider.profiles;
     final filteredProfiles = profiles
         .where((profile) => profile.userId.id == user?.id)
@@ -116,7 +116,7 @@ class _ProfilePopUpState extends State<ProfilePopUp> {
             children: [
               TextButton.icon(
                 // onPressed: () async {
-                //   await Provider.of<ProfileProvider>(
+                //   await Provider.of<ProfilesProvider>(
                 //     context,
                 //     listen: false,
                 //   ).fetchAllAndSave();

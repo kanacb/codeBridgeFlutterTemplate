@@ -1,30 +1,28 @@
 import 'dart:convert';
-
-import '../../Utils/Services/Response.dart';
-import '../../CBWidgets/DataInitializer/DataInitializer.dart';
-
-import '../../CBWidgets/Users/User.dart';
-import '/../../App/Dash/CardSelection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 import '../../Login/Services/authService.dart';
+import '../../App/Dash/CardSelection.dart';
 import '../../App/Dash/DashExistingUser.dart'; // Not used directly now
 import '../../App/Dash/NewUserDash.dart';
 import '../../App/Dash/Notifications/NotificationPage.dart';
 import '../../App/Dash/Notifications/NotificationProvider.dart';
+import '../../Utils/Services/Response.dart';
 import '../../Utils/Dialogs/BuildSvgIcon.dart';
 import '../../Utils/Dialogs/DrawerMenu.dart';
 import '../../Utils/Globals.dart' as globals;
 import '../../Utils/Services/SharedPreferences.dart';
 import '../../Utils/PageUtils.dart';
 import '../MenuBottomBar/Inbox/InboxPage.dart';
-import '../../Widgets/Profiles/ProfilesProvider.dart';
-import '../../Widgets/Profiles/Profile.dart';
+import '../MenuBottomBar/Profile/ProfilePopUp.dart';
 import '../MenuBottomBar/Search/Search.dart';
 import 'Notifications/CBNotification.dart';
+
+import '../../CBWidgets/Users/User.dart';
+import '../../Widgets/Profiles/ProfilesProvider.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key, required this.i, this.index});
@@ -130,7 +128,7 @@ class _DashboardState extends State<Dashboard> {
     });
 
     if (_isLoggedIn) {
-      Provider.of<ProfileProvider>(context, listen: false).fetchAllAndSave();
+      Provider.of<ProfilesProvider>(context, listen: false).fetchAllAndSave();
     } else {
       await savePref("login", "no");
     }

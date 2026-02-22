@@ -206,7 +206,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
     // print("DEBUG: In build, _selectedProfile: ${_selectedProfile?.toJson()}");
     String role = _selectedProfile?.position?.name ?? "";
     String companyType = _selectedProfile != null
-        ? Methods.getCompanyFromProfile(_selectedProfile!)?.companyType ?? ""
+        ? Methods.getCompanyFromProfile(_selectedProfile!)?.companyNo ?? ""
         : "";
     print("DEBUG: Role being used: '$role'");
 

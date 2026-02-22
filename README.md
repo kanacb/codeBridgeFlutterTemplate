@@ -2,8 +2,11 @@
 
 ## Run the following commands
 
+### Steps to get started
 flutter pub get
 dart run build_runner build --delete-conflicting-outputs
+Register with Firebase and Create Android App
+Download the google-services.json into android/app folder
 
 
 ## Getting Started

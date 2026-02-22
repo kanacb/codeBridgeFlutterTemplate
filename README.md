@@ -5,9 +5,13 @@
 ### Steps to get started
 flutter pub get
 dart run build_runner build --delete-conflicting-outputs
+flutter create --org com.cb.standard --platforms=android,ios,windows,macos,linux .
 Register with Firebase and Create Android App
 Download the google-services.json into android/app folder
+
 Place the package name in local.properties and pubspec.yaml file
+
+
 dart run change_app_package_name:main com.cb.standard
 
 ## Getting Started

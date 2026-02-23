@@ -1,36 +1,30 @@
 # Code Bridge Flutter App
 
-## Run the following commands
+## Run the following commands to get started
 
-### Steps to get started
+### change to java 17
+1. In VS Code / Android Studio: Go to Settings > Build, Execution, Deployment > Build Tools > Gradle. Change the Gradle JDK to JDK 17. Download the latest version from Oracle Java.
 
-flutter create --org com.cb.standard --platforms=android,ios,windows,macos,linux .
-dart run change_app_package_name:main com.cb.standard
+2. run node initPackage.js // ensure the script configured to your system
 
-Register with Firebase and Create Android App
-Download the google-services.json into android/app folder
-update /lib/firebase-options.dart with values from
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: '',
-    appId: '',
-    messagingSenderId: '',
-    projectId: '',
-    storageBucket: '',
-  );
+3. run node configAndroid.js // set the build environment for android
 
-check if this gradle version is correct
+4. run node rebuild.js // clean and rebuild your app
+
+Validation Notes:
+### check if this gradle version is correct
 distributionUrl=https\://services.gradle.org/distributions/gradle-9.3.0-all.zip
 
-check if the below is correct
+### check if the below files have the correct version number
 Place the package name in local.properties and pubspec.yaml file
 
-Update android/app/build.gradle
+### check if the version is set to 17 inenjoy android/app/build.gradle
 ====== start ======
 compileOptions {
-        isCoreLibraryDesugaringEnabled  = true 
         // Change 1.8 to VERSION_17
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+        isCoreLibraryDesugaringEnabled  = true 
     }
 
 kotlinOptions {
@@ -40,10 +34,9 @@ kotlinOptions {
 
 ====== end ======
 
-#change to java17
-In VS Code / Android Studio: Go to Settings > Build, Execution, Deployment > Build Tools > Gradle. Change the Gradle JDK to JDK 17.
+enjoy coding.
 
-## Getting Started
+## Getting Started with Flutter
 
 This project is a starting point for a Flutter application.
 

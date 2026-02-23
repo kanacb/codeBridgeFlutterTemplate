@@ -3,7 +3,11 @@ const fs = require("fs");
 const path = require("path");
 
 // Configuration Constants
-const configData = fs.readFileSync(googleServicesPath, "utf8");
+const configPath = path.join(
+  __dirname,
+  "cbConfig.json",
+);
+const configData = fs.readFileSync(configPath, "utf8");
 const config = JSON.parse(configData);
 // const PACKAGE_NAME = "com.cb.standard";
 const PACKAGE_NAME = config.packageName || "com.cb.standard";

@@ -1,5 +1,9 @@
 const fs = require("fs");
+const { execSync } = require("child_process");
 const path = require("path");
+
+// Configuration Constants
+const PACKAGE_NAME = "com.cb.basicapp";
 
 // 1. Check if the files exists
 const googleServicesPath = path.join(
@@ -16,7 +20,7 @@ if (!fs.existsSync(googleServicesPath)) {
 const firebaseOptionsPath = path.join(
   __dirname,
   "lib",
-  "firebase-options.dart",
+  "firebase_options.dart",
 );
 if (!fs.existsSync(firebaseOptionsPath)) {
   console.error("Error: firebase-options.dart not found at ./lib/");
@@ -56,7 +60,7 @@ const appGradlePath = path.join(
   __dirname,
   "android",
   "app",
-  "build.gradle",
+  "build.gradle.kts",
 );
 if (!fs.existsSync(appGradlePath)) {
   console.warn("Warning: android/app/build.gradle does not exist.");
@@ -71,12 +75,11 @@ try {
   const googleServices = JSON.parse(rawData);
 
   // 2. Extracting data based on your mapping
-  const _ = require("lodash");
   const projectInfo = googleServices.project_info;
-  const client = _.find(googleServices.client, {
-    "android_client_info.package_name": PACKAGE_NAME.toLocaleLowerCase(),
+  const client = googleServices.client.filter((c) => {
+    return c.client_info.android_client_info.package_name === PACKAGE_NAME.toLocaleLowerCase();
   });
-  if (!client) {
+  if (client.length !== 1) {
     console.error(
       `Error: No client found with package name ${PACKAGE_NAME.toLocaleLowerCase()}`,
     );
@@ -85,8 +88,8 @@ try {
 
   // 3. Map to FirebaseOptions structure
   const firebaseOptions = {
-    apiKey: client.api_key[0].current_key,
-    appId: client.client_info.mobilesdk_app_id,
+    apiKey: client[0].api_key[0].current_key,
+    appId: client[0].client_info.mobilesdk_app_id,
     messagingSenderId: projectInfo.project_number,
     projectId: projectInfo.project_id,
     storageBucket: projectInfo.storage_bucket,

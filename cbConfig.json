@@ -1,0 +1,33 @@
+{
+    "name": "codeBridgeFlutterTemplate",
+    "version": "1.0.0",
+    "description": "A Flutter template for codeBridge projects.",
+    "packageName": "com.cb.basicapp",
+    "platforms": ["android", "ios"],
+    "org" :"com.cb.dev.team",
+    "main": "configAndroid.js",
+    "scripts": {
+        "configure-android": "node configAndroid.js"
+    },
+    "author": "codeBridge Team",
+    "license": "MIT",
+    "dependencies": {
+        "lodash": "^4.17.21"
+    },
+    "firebaseOptionsPath": "./lib/firebase_options.dart",
+    "googleServicesPath": "./android/app/google-services.json", 
+    "appGradlePath": "./android/app/build.gradle",
+    "appGradleKtsPath": "./android/app/build.gradle.kts",
+    "androidClientInfoKey": "android_client_info.package_name",
+    "projectInfoKey": "project_info",
+    "clientKey": "client",
+    "errorMessages": {
+        "firebaseOptionsNotFound": "Error: firebase_options.dart not found at ./lib/",
+        "googleServicesNotFound": "Error: google-services.json not found at ./android/app/",
+        "appGradleNotFound": "Warning: android/app/build.gradle does not exist.",
+        "appGradleKtsNotFound": "Warning: android/app/build.gradle.kts does not exist.",
+        "clientNotFound": "Error: No client with the specified package name found in google-services.json."
+    }   ,
+
+
+}

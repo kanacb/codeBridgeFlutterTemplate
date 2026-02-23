@@ -9,8 +9,8 @@ const PLATFORMS = ["android", "ios", "windows", "web", "macos", "linux"];
 
 // Validate Configuration
 const allowedPlatforms = ["android", "ios", "windows", "web", "macos", "linux"];
-if (!allowedPlatforms.every((p) => PLATFORMS.includes(p))) {
-  console.error("Error: Invalid platform in PLATFORMS array", p);
+if (!PLATFORMS.every((p) => allowedPlatforms.includes(p))) {
+  console.error("Error: Invalid platform in PLATFORMS array");
   process.exit(1);
 }
 if (ORG_NAME === "com.cb.group") {

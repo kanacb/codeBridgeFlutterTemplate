@@ -1,7 +1,7 @@
+// DO NOT CHANGE CODE AFTER THIS POINT UNLESS YOU KNOW WHAT YOU ARE DOING
+
 const { execSync } = require('child_process');
 
-
-// DO NOT CHANGE CODE AFTER THIS POINT UNLESS YOU KNOW WHAT YOU ARE DOING
 function run(command, cwd = process.cwd()) {
   try {
     console.log(`\x1b[33m%s\x1b[0m`, `\nRunning: ${command}`);
@@ -23,7 +23,7 @@ run(gradlewClean, './android');
 run('flutter pub get');
 
 // 4. Build Hive Adapters
-run('flutter pub run build_runner build --delete-conflicting-outputs');
+run('dart run build_runner build --delete-conflicting-outputs');
 
 // 5. Run App
-run('flutter run');
+run('dart run');

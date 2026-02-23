@@ -1,9 +1,12 @@
+// DO NOT CHANGE CODE AFTER THIS POINT UNLESS YOU KNOW WHAT YOU ARE DOING
 const fs = require("fs");
-const { execSync } = require("child_process");
 const path = require("path");
 
 // Configuration Constants
-const PACKAGE_NAME = "com.cb.basicapp";
+const configData = fs.readFileSync(googleServicesPath, "utf8");
+const config = JSON.parse(configData);
+// const PACKAGE_NAME = "com.cb.standard";
+const PACKAGE_NAME = config.packageName || "com.cb.standard";
 
 // 1. Check if the files exists
 const googleServicesPath = path.join(
@@ -36,25 +39,24 @@ if (!fs.existsSync(androidLocalPropertiesPath)) {
   process.exit(1);
 }
 
-const pubSpecPath = path.join(
-  __dirname,
-  "pubspec.yaml",
-);
+const pubSpecPath = path.join(__dirname, "pubspec.yaml");
 if (!fs.existsSync(pubSpecPath)) {
   console.warn("Warning: pubspec.yaml does not exist.");
   process.exit(1);
 }
 const wrapperPath = path.join(
   __dirname,
-  "android",    
+  "android",
   "gradle",
   "wrapper",
   "gradle-wrapper.properties",
 );
 if (!fs.existsSync(wrapperPath)) {
-  console.warn("Warning: android/gradle/wrapper/gradle-wrapper.properties does not exist.");
+  console.warn(
+    "Warning: android/gradle/wrapper/gradle-wrapper.properties does not exist.",
+  );
   process.exit(1);
-}   
+}
 
 const appGradlePath = path.join(
   __dirname,
@@ -67,7 +69,6 @@ if (!fs.existsSync(appGradlePath)) {
   process.exit(1);
 }
 
-
 // 2. Start Processing google-services.json
 try {
   // 1. Read and parse the file
@@ -77,7 +78,10 @@ try {
   // 2. Extracting data based on your mapping
   const projectInfo = googleServices.project_info;
   const client = googleServices.client.filter((c) => {
-    return c.client_info.android_client_info.package_name === PACKAGE_NAME.toLocaleLowerCase();
+    return (
+      c.client_info.android_client_info.package_name ===
+      PACKAGE_NAME.toLocaleLowerCase()
+    );
   });
   if (client.length !== 1) {
     console.error(
@@ -103,8 +107,8 @@ try {
 
   let firebaseOptionsContent = fs.readFileSync(firebaseOptionsPath, "utf8");
   firebaseOptionsContent = firebaseOptionsContent.replace(
-    /static const FirebaseOptions android = FirebaseOptions.*\{[\s\S]*?\}/,
-    `static const FirebaseOptions android = FirebaseOptions(
+    /\tstatic const FirebaseOptions android = FirebaseOptions.*\{[\s\S]*?\}/,
+    `\tstatic const FirebaseOptions android = FirebaseOptions(
       apiKey: "${firebaseOptions.apiKey}",
       appId: "${firebaseOptions.appId}",
       messagingSenderId: "${firebaseOptions.messagingSenderId}",
@@ -149,8 +153,8 @@ if (fs.existsSync(appGradlePath)) {
   const newConfigs = `
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
@@ -174,5 +178,7 @@ if (fs.existsSync(appGradlePath)) {
 }
 
 console.log("\x1b[32mRebuild Script Finished!\x1b[0m");
-console.log("You are now ready to run your app with the new Firebase configuration and Android setup.");
+console.log(
+  "You are now ready to run your app with the new Firebase configuration and Android setup.",
+);
 console.log("Next steps: 3. Run 'node rebuild.js' to clean and run app.");

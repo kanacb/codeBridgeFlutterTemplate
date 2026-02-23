@@ -1,24 +1,11 @@
-const { execSync } = require("child_process");
-
-// Configuration Constants
-const PACKAGE_NAME = "com.cb.standard";
-const ORG_NAME = "com.cb.group";
-const PLATFORMS = ["android", "ios", "windows", "web", "macos", "linux"];
-
 // DO NOT CHANGE CODE AFTER THIS POINT UNLESS YOU KNOW WHAT YOU ARE DOING
+const { execSync } = require("child_process");
+// Configuration Constants
+const configData = fs.readFileSync(googleServicesPath, "utf8");
+const config = JSON.parse(configData);
+const PACKAGE_NAME = config.packageName || "com.cb.standard";
 
 // Validate Configuration
-const allowedPlatforms = ["android", "ios", "windows", "web", "macos", "linux"];
-if (!PLATFORMS.every((p) => allowedPlatforms.includes(p))) {
-  console.error("Error: Invalid platform in PLATFORMS array");
-  process.exit(1);
-}
-if (ORG_NAME === "com.cb.group") {
-  console.warn(
-    "Warning: ORG_NAME is set to 'com.cb.group', which may not be unique. Consider changing it to avoid conflicts.",
-  );
-  process.exit(1);
-}
 if (PACKAGE_NAME === "com.cb.standard") {
   console.warn(
     "Warning: PACKAGE_NAME is set to 'com.cb.standard', which may not be unique. Consider changing it to avoid conflicts.",
@@ -37,7 +24,7 @@ function run(command) {
 }
 
 // 1. Recreate Flutter Project
-run(`flutter create --org ${ORG_NAME} --platforms=${PLATFORMS.join(",")} .`);
+run(`flutter create .`);
 run(`dart run change_app_package_name:main ${PACKAGE_NAME}`);
 
 console.log("\x1b[32mRebuild Script Finished!\x1b[0m");

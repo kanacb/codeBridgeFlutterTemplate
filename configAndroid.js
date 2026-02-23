@@ -182,7 +182,10 @@ if (fs.existsSync(appGradlePath)) {
 }
 
 console.log("\x1b[32mRebuild Script Finished!\x1b[0m");
+console.log("Next steps: 1. Check that the Validation notes have been done.");
+console.log("Next steps: 2. Copy the Firebase options to your firebase_options.dart file.");
+console.log("Next steps: 3. Run 'node rebuild.js' to clean and run app.");
 console.log(
   "You are now ready to run your app with the new Firebase configuration and Android setup.",
 );
-console.log("Next steps: 3. Run 'node rebuild.js' to clean and run app.");
+

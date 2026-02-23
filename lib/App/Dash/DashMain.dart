@@ -22,7 +22,7 @@ import '../MenuBottomBar/Search/Search.dart';
 import 'Notifications/CBNotification.dart';
 
 import '../../CBWidgets/Users/User.dart';
-import '../../Widgets/Profiles/ProfilesProvider.dart';
+import '../../CBWidgets/Profiles/ProfilesProvider.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key, required this.i, this.index});

@@ -5,13 +5,15 @@
 ### change to java 17
 1. In VS Code / Android Studio: Go to Settings > Build, Execution, Deployment > Build Tools > Gradle. Change the Gradle JDK to JDK 17. Download the latest version from Oracle Java.
 
-2. run 'node initPackage.js' // set the package name in the cbConfig.json file.
+2. Set the package name in cbConfig.json
 
-3. Create Firebase Project, with billing enabled. Set the package name to the one set in the cbConfig file.
+3. run 'node initPackage.js' // follow the instructions on completed
 
-4. run 'node configAndroid.js' // create a firebase project before running this file. Copy google-service.json into /android/app folder
+4. Create Firebase Project, with billing enabled. Set the package name to the one set in the cbConfig file.
 
-5. run 'node rebuild.js' // clean and rebuild your app
+5. run 'node configAndroid.js' // follow the instructions on completed
+
+6. run 'node rebuild.js' // clean and rebuild your app
 
 Validation Notes:
 ### check if this gradle version is correct

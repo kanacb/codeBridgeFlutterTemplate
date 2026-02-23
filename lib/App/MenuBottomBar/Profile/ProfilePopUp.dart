@@ -9,8 +9,8 @@ import '../../../Utils/Services/SharedPreferences.dart'; // Contains savePref an
 import '../../../Utils/Validators.dart';
 import '../../../CBWidgets/Users/User.dart';
 import '../../Dash/DashMain.dart';
-import '../../../Widgets/Profiles/ProfilesProvider.dart';
-import '../../../Widgets/Profiles/Profile.dart';
+import '../../../CBWidgets/Profiles/ProfilesProvider.dart';
+import '../../../CBWidgets/Profiles/Profile.dart';
 
 class ProfilePopUp extends StatefulWidget {
   final BuildContext parentContext;

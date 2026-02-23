@@ -26,4 +26,4 @@ run('flutter pub get');
 run('dart run build_runner build --delete-conflicting-outputs');
 
 // 5. Run App
-run('dart run');
+run('flutter run android');

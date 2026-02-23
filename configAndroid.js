@@ -1,7 +1,5 @@
 const fs = require("fs");
-const { execSync } = require("child_process");
 const path = require("path");
-const _ = require("lodash");
 
 // 1. Check if the files exists
 const googleServicesPath = path.join(
@@ -73,6 +71,7 @@ try {
   const googleServices = JSON.parse(rawData);
 
   // 2. Extracting data based on your mapping
+  const _ = require("lodash");
   const projectInfo = googleServices.project_info;
   const client = _.find(googleServices.client, {
     "android_client_info.package_name": PACKAGE_NAME.toLocaleLowerCase(),

@@ -8,7 +8,7 @@ import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/Services/Response.dart';
 import '../../Utils/PageUtils.dart';
 import '../../Utils/Validators.dart';
-import '../../CBWidgets/MailQues/MailQuesService.dart';
+import '../../Utils/MailQuesServiceVerify.dart';
 
 class SignUpSetup extends StatefulWidget {
   const SignUpSetup({super.key});
@@ -193,7 +193,7 @@ class _SignUpSetup extends State<SignUpSetup> {
                         ),
                         onPressed: () async {
                           if (key.currentState!.validate()) {
-                            MailQueService svr = MailQueService();
+                            MailQuesServiceVerify svr = MailQuesServiceVerify();
                             final Response response = await svr
                                 .createOnCodeVerify(name: name!, email: email!);
                             var code = await getPref("code");

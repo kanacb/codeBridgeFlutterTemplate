@@ -8,6 +8,7 @@ import 'Login/Services/authService.dart';
 import 'App/Dash/DashMain.dart';
 import 'Login/Login.dart';
 import 'Utils/HiveSetup.dart';
+import 'Utils/CBHiveSetup.dart';
 import 'Utils/Services/SharedPreferences.dart';
 import 'firebase_options.dart';
 
@@ -15,6 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await HiveSetup.initializeHive();
+  await CBHiveSetup.initializeHive();
   // ByteData data = await PlatformAssetBundle().load('assets/ca/fullchain.pem');
   // SecurityContext.defaultContext.setTrustedCertificatesBytes(
   //   data.buffer.asUint8List(),

@@ -20,10 +20,18 @@ class UsersProvider with ChangeNotifier implements DataFetchable{
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  String query = "";
+  late final String query;
+  Map<String, dynamic> mapQuery = {
+  "limit": 1000,
+  "\$sort": {
+    "createdAt": -1
+  },
+  "\$populate": []
+};
 
   UsersProvider() {
     loadUsersFromHive();
+    query = Methods.encodeQueryParameters(mapQuery);
   }
 
   void loadUsersFromHive() {

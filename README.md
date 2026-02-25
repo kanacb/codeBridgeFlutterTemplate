@@ -2,7 +2,6 @@
 
 ## Run the following commands to get started
 
-### change to java 17
 1. In VS Code / Android Studio: Go to Settings > Build, Execution, Deployment > Build Tools > Gradle. Change the Gradle JDK to JDK 17. Download the latest version from Oracle Java.
 
 2. Set the package name in cbConfig.json
@@ -24,14 +23,15 @@ Place the package name in local.properties and pubspec.yaml file
 
 ### check if the version is set to 17 inenjoy android/app/build.gradle
 ====== start ======
-compileOptions {
+
+    compileOptions {
         // Change 1.8 to VERSION_17
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
         isCoreLibraryDesugaringEnabled  = true 
     }
 
-kotlinOptions {
+    kotlinOptions {
         // Change '1.8' to '17'
         jvmTarget = '17'
     }

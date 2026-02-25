@@ -198,10 +198,7 @@ class _UsersListState extends State<UsersList> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Name: ${item.name}'),
-Text('Email: ${item.email}'),
-Text('Password: ${item.password}'),
-Text('Status: ${item.status}'),
+                Text('Status: ${item.status}'),
               ],
             ),
             trailing: Row(
@@ -213,9 +210,9 @@ Text('Status: ${item.status}'),
                     Navigator.of(context).push(Utils().createRoute(
                         context,
                         UsersEdit(
-                          
                           schema: schemaResponse?.data,
-                          data: item
+                          data: item,
+                          name : item.name,email : item.email,password : item.password
                         )));
                   },
                 ),

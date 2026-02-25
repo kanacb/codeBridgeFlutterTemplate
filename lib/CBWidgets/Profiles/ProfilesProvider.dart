@@ -112,13 +112,13 @@ class ProfilesProvider with ChangeNotifier implements DataFetchable{
       "service": "userAddresses",
       "select": [
         "userId",
-        "Street1",
-        "Street2",
-        "Poscode",
-        "City",
-        "stateName",
-        "Province",
-        "Country"
+        "street1",
+        "street2",
+        "postalCode",
+        "city",
+        "state",
+        "province",
+        "country"
       ]
     },
     {

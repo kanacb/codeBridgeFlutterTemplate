@@ -12,43 +12,43 @@ class StaffinfoEdit extends StatefulWidget {
     super.key,
     required this.schema,
     required this.data,
-    this.empno,
+    this.empNo,
 		this.name,
-		this.namenric,
-		this.compcode,
-		this.compname,
-		this.deptcode,
-		this.deptdesc,
-		this.sectcode,
-		this.sectdesc,
+		this.nameNric,
+		this.compCode,
+		this.compName,
+		this.deptCode,
+		this.deptDesc,
+		this.sectCode,
+		this.sectDesc,
 		this.designation,
 		this.email,
 		this.resign,
 		this.supervisor,
-		this.datejoin,
-		this.empgroup,
-		this.empgradecode,
-		this.terminationdate
+		this.dateJoin,
+		this.empGroup,
+		this.empGradeCode,
+		this.terminationDate
   });
   final List<Schema> schema;
   final Staffinfo data;
-  final int? empno;
+  final int? empNo;
 	final String? name;
-	final String? namenric;
-	final int? compcode;
-	final String? compname;
-	final String? deptcode;
-	final String? deptdesc;
-	final int? sectcode;
-	final String? sectdesc;
+	final String? nameNric;
+	final int? compCode;
+	final String? compName;
+	final String? deptCode;
+	final String? deptDesc;
+	final int? sectCode;
+	final String? sectDesc;
 	final String? designation;
 	final String? email;
 	final String? resign;
 	final String? supervisor;
-	final int? datejoin;
-	final String? empgroup;
-	final String? empgradecode;
-	final String? terminationdate;
+	final int? dateJoin;
+	final String? empGroup;
+	final String? empGradeCode;
+	final String? terminationDate;
 
   @override
   State<StaffinfoEdit> createState() => _StaffinfoEditState();

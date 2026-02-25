@@ -28,7 +28,7 @@ class CompanyAddressesProvider with ChangeNotifier implements DataFetchable{
   },
   "\$populate": [
     {
-      "path": "companyId",
+      "path": "company",
       "service": "companies",
       "select": [
         "name",

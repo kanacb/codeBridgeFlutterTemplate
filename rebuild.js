@@ -25,5 +25,6 @@ run('flutter pub get');
 // 4. Build Hive Adapters
 run('dart run build_runner build --delete-conflicting-outputs');
 
-// 5. Run App
-run('flutter run android');
+console.log("\x1b[32mRebuild Script Finished! \x1b[0m");
+console.log("\x1b[34mNext steps: 1. You are ready to flutter apps. \x1b[0m");
+console.log("\x1b[34mHappy coding from CodeBridge Dev Team! \x1b[0m");

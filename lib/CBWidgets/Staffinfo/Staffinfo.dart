@@ -13,31 +13,31 @@ class Staffinfo {
 	 
 	@HiveField(1)
 	 
-	final int? empno;
+	final int? empNo;
 	@HiveField(2)
 	 
 	final String? name;
 	@HiveField(3)
 	 
-	final String? namenric;
+	final String? nameNric;
 	@HiveField(4)
 	 
-	final int? compcode;
+	final int? compCode;
 	@HiveField(5)
 	 
-	final String? compname;
+	final String? compName;
 	@HiveField(6)
 	 
-	final String? deptcode;
+	final String? deptCode;
 	@HiveField(7)
 	 
-	final String? deptdesc;
+	final String? deptDesc;
 	@HiveField(8)
 	 
-	final int? sectcode;
+	final int? sectCode;
 	@HiveField(9)
 	 
-	final String? sectdesc;
+	final String? sectDesc;
 	@HiveField(10)
 	 
 	final String? designation;
@@ -52,71 +52,71 @@ class Staffinfo {
 	final String? supervisor;
 	@HiveField(14)
 	 
-	final int? datejoin;
+	final int? dateJoin;
 	@HiveField(15)
 	 
-	final String? empgroup;
+	final String? empGroup;
 	@HiveField(16)
 	 
-	final String? empgradecode;
+	final String? empGradeCode;
 	@HiveField(17)
 	 
-	final String? terminationdate;
+	final String? terminationDate;
 
   Staffinfo({
     this.id,
-		this.empno,
+		this.empNo,
 		this.name,
-		this.namenric,
-		this.compcode,
-		this.compname,
-		this.deptcode,
-		this.deptdesc,
-		this.sectcode,
-		this.sectdesc,
+		this.nameNric,
+		this.compCode,
+		this.compName,
+		this.deptCode,
+		this.deptDesc,
+		this.sectCode,
+		this.sectDesc,
 		this.designation,
 		this.email,
 		this.resign,
 		this.supervisor,
-		this.datejoin,
-		this.empgroup,
-		this.empgradecode,
-		this.terminationdate
+		this.dateJoin,
+		this.empGroup,
+		this.empGradeCode,
+		this.terminationDate
   });
 
   factory Staffinfo.fromJson(Map<String, dynamic> map) {
     return Staffinfo(
       id: map['_id'] as String?,
-			empno : map['empno'] as int,
+			empNo : map['empNo'] as int,
 			name : map['name'] as String?,
-			namenric : map['namenric'] as String?,
-			compcode : map['compcode'] as int,
-			compname : map['compname'] as String?,
-			deptcode : map['deptcode'] as String?,
-			deptdesc : map['deptdesc'] as String?,
-			sectcode : map['sectcode'] as int,
-			sectdesc : map['sectdesc'] as String?,
+			nameNric : map['nameNric'] as String?,
+			compCode : map['compCode'] as int,
+			compName : map['compName'] as String?,
+			deptCode : map['deptCode'] as String?,
+			deptDesc : map['deptDesc'] as String?,
+			sectCode : map['sectCode'] as int,
+			sectDesc : map['sectDesc'] as String?,
 			designation : map['designation'] as String?,
 			email : map['email'] as String?,
 			resign : map['resign'] as String?,
 			supervisor : map['supervisor'] as String?,
-			datejoin : map['datejoin'] as int,
-			empgroup : map['empgroup'] as String?,
-			empgradecode : map['empgradecode'] as String?,
-			terminationdate : map['terminationdate'] as String?
+			dateJoin : map['dateJoin'] as int,
+			empGroup : map['empGroup'] as String?,
+			empGradeCode : map['empGradeCode'] as String?,
+			terminationDate : map['terminationDate'] as String?
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       '_id' : id,
-			"empno" : empno,
-			"compcode" : compcode,
-			"sectcode" : sectcode,
-			"datejoin" : datejoin
+			"empNo" : empNo,
+			"compCode" : compCode,
+			"sectCode" : sectCode,
+			"dateJoin" : dateJoin
     };
 }
 
   @override
-  String toString() => 'Staffinfo("_id" : $id,"empno": $empno,"name": $name.toString(),"namenric": $namenric.toString(),"compcode": $compcode,"compname": $compname.toString(),"deptcode": $deptcode.toString(),"deptdesc": $deptdesc.toString(),"sectcode": $sectcode,"sectdesc": $sectdesc.toString(),"designation": $designation.toString(),"email": $email.toString(),"resign": $resign.toString(),"supervisor": $supervisor.toString(),"datejoin": $datejoin,"empgroup": $empgroup.toString(),"empgradecode": $empgradecode.toString(),"terminationdate": $terminationdate.toString())';
+  String toString() => 'Staffinfo("_id" : $id,"empNo": $empNo,"name": $name.toString(),"nameNric": $nameNric.toString(),"compCode": $compCode,"compName": $compName.toString(),"deptCode": $deptCode.toString(),"deptDesc": $deptDesc.toString(),"sectCode": $sectCode,"sectDesc": $sectDesc.toString(),"designation": $designation.toString(),"email": $email.toString(),"resign": $resign.toString(),"supervisor": $supervisor.toString(),"dateJoin": $dateJoin,"empGroup": $empGroup.toString(),"empGradeCode": $empGradeCode.toString(),"terminationDate": $terminationDate.toString())';
 }

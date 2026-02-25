@@ -20,7 +20,7 @@ const googleServicesPath = path.join(
   "google-services.json",
 );
 if (!fs.existsSync(googleServicesPath)) {
-  console.error("Error: google-services.json not found at ./android/app/");
+  console.error("\x1b[31mError: google-services.json not found at ./android/app/\x1b[0m");
   process.exit(1);
 }
 
@@ -30,7 +30,7 @@ const firebaseOptionsPath = path.join(
   "firebase_options.dart",
 );
 if (!fs.existsSync(firebaseOptionsPath)) {
-  console.error("Error: firebase-options.dart not found at ./lib/");
+  console.error("\x1b[31mError: firebase-options.dart not found at ./lib/\x1b[0m");
   process.exit(1);
 }
 const androidLocalPropertiesPath = path.join(
@@ -39,13 +39,13 @@ const androidLocalPropertiesPath = path.join(
   "local.properties",
 );
 if (!fs.existsSync(androidLocalPropertiesPath)) {
-  console.warn("Warning: android/local.properties does not exist.");
+  console.error("\x1b[31mError: android/local.properties does not exist.\x1b[0m");
   process.exit(1);
 }
 
 const pubSpecPath = path.join(__dirname, "pubspec.yaml");
 if (!fs.existsSync(pubSpecPath)) {
-  console.warn("Warning: pubspec.yaml does not exist.");
+  console.error("\x1b[31mError: pubspec.yaml does not exist.\x1b[0m");
   process.exit(1);
 }
 const wrapperPath = path.join(
@@ -56,9 +56,7 @@ const wrapperPath = path.join(
   "gradle-wrapper.properties",
 );
 if (!fs.existsSync(wrapperPath)) {
-  console.warn(
-    "Warning: android/gradle/wrapper/gradle-wrapper.properties does not exist.",
-  );
+  console.error("\x1b[31mError: android/gradle/wrapper/gradle-wrapper.properties does not exist.\x1b[0m");
   process.exit(1);
 }
 
@@ -69,7 +67,7 @@ const appGradlePath = path.join(
   "build.gradle.kts",
 );
 if (!fs.existsSync(appGradlePath)) {
-  console.warn("Warning: android/app/build.gradle does not exist.");
+  console.error("\x1b[31mError: android/app/build.gradle.kts does not exist.\x1b[0m");
   process.exit(1);
 }
 
@@ -89,7 +87,7 @@ try {
   });
   if (client.length !== 1) {
     console.error(
-      `Error: No client found with package name ${PACKAGE_NAME.toLocaleLowerCase()}`,
+      `\x1b[31mError: No client found with package name ${PACKAGE_NAME.toLocaleLowerCase()}\x1b[0m`,
     );
     process.exit(1);
   }
@@ -103,7 +101,7 @@ try {
     storageBucket: projectInfo.storage_bucket,
   };
   console.log(
-    "Successfully retrieved Firebase Options from google-services.json:",
+    "\x1b[34mSuccessfully retrieved Firebase Options from google-services.json. \x1b[0m",
   );
   console.log(firebaseOptions);
 
@@ -121,14 +119,14 @@ try {
     );`,
   );
   fs.writeFileSync(firebaseOptionsPath, firebaseOptionsContent);
-  console.log("Successfully wrote Firebase Options to firebase-options.dart");
+  console.log("\x1b[34mSuccessfully wrote Firebase Options to firebase-options.dart. \x1b[0m");
 } catch (error) {
-  console.error("Error parsing google-services.json:", error.message);
+  console.error("\x1b[31mError parsing google-services.json. \x1b[0m", error.message);
   process.exit(1);
 }
 
 // 3. Update local.properties and pubspec.yaml
-console.log("Updating local.properties and pubspec.yaml...");
+console.log("\x1b[34mUpdating local.properties and pubspec.yaml. \x1b[0m");
 if (!fs.existsSync(androidLocalPropertiesPath)) {
   fs.appendFileSync(androidLocalPropertiesPath, `\nflutter.versionCode=1\n`);
 }
@@ -181,11 +179,11 @@ if (fs.existsSync(appGradlePath)) {
   fs.writeFileSync(appGradlePath, gradle);
 }
 
-console.log("\x1b[32mRebuild Script Finished!\x1b[0m");
-console.log("Next steps: 1. Check that the Validation notes have been done.");
-console.log("Next steps: 2. Copy the Firebase options to your firebase_options.dart file.");
-console.log("Next steps: 3. Run 'node rebuild.js' to clean and run app.");
+console.log("\x1b[32mConfiguration Flutter Android Script Finished!\x1b[0m");
+console.log("\x1b[34mNext steps: 1. Check that the Validation notes have been done. \x1b[0m");
+console.log("\x1b[34mNext steps: 2. Copy the Firebase options to your firebase_options.dart file. \x1b[0m");
+console.log("\x1b[34mNext steps: 3. Run 'node rebuild.js' to clean and run app. \x1b[0m");
 console.log(
-  "You are now ready to run your app with the new Firebase configuration and Android setup.",
+  "\x1b[34mYou are now ready to run your app with the new Firebase configuration and Android setup. \x1b[0m",
 );
 

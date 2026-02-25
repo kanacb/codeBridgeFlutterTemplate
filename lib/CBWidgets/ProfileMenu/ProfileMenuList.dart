@@ -199,9 +199,9 @@ class _ProfileMenuListState extends State<ProfileMenuList> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('user: ${item.user?.name}'),
-Text('roles: ${item.roles?.map((e) => e.name)}'),
-Text('positions: ${item.positions?.map((e) => e.name)}'),
-Text('profiles: ${item.profiles?.map((e) => e.name)}'),
+Text('roles: ${item.roles?.map((e) => e).join(", ")}'),
+Text('positions: ${item.positions?.map((e) => e).join(", ")}'),
+Text('profiles: ${item.profiles?.map((e) => e).join(", ")}'),
 Text('Menu Items: ${item.menuItems}'),
 Text('company: ${item.company?.name}'),
 Text('branch: ${item.branch?.name}'),

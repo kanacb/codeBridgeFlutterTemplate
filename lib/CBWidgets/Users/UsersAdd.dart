@@ -65,7 +65,7 @@ class _UsersAddState extends State<UsersAdd> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text(
-          "Add ~cb-service-name-title-singular~",
+          "Add User",
           textAlign: TextAlign.center,
         ),
       ),

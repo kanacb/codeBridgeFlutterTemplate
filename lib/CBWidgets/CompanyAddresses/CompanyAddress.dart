@@ -14,56 +14,56 @@ class CompanyAddress {
 	 
 	@HiveField(1)
 	 
-	final Company? companyId;
+	final Company? company;
 	@HiveField(2)
 	 
-	final String? Street1;
+	final String? street1;
 	@HiveField(3)
 	 
-	final String? Street2;
+	final String? street2;
 	@HiveField(4)
 	 
-	final String? Poscode;
+	final String? poscode;
 	@HiveField(5)
 	 
-	final String? City;
+	final String? city;
 	@HiveField(6)
 	 
-	final String? stateName;
+	final String? state;
 	@HiveField(7)
 	 
-	final String? Province;
+	final String? province;
 	@HiveField(8)
 	 
-	final String? Country;
+	final String? country;
 	@HiveField(9)
 	 
 	final bool? isDefault;
 
   CompanyAddress({
     this.id,
-		this.companyId,
-		this.Street1,
-		this.Street2,
-		this.Poscode,
-		this.City,
-		this.stateName,
-		this.Province,
-		this.Country,
+		this.company,
+		this.street1,
+		this.street2,
+		this.poscode,
+		this.city,
+		this.state,
+		this.province,
+		this.country,
 		this.isDefault
   });
 
   factory CompanyAddress.fromJson(Map<String, dynamic> map) {
     return CompanyAddress(
       id: map['_id'] as String?,
-			companyId : map['companyId'] != null ? Company.fromJson(map['companyId']) : null,
-			Street1 : map['Street1'] as String?,
-			Street2 : map['Street2'] as String?,
-			Poscode : map['Poscode'] as String?,
-			City : map['City'] as String?,
-			stateName : map['stateName'] as String?,
-			Province : map['Province'] as String?,
-			Country : map['Country'] as String?,
+			company : map['company'] != null ? Company.fromJson(map['company']) : null,
+			street1 : map['street1'] as String?,
+			street2 : map['street2'] as String?,
+			poscode : map['poscode'] as String?,
+			city : map['city'] as String?,
+			state : map['state'] as String?,
+			province : map['province'] as String?,
+			country : map['country'] as String?,
 			isDefault : map['isDefault'] as bool
     );
   }
@@ -71,11 +71,11 @@ class CompanyAddress {
   Map<String, dynamic> toJson() {
     return {
       '_id' : id,
-			"companyId" : companyId?.id.toString(),
+			"company" : company?.id.toString(),
 			"isDefault" : isDefault
     };
 }
 
   @override
-  String toString() => 'CompanyAddress("_id" : $id,"companyId": $companyId.toString(),"Street1": $Street1.toString(),"Street2": $Street2.toString(),"Poscode": $Poscode.toString(),"City": $City.toString(),"stateName": $stateName.toString(),"Province": $Province.toString(),"Country": $Country.toString(),"isDefault": $isDefault)';
+  String toString() => 'CompanyAddress("_id" : $id,"company": $company.toString(),"street1": $street1.toString(),"street2": $street2.toString(),"poscode": $poscode.toString(),"city": $city.toString(),"state": $state.toString(),"province": $province.toString(),"country": $country.toString(),"isDefault": $isDefault)';
 }

@@ -17,49 +17,49 @@ class UserAddress {
 	final User? userId;
 	@HiveField(2)
 	 
-	final String? Street1;
+	final String? street1;
 	@HiveField(3)
 	 
-	final String? Street2;
+	final String? street2;
 	@HiveField(4)
 	 
-	final String? Poscode;
+	final String? postalCode;
 	@HiveField(5)
 	 
-	final String? City;
+	final String? city;
 	@HiveField(6)
 	 
-	final String? stateName;
+	final String? state;
 	@HiveField(7)
 	 
-	final String? Province;
+	final String? province;
 	@HiveField(8)
 	 
-	final String? Country;
+	final String? country;
 
   UserAddress({
     this.id,
 		this.userId,
-		this.Street1,
-		this.Street2,
-		this.Poscode,
-		this.City,
-		this.stateName,
-		this.Province,
-		this.Country
+		this.street1,
+		this.street2,
+		this.postalCode,
+		this.city,
+		this.state,
+		this.province,
+		this.country
   });
 
   factory UserAddress.fromJson(Map<String, dynamic> map) {
     return UserAddress(
       id: map['_id'] as String?,
 			userId : map['userId'] != null ? User.fromJson(map['userId']) : null,
-			Street1 : map['Street1'] as String?,
-			Street2 : map['Street2'] as String?,
-			Poscode : map['Poscode'] as String?,
-			City : map['City'] as String?,
-			stateName : map['stateName'] as String?,
-			Province : map['Province'] as String?,
-			Country : map['Country'] as String?
+			street1 : map['street1'] as String?,
+			street2 : map['street2'] as String?,
+			postalCode : map['postalCode'] as String?,
+			city : map['city'] as String?,
+			state : map['state'] as String?,
+			province : map['province'] as String?,
+			country : map['country'] as String?
     );
   }
 
@@ -71,5 +71,5 @@ class UserAddress {
 }
 
   @override
-  String toString() => 'UserAddress("_id" : $id,"userId": $userId.toString(),"Street1": $Street1.toString(),"Street2": $Street2.toString(),"Poscode": $Poscode.toString(),"City": $City.toString(),"stateName": $stateName.toString(),"Province": $Province.toString(),"Country": $Country.toString())';
+  String toString() => 'UserAddress("_id" : $id,"userId": $userId.toString(),"street1": $street1.toString(),"street2": $street2.toString(),"postalCode": $postalCode.toString(),"city": $city.toString(),"state": $state.toString(),"province": $province.toString(),"country": $country.toString())';
 }

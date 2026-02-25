@@ -14,7 +14,7 @@ const PACKAGE_NAME = config.packageName || "com.cb.standard";
 // Validate Configuration
 if (PACKAGE_NAME === "com.cb.standard") {
   console.warn(
-    "Warning: PACKAGE_NAME is set to 'com.cb.standard', which may not be unique. Consider changing it to avoid conflicts.",
+    "\x1b[33mWarning: PACKAGE_NAME is set to 'com.cb.standard', which may not be unique. Consider changing it to avoid conflicts.\x1b[0m",
   );
   process.exit(1);
 }
@@ -25,7 +25,7 @@ function run(command) {
   try {
     execSync(command, { stdio: "inherit", message: `Executing: ${command}` });
   } catch (e) {
-    console.error(`Error executing: ${command}`);
+    console.error(`\x1b[31mError executing: ${command}\x1b[0m`);
   }
 }
 
@@ -33,11 +33,11 @@ function run(command) {
 run(`flutter create .`);
 run(`dart run change_app_package_name:main ${PACKAGE_NAME}`);
 
-console.log("\x1b[32mRebuild Script Finished!\x1b[0m");
-console.log("Next steps: 1. Create a new Firebase Project with billing enabled.");
-console.log("Next steps: 2. Create a Android App in Project Settings -> General -> Your Apps -> Add App -> Android and follow the instructions to generate the google-services.json file.");
-console.log("Next steps: 3. Download the google-services.json file.");
-console.log("Next steps: 4. Place it in the /android/app/ directory.");
-console.log("Next steps: 5. Run 'node configAndroid.js' and continue to follow the setup instructions.");
+console.log("\x1b[32mInitialization Flutter Application Script Finished!. \x1b[0m");
+console.log("\x1b[34mNext steps: 1. Create a new Firebase Project with billing enabled. \x1b[0m");
+console.log("\x1b[34mNext steps: 2. Create a Android App in Project Settings -> General -> Your Apps -> Add App -> Android and follow the instructions to generate the google-services.json file. \x1b[0m");
+console.log("\x1b[34mNext steps: 3. Download the google-services.json file. \x1b[0m");
+console.log("\x1b[34mNext steps: 4. Place it in the /android/app/ directory. \x1b[0m");
+console.log("\x1b[34mNext steps: 5. Run 'node configAndroid.js' and continue to follow the setup instructions. \x1b[0m");
 
 

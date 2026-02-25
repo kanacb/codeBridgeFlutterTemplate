@@ -1,468 +1,467 @@
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import '../Widgets/Profiles/ProfilesProvider.dart';
-import '../Widgets/Profiles/Profile.dart';
-import '../App/MenuBottomBar/Inbox/Inbox.dart';
-import '../App/MenuBottomBar/Inbox/InboxProvider.dart';
-import '../App/Dash/Notifications/CBNotification.dart';
-import '../App/Dash/Notifications/NotificationProvider.dart';
-import './Services/IdName.dart';
 
-import '../Widgets/Users/User.dart';
-import '../Widgets/Companies/Company.dart';
-import '../Widgets/Branches/Branch.dart';
-import '../Widgets/Departments/Department.dart';
-import '../Widgets/Sections/Section.dart';
-import '../Widgets/Roles/Role.dart';
-import '../Widgets/Positions/Position.dart';
-import '../Widgets/Templates/Template.dart';
-import '../Widgets/UserAddresses/UserAddress.dart';
-import '../Widgets/CompanyAddresses/CompanyAddress.dart';
-import '../Widgets/CompanyPhones/CompanyPhone.dart';
-import '../Widgets/UserPhones/UserPhone.dart';
-import '../Widgets/Staffinfo/Staffinfo.dart';
-import '../Widgets/Employees/Employee.dart';
-import '../Widgets/Superior/Superior.dart';
-import '../Widgets/DepartmentAdmin/DepartmentAdmin.dart';
-import '../Widgets/DepartmentHOD/DepartmentHOD.dart';
-import '../Widgets/DepartmentHOS/DepartmentHO.dart';
-import '../Widgets/UserGuideSteps/UserGuideStep.dart';
-import '../Widgets/UserGuide/UserGuide.dart';
-import '../Widgets/Audits/Audit.dart';
-import '../Widgets/ChataiEnabler/ChataiEnabler.dart';
-import '../Widgets/ChataiConfig/ChataiConfig.dart';
-import '../Widgets/ChataiPrompts/ChataiPrompt.dart';
-import '../Widgets/DocumentStorage/DocumentStorage.dart';
-import '../Widgets/Fcms/Fcm.dart';
-import '../Widgets/FcmQues/FcmQue.dart';
-import '../Widgets/FcmMessages/FcmMessage.dart';
-import '../Widgets/HelpBarContents/HelpBarContent.dart';
-import '../Widgets/LoginHistories/LoginHistory.dart';
-import '../Widgets/MailQues/MailQue.dart';
-import '../Widgets/ProfileMenu/ProfileMenu.dart';
-import '../Widgets/MenuItems/MenuItem.dart';
-import '../Widgets/Uploader/Uploader.dart';
-import '../Widgets/UserChangePassword/UserChangePassword.dart';
-import '../Widgets/UserInvites/UserInvite.dart';
-import '../Widgets/UserTrackerId/UserTrackerId.dart';
-import '../Widgets/PermissionServices/PermissionService.dart';
-import '../Widgets/PermissionFields/PermissionField.dart';
+import '../CBWidgets/Users/User.dart';
+import '../CBWidgets/Companies/Company.dart';
+import '../CBWidgets/Branches/Branch.dart';
+import '../CBWidgets/Departments/Department.dart';
+import '../CBWidgets/Sections/Section.dart';
+import '../CBWidgets/Roles/Role.dart';
+import '../CBWidgets/Positions/Position.dart';
+import '../CBWidgets/Profiles/Profile.dart';
+import '../CBWidgets/Templates/Template.dart';
+import '../CBWidgets/UserAddresses/UserAddress.dart';
+import '../CBWidgets/CompanyAddresses/CompanyAddress.dart';
+import '../CBWidgets/CompanyPhones/CompanyPhone.dart';
+import '../CBWidgets/UserPhones/UserPhone.dart';
+import '../CBWidgets/Staffinfo/Staffinfo.dart';
+import '../CBWidgets/Employees/Employee.dart';
+import '../CBWidgets/Superiors/Superior.dart';
+import '../CBWidgets/DepartmentAdmin/DepartmentAdmin.dart';
+import '../CBWidgets/DepartmentHOD/DepartmentHOD.dart';
+import '../CBWidgets/DepartmentHOS/DepartmentHO.dart';
+import '../CBWidgets/UserGuideSteps/UserGuideStep.dart';
+import '../CBWidgets/UserGuide/UserGuide.dart';
+import '../CBWidgets/Audits/Audit.dart';
+import '../CBWidgets/ChataiEnabler/ChataiEnabler.dart';
+import '../CBWidgets/ChataiConfig/ChataiConfig.dart';
+import '../CBWidgets/ChataiPrompts/ChataiPrompt.dart';
+import '../CBWidgets/DocumentStorages/DocumentStorage.dart';
+import '../CBWidgets/Fcms/Fcm.dart';
+import '../CBWidgets/FcmQues/FcmQue.dart';
+import '../CBWidgets/FcmMessages/FcmMessage.dart';
+import '../CBWidgets/HelpSidebarContents/HelpSidebarContent.dart';
+import '../CBWidgets/LoginHistories/LoginHistory.dart';
+import '../CBWidgets/MailQues/MailQue.dart';
+import '../CBWidgets/ProfileMenu/ProfileMenu.dart';
+import '../CBWidgets/MenuItems/MenuItem.dart';
+import '../CBWidgets/Uploader/Uploader.dart';
+import '../CBWidgets/UserChangePassword/UserChangePassword.dart';
+import '../CBWidgets/UserInvites/UserInvite.dart';
+import '../CBWidgets/UserTrackerId/UserTrackerId.dart';
+import '../CBWidgets/PermissionServices/PermissionService.dart';
+import '../CBWidgets/PermissionFields/PermissionField.dart';
+import '../CBWidgets/ErrorLogs/ErrorLog.dart';
+import '../CBWidgets/Inbox/Inbox.dart';
 // ~cb-add-service-imports~
 
-import '../Widgets/Users/UsersProvider.dart';
-import '../Widgets/Companies/CompaniesProvider.dart';
-import '../Widgets/Branches/BranchesProvider.dart';
-import '../Widgets/Departments/DepartmentsProvider.dart';
-import '../Widgets/Sections/SectionsProvider.dart';
-import '../Widgets/Roles/RolesProvider.dart';
-import '../Widgets/Positions/PositionsProvider.dart';
-import '../Widgets/Templates/TemplatesProvider.dart';
-import '../Widgets/UserAddresses/UserAddressesProvider.dart';
-import '../Widgets/CompanyAddresses/CompanyAddressesProvider.dart';
-import '../Widgets/CompanyPhones/CompanyPhonesProvider.dart';
-import '../Widgets/UserPhones/UserPhonesProvider.dart';
-import '../Widgets/Staffinfo/StaffinfoProvider.dart';
-import '../Widgets/Employees/EmployeesProvider.dart';
-import '../Widgets/Superior/SuperiorProvider.dart';
-import '../Widgets/DepartmentAdmin/DepartmentAdminProvider.dart';
-import '../Widgets/DepartmentHOD/DepartmentHODProvider.dart';
-import '../Widgets/DepartmentHOS/DepartmentHOSProvider.dart';
-import '../Widgets/UserGuideSteps/UserGuideStepsProvider.dart';
-import '../Widgets/UserGuide/UserGuideProvider.dart';
-import '../Widgets/Audits/AuditsProvider.dart';
-import '../Widgets/ChataiEnabler/ChataiEnablerProvider.dart';
-import '../Widgets/ChataiConfig/ChataiConfigProvider.dart';
-import '../Widgets/ChataiPrompts/ChataiPromptsProvider.dart';
-import '../Widgets/DocumentStorage/DocumentStorageProvider.dart';
-import '../Widgets/Fcms/FcmsProvider.dart';
-import '../Widgets/FcmQues/FcmQuesProvider.dart';
-import '../Widgets/FcmMessages/FcmMessagesProvider.dart';
-import '../Widgets/HelpBarContents/HelpBarContentsProvider.dart';
-import '../Widgets/LoginHistories/LoginHistoriesProvider.dart';
-import '../Widgets/MailQues/MailQuesProvider.dart';
-import '../Widgets/ProfileMenu/ProfileMenuProvider.dart';
-import '../Widgets/MenuItems/MenuItemsProvider.dart';
-import '../Widgets/Uploader/UploaderProvider.dart';
-import '../Widgets/UserChangePassword/UserChangePasswordProvider.dart';
-import '../Widgets/UserInvites/UserInvitesProvider.dart';
-import '../Widgets/UserTrackerId/UserTrackerIdProvider.dart';
-import '../Widgets/PermissionServices/PermissionServicesProvider.dart';
-import '../Widgets/PermissionFields/PermissionFieldsProvider.dart';
+import '../CBWidgets/Users/UsersProvider.dart';
+import '../CBWidgets/Companies/CompaniesProvider.dart';
+import '../CBWidgets/Branches/BranchesProvider.dart';
+import '../CBWidgets/Departments/DepartmentsProvider.dart';
+import '../CBWidgets/Sections/SectionsProvider.dart';
+import '../CBWidgets/Roles/RolesProvider.dart';
+import '../CBWidgets/Positions/PositionsProvider.dart';
+import '../CBWidgets/Profiles/ProfilesProvider.dart';
+import '../CBWidgets/Templates/TemplatesProvider.dart';
+import '../CBWidgets/UserAddresses/UserAddressesProvider.dart';
+import '../CBWidgets/CompanyAddresses/CompanyAddressesProvider.dart';
+import '../CBWidgets/CompanyPhones/CompanyPhonesProvider.dart';
+import '../CBWidgets/UserPhones/UserPhonesProvider.dart';
+import '../CBWidgets/Staffinfo/StaffinfoProvider.dart';
+import '../CBWidgets/Employees/EmployeesProvider.dart';
+import '../CBWidgets/Superiors/SuperiorsProvider.dart';
+import '../CBWidgets/DepartmentAdmin/DepartmentAdminProvider.dart';
+import '../CBWidgets/DepartmentHOD/DepartmentHODProvider.dart';
+import '../CBWidgets/DepartmentHOS/DepartmentHOSProvider.dart';
+import '../CBWidgets/UserGuideSteps/UserGuideStepsProvider.dart';
+import '../CBWidgets/UserGuide/UserGuideProvider.dart';
+import '../CBWidgets/Audits/AuditsProvider.dart';
+import '../CBWidgets/ChataiEnabler/ChataiEnablerProvider.dart';
+import '../CBWidgets/ChataiConfig/ChataiConfigProvider.dart';
+import '../CBWidgets/ChataiPrompts/ChataiPromptsProvider.dart';
+import '../CBWidgets/DocumentStorages/DocumentStoragesProvider.dart';
+import '../CBWidgets/Fcms/FcmsProvider.dart';
+import '../CBWidgets/FcmQues/FcmQuesProvider.dart';
+import '../CBWidgets/FcmMessages/FcmMessagesProvider.dart';
+import '../CBWidgets/HelpSidebarContents/HelpSidebarContentsProvider.dart';
+import '../CBWidgets/LoginHistories/LoginHistoriesProvider.dart';
+import '../CBWidgets/MailQues/MailQuesProvider.dart';
+import '../CBWidgets/ProfileMenu/ProfileMenuProvider.dart';
+import '../CBWidgets/MenuItems/MenuItemsProvider.dart';
+import '../CBWidgets/Uploader/UploaderProvider.dart';
+import '../CBWidgets/UserChangePassword/UserChangePasswordProvider.dart';
+import '../CBWidgets/UserInvites/UserInvitesProvider.dart';
+import '../CBWidgets/UserTrackerId/UserTrackerIdProvider.dart';
+import '../CBWidgets/PermissionServices/PermissionServicesProvider.dart';
+import '../CBWidgets/PermissionFields/PermissionFieldsProvider.dart';
+import '../CBWidgets/ErrorLogs/ErrorLogsProvider.dart';
+import '../CBWidgets/Inbox/InboxProvider.dart';
 // ~cb-add-provider-imports~
 
-class HiveSetup {
+class CBHiveSetup {
   static Future<void> initializeHive() async {
     // Initialize Hive
     await Hive.initFlutter();
 
     if (!Hive.isAdapterRegistered(1)) {
-        Hive.registerAdapter(UserAdapter());
+      Hive.registerAdapter(UserAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(2)) {
-        Hive.registerAdapter(CompanyAdapter());
+      Hive.registerAdapter(CompanyAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(3)) {
-        Hive.registerAdapter(BranchAdapter());
+      Hive.registerAdapter(BranchAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(4)) {
-        Hive.registerAdapter(DepartmentAdapter());
+      Hive.registerAdapter(DepartmentAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(5)) {
-        Hive.registerAdapter(SectionAdapter());
+      Hive.registerAdapter(SectionAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(6)) {
-        Hive.registerAdapter(RoleAdapter());
+      Hive.registerAdapter(RoleAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(7)) {
-        Hive.registerAdapter(PositionAdapter());
+      Hive.registerAdapter(PositionAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(8)) {
-        Hive.registerAdapter(ProfileAdapter());
+      Hive.registerAdapter(ProfileAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(9)) {
-        Hive.registerAdapter(TemplateAdapter());
+      Hive.registerAdapter(TemplateAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(10)) {
-        Hive.registerAdapter(UserAddressAdapter());
+      Hive.registerAdapter(UserAddressAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(11)) {
-        Hive.registerAdapter(CompanyAddressAdapter());
+      Hive.registerAdapter(CompanyAddressAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(12)) {
-        Hive.registerAdapter(CompanyPhoneAdapter());
+      Hive.registerAdapter(CompanyPhoneAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(13)) {
-        Hive.registerAdapter(UserPhoneAdapter());
+      Hive.registerAdapter(UserPhoneAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(14)) {
-        Hive.registerAdapter(StaffinfoAdapter());
+      Hive.registerAdapter(StaffinfoAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(15)) {
-        Hive.registerAdapter(EmployeeAdapter());
+      Hive.registerAdapter(EmployeeAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(16)) {
-        Hive.registerAdapter(SuperiorAdapter());
+      Hive.registerAdapter(SuperiorAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(17)) {
-        Hive.registerAdapter(DepartmentAdminAdapter());
+      Hive.registerAdapter(DepartmentAdminAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(18)) {
-        Hive.registerAdapter(DepartmentHODAdapter());
+      Hive.registerAdapter(DepartmentHODAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(19)) {
-        Hive.registerAdapter(DepartmentHOAdapter());
+      Hive.registerAdapter(DepartmentHOAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(20)) {
-        Hive.registerAdapter(UserGuideStepAdapter());
+      Hive.registerAdapter(UserGuideStepAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(21)) {
-        Hive.registerAdapter(UserGuideAdapter());
+      Hive.registerAdapter(UserGuideAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(22)) {
-        Hive.registerAdapter(AuditAdapter());
+      Hive.registerAdapter(AuditAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(23)) {
-        Hive.registerAdapter(ChataiEnablerAdapter());
+      Hive.registerAdapter(ChataiEnablerAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(24)) {
-        Hive.registerAdapter(ChataiConfigAdapter());
+      Hive.registerAdapter(ChataiConfigAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(25)) {
-        Hive.registerAdapter(ChataiPromptAdapter());
+      Hive.registerAdapter(ChataiPromptAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(26)) {
-        Hive.registerAdapter(DocumentStorageAdapter());
+      Hive.registerAdapter(DocumentStorageAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(27)) {
-        Hive.registerAdapter(FcmAdapter());
+      Hive.registerAdapter(FcmAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(28)) {
-        Hive.registerAdapter(FcmQueAdapter());
+      Hive.registerAdapter(FcmQueAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(29)) {
-        Hive.registerAdapter(FcmMessageAdapter());
+      Hive.registerAdapter(FcmMessageAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(30)) {
-        Hive.registerAdapter(HelpBarContentAdapter());
+      Hive.registerAdapter(HelpBarContentAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(31)) {
-        Hive.registerAdapter(LoginHistoryAdapter());
+      Hive.registerAdapter(LoginHistoryAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(32)) {
-        Hive.registerAdapter(MailQueAdapter());
+      Hive.registerAdapter(MailQueAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(33)) {
-        Hive.registerAdapter(ProfileMenuAdapter());
+      Hive.registerAdapter(ProfileMenuAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(34)) {
-        Hive.registerAdapter(MenuItemAdapter());
+      Hive.registerAdapter(MenuItemAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(35)) {
-        Hive.registerAdapter(UploaderAdapter());
+      Hive.registerAdapter(UploaderAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(36)) {
-        Hive.registerAdapter(UserChangePasswordAdapter());
+      Hive.registerAdapter(UserChangePasswordAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(37)) {
-        Hive.registerAdapter(UserInviteAdapter());
+      Hive.registerAdapter(UserInviteAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(38)) {
-        Hive.registerAdapter(UserTrackerIdAdapter());
+      Hive.registerAdapter(UserTrackerIdAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(39)) {
-        Hive.registerAdapter(PermissionServiceAdapter());
+      Hive.registerAdapter(PermissionServiceAdapter());
     }
-            
+
     if (!Hive.isAdapterRegistered(40)) {
-        Hive.registerAdapter(PermissionFieldAdapter());
+      Hive.registerAdapter(PermissionFieldAdapter());
     }
-            
+
     // ~cb-add-service-adapters~
 
     if (!Hive.isBoxOpen('usersBox')) {
-        await Hive.openBox<User>('usersBox');
+      await Hive.openBox<User>('usersBox');
     }
-            
+
     if (!Hive.isBoxOpen('companiesBox')) {
-        await Hive.openBox<User>('companiesBox');
+      await Hive.openBox<User>('companiesBox');
     }
-            
+
     if (!Hive.isBoxOpen('branchesBox')) {
-        await Hive.openBox<User>('branchesBox');
+      await Hive.openBox<User>('branchesBox');
     }
-            
+
     if (!Hive.isBoxOpen('departmentsBox')) {
-        await Hive.openBox<User>('departmentsBox');
+      await Hive.openBox<User>('departmentsBox');
     }
-            
+
     if (!Hive.isBoxOpen('sectionsBox')) {
-        await Hive.openBox<User>('sectionsBox');
+      await Hive.openBox<User>('sectionsBox');
     }
-            
+
     if (!Hive.isBoxOpen('rolesBox')) {
-        await Hive.openBox<User>('rolesBox');
+      await Hive.openBox<User>('rolesBox');
     }
-            
+
     if (!Hive.isBoxOpen('positionsBox')) {
-        await Hive.openBox<User>('positionsBox');
+      await Hive.openBox<User>('positionsBox');
     }
-            
+
     if (!Hive.isBoxOpen('profilesBox')) {
-        await Hive.openBox<User>('profilesBox');
+      await Hive.openBox<User>('profilesBox');
     }
-            
+
     if (!Hive.isBoxOpen('templatesBox')) {
-        await Hive.openBox<User>('templatesBox');
+      await Hive.openBox<User>('templatesBox');
     }
-            
+
     if (!Hive.isBoxOpen('userAddressesBox')) {
-        await Hive.openBox<User>('userAddressesBox');
+      await Hive.openBox<User>('userAddressesBox');
     }
-            
+
     if (!Hive.isBoxOpen('companyAddressesBox')) {
-        await Hive.openBox<User>('companyAddressesBox');
+      await Hive.openBox<User>('companyAddressesBox');
     }
-            
+
     if (!Hive.isBoxOpen('companyPhonesBox')) {
-        await Hive.openBox<User>('companyPhonesBox');
+      await Hive.openBox<User>('companyPhonesBox');
     }
-            
+
     if (!Hive.isBoxOpen('userPhonesBox')) {
-        await Hive.openBox<User>('userPhonesBox');
+      await Hive.openBox<User>('userPhonesBox');
     }
-            
+
     if (!Hive.isBoxOpen('staffinfoBox')) {
-        await Hive.openBox<User>('staffinfoBox');
+      await Hive.openBox<User>('staffinfoBox');
     }
-            
+
     if (!Hive.isBoxOpen('employeesBox')) {
-        await Hive.openBox<User>('employeesBox');
+      await Hive.openBox<User>('employeesBox');
     }
-            
+
     if (!Hive.isBoxOpen('superiorBox')) {
-        await Hive.openBox<User>('superiorBox');
+      await Hive.openBox<User>('superiorBox');
     }
-            
+
     if (!Hive.isBoxOpen('departmentAdminBox')) {
-        await Hive.openBox<User>('departmentAdminBox');
+      await Hive.openBox<User>('departmentAdminBox');
     }
-            
+
     if (!Hive.isBoxOpen('departmentHODBox')) {
-        await Hive.openBox<User>('departmentHODBox');
+      await Hive.openBox<User>('departmentHODBox');
     }
-            
+
     if (!Hive.isBoxOpen('departmentHOSBox')) {
-        await Hive.openBox<User>('departmentHOSBox');
+      await Hive.openBox<User>('departmentHOSBox');
     }
-            
+
     if (!Hive.isBoxOpen('userGuideStepsBox')) {
-        await Hive.openBox<User>('userGuideStepsBox');
+      await Hive.openBox<User>('userGuideStepsBox');
     }
-            
+
     if (!Hive.isBoxOpen('userGuideBox')) {
-        await Hive.openBox<User>('userGuideBox');
+      await Hive.openBox<User>('userGuideBox');
     }
-            
+
     if (!Hive.isBoxOpen('auditsBox')) {
-        await Hive.openBox<User>('auditsBox');
+      await Hive.openBox<User>('auditsBox');
     }
-            
+
     if (!Hive.isBoxOpen('chataiEnablerBox')) {
-        await Hive.openBox<User>('chataiEnablerBox');
+      await Hive.openBox<User>('chataiEnablerBox');
     }
-            
+
     if (!Hive.isBoxOpen('chataiConfigBox')) {
-        await Hive.openBox<User>('chataiConfigBox');
+      await Hive.openBox<User>('chataiConfigBox');
     }
-            
+
     if (!Hive.isBoxOpen('chataiPromptsBox')) {
-        await Hive.openBox<User>('chataiPromptsBox');
+      await Hive.openBox<User>('chataiPromptsBox');
     }
-            
+
     if (!Hive.isBoxOpen('documentStorageBox')) {
-        await Hive.openBox<User>('documentStorageBox');
+      await Hive.openBox<User>('documentStorageBox');
     }
-            
+
     if (!Hive.isBoxOpen('fcmsBox')) {
-        await Hive.openBox<User>('fcmsBox');
+      await Hive.openBox<User>('fcmsBox');
     }
-            
+
     if (!Hive.isBoxOpen('fcmQuesBox')) {
-        await Hive.openBox<User>('fcmQuesBox');
+      await Hive.openBox<User>('fcmQuesBox');
     }
-            
+
     if (!Hive.isBoxOpen('fcmMessagesBox')) {
-        await Hive.openBox<User>('fcmMessagesBox');
+      await Hive.openBox<User>('fcmMessagesBox');
     }
-            
+
     if (!Hive.isBoxOpen('helpBarContentsBox')) {
-        await Hive.openBox<User>('helpBarContentsBox');
+      await Hive.openBox<User>('helpBarContentsBox');
     }
-            
+
     if (!Hive.isBoxOpen('loginHistoriesBox')) {
-        await Hive.openBox<User>('loginHistoriesBox');
+      await Hive.openBox<User>('loginHistoriesBox');
     }
-            
+
     if (!Hive.isBoxOpen('mailQuesBox')) {
-        await Hive.openBox<User>('mailQuesBox');
+      await Hive.openBox<User>('mailQuesBox');
     }
-            
+
     if (!Hive.isBoxOpen('profileMenuBox')) {
-        await Hive.openBox<User>('profileMenuBox');
+      await Hive.openBox<User>('profileMenuBox');
     }
-            
+
     if (!Hive.isBoxOpen('menuItemsBox')) {
-        await Hive.openBox<User>('menuItemsBox');
+      await Hive.openBox<User>('menuItemsBox');
     }
-            
+
     if (!Hive.isBoxOpen('uploaderBox')) {
-        await Hive.openBox<User>('uploaderBox');
+      await Hive.openBox<User>('uploaderBox');
     }
-            
+
     if (!Hive.isBoxOpen('userChangePasswordBox')) {
-        await Hive.openBox<User>('userChangePasswordBox');
+      await Hive.openBox<User>('userChangePasswordBox');
     }
-            
+
     if (!Hive.isBoxOpen('userInvitesBox')) {
-        await Hive.openBox<User>('userInvitesBox');
+      await Hive.openBox<User>('userInvitesBox');
     }
-            
+
     if (!Hive.isBoxOpen('userTrackerIdBox')) {
-        await Hive.openBox<User>('userTrackerIdBox');
+      await Hive.openBox<User>('userTrackerIdBox');
     }
-            
+
     if (!Hive.isBoxOpen('permissionServicesBox')) {
-        await Hive.openBox<User>('permissionServicesBox');
+      await Hive.openBox<User>('permissionServicesBox');
     }
-            
+
     if (!Hive.isBoxOpen('permissionFieldsBox')) {
-        await Hive.openBox<User>('permissionFieldsBox');
+      await Hive.openBox<User>('permissionFieldsBox');
     }
-            
+
     // ~cb-add-hivebox~
   }
 
   List<SingleChildWidget> providers() {
     return [
-         ChangeNotifierProvider(create: (_) => UsersProvider()),
-         ChangeNotifierProvider(create: (_) => CompaniesProvider()),
-         ChangeNotifierProvider(create: (_) => BranchesProvider()),
-         ChangeNotifierProvider(create: (_) => DepartmentsProvider()),
-         ChangeNotifierProvider(create: (_) => SectionsProvider()),
-         ChangeNotifierProvider(create: (_) => RolesProvider()),
-         ChangeNotifierProvider(create: (_) => PositionsProvider()),
-         ChangeNotifierProvider(create: (_) => ProfilesProvider()),
-         ChangeNotifierProvider(create: (_) => TemplatesProvider()),
-         ChangeNotifierProvider(create: (_) => UserAddressesProvider()),
-         ChangeNotifierProvider(create: (_) => CompanyAddressesProvider()),
-         ChangeNotifierProvider(create: (_) => CompanyPhonesProvider()),
-         ChangeNotifierProvider(create: (_) => UserPhonesProvider()),
-         ChangeNotifierProvider(create: (_) => StaffinfoProvider()),
-         ChangeNotifierProvider(create: (_) => EmployeesProvider()),
-         ChangeNotifierProvider(create: (_) => SuperiorProvider()),
-         ChangeNotifierProvider(create: (_) => DepartmentAdminProvider()),
-         ChangeNotifierProvider(create: (_) => DepartmentHODProvider()),
-         ChangeNotifierProvider(create: (_) => DepartmentHOSProvider()),
-         ChangeNotifierProvider(create: (_) => UserGuideStepsProvider()),
-         ChangeNotifierProvider(create: (_) => UserGuideProvider()),
-         ChangeNotifierProvider(create: (_) => AuditsProvider()),
-         ChangeNotifierProvider(create: (_) => ChataiEnablerProvider()),
-         ChangeNotifierProvider(create: (_) => ChataiConfigProvider()),
-         ChangeNotifierProvider(create: (_) => ChataiPromptsProvider()),
-         ChangeNotifierProvider(create: (_) => DocumentStorageProvider()),
-         ChangeNotifierProvider(create: (_) => FcmsProvider()),
-         ChangeNotifierProvider(create: (_) => FcmQuesProvider()),
-         ChangeNotifierProvider(create: (_) => FcmMessagesProvider()),
-         ChangeNotifierProvider(create: (_) => HelpBarContentsProvider()),
-         ChangeNotifierProvider(create: (_) => LoginHistoriesProvider()),
-         ChangeNotifierProvider(create: (_) => MailQuesProvider()),
-         ChangeNotifierProvider(create: (_) => ProfileMenuProvider()),
-         ChangeNotifierProvider(create: (_) => MenuItemsProvider()),
-         ChangeNotifierProvider(create: (_) => UploaderProvider()),
-         ChangeNotifierProvider(create: (_) => UserChangePasswordProvider()),
-         ChangeNotifierProvider(create: (_) => UserInvitesProvider()),
-         ChangeNotifierProvider(create: (_) => UserTrackerIdProvider()),
-         ChangeNotifierProvider(create: (_) => PermissionServicesProvider()),
-         ChangeNotifierProvider(create: (_) => PermissionFieldsProvider()),
+      ChangeNotifierProvider(create: (_) => UsersProvider()),
+      ChangeNotifierProvider(create: (_) => CompaniesProvider()),
+      ChangeNotifierProvider(create: (_) => BranchesProvider()),
+      ChangeNotifierProvider(create: (_) => DepartmentsProvider()),
+      ChangeNotifierProvider(create: (_) => SectionsProvider()),
+      ChangeNotifierProvider(create: (_) => RolesProvider()),
+      ChangeNotifierProvider(create: (_) => PositionsProvider()),
+      ChangeNotifierProvider(create: (_) => ProfilesProvider()),
+      ChangeNotifierProvider(create: (_) => TemplatesProvider()),
+      ChangeNotifierProvider(create: (_) => UserAddressesProvider()),
+      ChangeNotifierProvider(create: (_) => CompanyAddressesProvider()),
+      ChangeNotifierProvider(create: (_) => CompanyPhonesProvider()),
+      ChangeNotifierProvider(create: (_) => UserPhonesProvider()),
+      ChangeNotifierProvider(create: (_) => StaffinfoProvider()),
+      ChangeNotifierProvider(create: (_) => EmployeesProvider()),
+      ChangeNotifierProvider(create: (_) => SuperiorProvider()),
+      ChangeNotifierProvider(create: (_) => DepartmentAdminProvider()),
+      ChangeNotifierProvider(create: (_) => DepartmentHODProvider()),
+      ChangeNotifierProvider(create: (_) => DepartmentHOSProvider()),
+      ChangeNotifierProvider(create: (_) => UserGuideStepsProvider()),
+      ChangeNotifierProvider(create: (_) => UserGuideProvider()),
+      ChangeNotifierProvider(create: (_) => AuditsProvider()),
+      ChangeNotifierProvider(create: (_) => ChataiEnablerProvider()),
+      ChangeNotifierProvider(create: (_) => ChataiConfigProvider()),
+      ChangeNotifierProvider(create: (_) => ChataiPromptsProvider()),
+      ChangeNotifierProvider(create: (_) => DocumentStorageProvider()),
+      ChangeNotifierProvider(create: (_) => FcmsProvider()),
+      ChangeNotifierProvider(create: (_) => FcmQuesProvider()),
+      ChangeNotifierProvider(create: (_) => FcmMessagesProvider()),
+      ChangeNotifierProvider(create: (_) => HelpBarContentsProvider()),
+      ChangeNotifierProvider(create: (_) => LoginHistoriesProvider()),
+      ChangeNotifierProvider(create: (_) => MailQuesProvider()),
+      ChangeNotifierProvider(create: (_) => ProfileMenuProvider()),
+      ChangeNotifierProvider(create: (_) => MenuItemsProvider()),
+      ChangeNotifierProvider(create: (_) => UploaderProvider()),
+      ChangeNotifierProvider(create: (_) => UserChangePasswordProvider()),
+      ChangeNotifierProvider(create: (_) => UserInvitesProvider()),
+      ChangeNotifierProvider(create: (_) => UserTrackerIdProvider()),
+      ChangeNotifierProvider(create: (_) => PermissionServicesProvider()),
+      ChangeNotifierProvider(create: (_) => PermissionFieldsProvider()),
       // ~cb-add-notifier~
     ];
   }

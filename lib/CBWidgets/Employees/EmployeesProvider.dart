@@ -26,69 +26,7 @@ class EmployeesProvider with ChangeNotifier implements DataFetchable{
   "\$sort": {
     "createdAt": -1
   },
-  "\$populate": [
-    {
-      "path": "company",
-      "service": "companies",
-      "select": [
-        "name",
-        "companyNo",
-        "newCompanyNumber",
-        "DateIncorporated",
-        "isdefault"
-      ]
-    },
-    {
-      "path": "department",
-      "service": "departments",
-      "select": [
-        "company",
-        "deptName",
-        "code",
-        "isDefault"
-      ]
-    },
-    {
-      "path": "section",
-      "service": "sections",
-      "select": [
-        "departmentId",
-        "name",
-        "code",
-        "isDefault"
-      ]
-    },
-    {
-      "path": "position",
-      "service": "positions",
-      "select": [
-        "roleId",
-        "name",
-        "description",
-        "abbr",
-        "isDefault"
-      ]
-    },
-    {
-      "path": "supervisor",
-      "service": "employees",
-      "select": [
-        "empNo",
-        "name",
-        "fullname",
-        "company",
-        "department",
-        "section",
-        "position",
-        "supervisor",
-        "dateJoined",
-        "dateTerminated",
-        "resigned",
-        "empGroup",
-        "empCode"
-      ]
-    }
-  ]
+  "\$populate": []
 };
 
   EmployeesProvider() {

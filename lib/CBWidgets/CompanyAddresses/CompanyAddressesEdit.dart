@@ -12,26 +12,26 @@ class CompanyAddressesEdit extends StatefulWidget {
     super.key,
     required this.schema,
     required this.data,
-    this.companyId,
-		this.Street1,
-		this.Street2,
-		this.Poscode,
-		this.City,
-		this.stateName,
-		this.Province,
-		this.Country,
+    this.company,
+		this.street1,
+		this.street2,
+		this.poscode,
+		this.city,
+		this.state,
+		this.province,
+		this.country,
 		this.isDefault
   });
   final List<Schema> schema;
   final CompanyAddress data;
-  final Company? companyId;
-	final String? Street1;
-	final String? Street2;
-	final String? Poscode;
-	final String? City;
-	final String? stateName;
-	final String? Province;
-	final String? Country;
+  final Company? company;
+	final String? street1;
+	final String? street2;
+	final String? poscode;
+	final String? city;
+	final String? state;
+	final String? province;
+	final String? country;
 	final bool? isDefault;
 
   @override

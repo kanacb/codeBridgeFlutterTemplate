@@ -2,13 +2,57 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+// CodeBridge Standard Widgets Imports
 import '../Methods.dart';
 import '../Services/SharedPreferences.dart';
 import '../../App/Dash/DashMain.dart';
 import '../../CBWidgets/Profiles/ProfilesProvider.dart';
 import '../../CBWidgets/Profiles/Profile.dart';
 import '../../CBWidgets/Users/UsersMain.dart';
+import '../../CBWidgets/Companies/CompaniesMain.dart';
+import '../../CBWidgets/Branches/BranchesMain.dart';
+import '../../CBWidgets/Departments/DepartmentsMain.dart';
+import '../../CBWidgets/Sections/SectionsMain.dart';
+import '../../CBWidgets/Roles/RolesMain.dart';
+import '../../CBWidgets/Positions/PositionsMain.dart';
+import '../../CBWidgets/Profiles/ProfilesMain.dart';
+import '../../CBWidgets/Templates/TemplatesMain.dart';
+import '../../CBWidgets/UserAddresses/UserAddressesMain.dart';
+import '../../CBWidgets/CompanyAddresses/CompanyAddressesMain.dart';
+import '../../CBWidgets/CompanyPhones/CompanyPhonesMain.dart';
+import '../../CBWidgets/UserPhones/UserPhonesMain.dart';
+import '../../CBWidgets/Staffinfo/StaffinfoMain.dart';
+import '../../CBWidgets/Employees/EmployeesMain.dart';
+import '../../CBWidgets/Superiors/SuperiorsMain.dart';
+import '../../CBWidgets/DepartmentAdmin/DepartmentAdminMain.dart';
+import '../../CBWidgets/DepartmentHOD/DepartmentHODMain.dart';
+import '../../CBWidgets/DepartmentHOS/DepartmentHOSMain.dart';
+import '../../CBWidgets/UserGuideSteps/UserGuideStepsMain.dart';
+import '../../CBWidgets/UserGuide/UserGuideMain.dart';
+import '../../CBWidgets/Audits/AuditsMain.dart';
+import '../../CBWidgets/ChataiEnabler/ChataiEnablerMain.dart';
+import '../../CBWidgets/ChataiConfig/ChataiConfigMain.dart';
+import '../../CBWidgets/ChataiPrompts/ChataiPromptsMain.dart';
+import '../../CBWidgets/DocumentStorages/DocumentStoragesMain.dart';
+import '../../CBWidgets/Fcms/FcmsMain.dart';
+import '../../CBWidgets/FcmQues/FcmQuesMain.dart';
+import '../../CBWidgets/FcmMessages/FcmMessagesMain.dart';
+import '../../CBWidgets/HelpSidebarContents/HelpSidebarContentsMain.dart';
+import '../../CBWidgets/LoginHistories/LoginHistoriesMain.dart';
+import '../../CBWidgets/MailQues/MailQuesMain.dart';
+import '../../CBWidgets/ProfileMenu/ProfileMenuMain.dart';
+import '../../CBWidgets/MenuItems/MenuItemsMain.dart';
+import '../../CBWidgets/Uploader/UploaderMain.dart';
+import '../../CBWidgets/UserChangePassword/UserChangePasswordMain.dart';
+import '../../CBWidgets/UserInvites/UserInvitesMain.dart';
+import '../../CBWidgets/UserTrackerId/UserTrackerIdMain.dart';
+import '../../CBWidgets/PermissionServices/PermissionServicesMain.dart';
+import '../../CBWidgets/PermissionFields/PermissionFieldsMain.dart';
+import '../../CBWidgets/ErrorLogs/ErrorLogsMain.dart';
+import '../../CBWidgets/Inbox/InboxMain.dart';
+// CodeBridge Standard Widgets Ends here
 
+// Custom imports for the drawer menu and permissions.
 // ~cb-service-widget~
 
 class DrawerMenu extends StatefulWidget {

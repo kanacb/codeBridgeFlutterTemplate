@@ -5,11 +5,7 @@ import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
 import 'Employee.dart';
 import 'EmployeesProvider.dart';
-import '../Companies/Company.dart';
-import '../Departments/Department.dart';
-import '../Sections/Section.dart';
-import '../Positions/Position.dart';
-import '../Employees/Employee.dart';
+
 
 class EmployeesEdit extends StatefulWidget {
   const EmployeesEdit({
@@ -18,7 +14,7 @@ class EmployeesEdit extends StatefulWidget {
     required this.data,
     required this.empNo,
 		required this.name,
-		required this.fullname,
+		required this.fullName,
 		this.company,
 		this.department,
 		this.section,
@@ -34,14 +30,14 @@ class EmployeesEdit extends StatefulWidget {
   final Employee data;
   final String empNo;
 	final String name;
-	final String fullname;
-	final Company? company;
-	final Department? department;
-	final Section? section;
-	final Position? position;
-	final Employee? supervisor;
-	final DateTime? dateJoined;
-	final DateTime? dateTerminated;
+	final String fullName;
+	final String? company;
+	final String? department;
+	final String? section;
+	final String? position;
+	final String? supervisor;
+	final String? dateJoined;
+	final String? dateTerminated;
 	final String resigned;
 	final String empGroup;
 	final String empCode;

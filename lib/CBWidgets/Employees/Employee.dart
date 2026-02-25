@@ -1,11 +1,6 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
  
-import '../Companies/Company.dart';
-import '../Departments/Department.dart';
-import '../Sections/Section.dart';
-import '../Positions/Position.dart';
-import '../Employees/Employee.dart';
  
  
 part 'Employee.g.dart';
@@ -24,28 +19,28 @@ class Employee {
 	final String name;
 	@HiveField(3)
 	 
-	final String fullname;
+	final String fullName;
 	@HiveField(4)
 	 
-	final Company? company;
+	final String? company;
 	@HiveField(5)
 	 
-	final Department? department;
+	final String? department;
 	@HiveField(6)
 	 
-	final Section? section;
+	final String? section;
 	@HiveField(7)
 	 
-	final Position? position;
+	final String? position;
 	@HiveField(8)
 	 
-	final Employee? supervisor;
+	final String? supervisor;
 	@HiveField(9)
 	 
-	final DateTime? dateJoined;
+	final String? dateJoined;
 	@HiveField(10)
 	 
-	final DateTime? dateTerminated;
+	final String? dateTerminated;
 	@HiveField(11)
 	 
 	final String resigned;
@@ -60,7 +55,7 @@ class Employee {
     this.id,
 		required this.empNo,
 		required this.name,
-		required this.fullname,
+		required this.fullName,
 		this.company,
 		this.department,
 		this.section,
@@ -78,14 +73,14 @@ class Employee {
       id: map['_id'] as String?,
 			empNo : map['empNo'] as String,
 			name : map['name'] as String,
-			fullname : map['fullname'] as String,
-			company : map['company'] != null ? Company.fromJson(map['company']) : null,
-			department : map['department'] != null ? Department.fromJson(map['department']) : null,
-			section : map['section'] != null ? Section.fromJson(map['section']) : null,
-			position : map['position'] != null ? Position.fromJson(map['position']) : null,
-			supervisor : map['supervisor'] != null ? Employee.fromJson(map['supervisor']) : null,
-			dateJoined : map['dateJoined'] != null ? DateTime.parse(map['dateJoined']) : null,
-			dateTerminated : map['dateTerminated'] != null ? DateTime.parse(map['dateTerminated']) : null,
+			fullName : map['fullName'] as String,
+			company : map['company'] as String?,
+			department : map['department'] as String?,
+			section : map['section'] as String?,
+			position : map['position'] as String?,
+			supervisor : map['supervisor'] as String?,
+			dateJoined : map['dateJoined'] as String?,
+			dateTerminated : map['dateTerminated'] as String?,
 			resigned : map['resigned'] as String,
 			empGroup : map['empGroup'] as String,
 			empCode : map['empCode'] as String
@@ -94,17 +89,10 @@ class Employee {
 
   Map<String, dynamic> toJson() {
     return {
-      '_id' : id,
-			"company" : company?.id.toString(),
-			"department" : department?.id.toString(),
-			"section" : section?.id.toString(),
-			"position" : position?.id.toString(),
-			"supervisor" : supervisor?.id.toString(),
-			'dateJoined' : dateJoined?.toIso8601String(),
-			'dateTerminated' : dateTerminated?.toIso8601String()
+      '_id' : id
     };
 }
 
   @override
-  String toString() => 'Employee("_id" : $id,"empNo": $empNo.toString(),"name": $name.toString(),"fullname": $fullname.toString(),"company": $company.toString(),"department": $department.toString(),"section": $section.toString(),"position": $position.toString(),"supervisor": $supervisor.toString(),"dateJoined": $dateJoined?.toIso8601String()},"dateTerminated": $dateTerminated?.toIso8601String()},"resigned": $resigned.toString(),"empGroup": $empGroup.toString(),"empCode": $empCode.toString())';
+  String toString() => 'Employee("_id" : $id,"empNo": $empNo.toString(),"name": $name.toString(),"fullName": $fullName.toString(),"company": $company.toString(),"department": $department.toString(),"section": $section.toString(),"position": $position.toString(),"supervisor": $supervisor.toString(),"dateJoined": $dateJoined.toString(),"dateTerminated": $dateTerminated.toString(),"resigned": $resigned.toString(),"empGroup": $empGroup.toString(),"empCode": $empCode.toString())';
 }

@@ -4,19 +4,25 @@ import '../../Utils/Services/Schema.dart';
 import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/PageUtils.dart';
 import 'User.dart';
-import 'UsersMain.dart';
 import 'UsersProvider.dart';
-  
+
+
 class UsersEdit extends StatefulWidget {
   const UsersEdit({
     super.key,
     required this.schema,
     required this.data,
-    
+    required this.name,
+		required this.email,
+		required this.password,
+		this.status
   });
   final List<Schema> schema;
   final User data;
-  
+  final String name;
+	final String email;
+	final String password;
+	final bool? status;
 
   @override
   State<UsersEdit> createState() => _UsersEditState();

@@ -43,7 +43,7 @@ class DepartmentAdminProvider with ChangeNotifier implements DataFetchable{
       "select": [
         "empNo",
         "name",
-        "fullname",
+        "fullName",
         "company",
         "department",
         "section",

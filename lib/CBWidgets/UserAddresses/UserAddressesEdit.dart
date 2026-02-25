@@ -13,24 +13,24 @@ class UserAddressesEdit extends StatefulWidget {
     required this.schema,
     required this.data,
     this.userId,
-		this.Street1,
-		this.Street2,
-		this.Poscode,
-		this.City,
-		this.stateName,
-		this.Province,
-		this.Country
+		this.street1,
+		this.street2,
+		this.postalCode,
+		this.city,
+		this.state,
+		this.province,
+		this.country
   });
   final List<Schema> schema;
   final UserAddress data;
   final User? userId;
-	final String? Street1;
-	final String? Street2;
-	final String? Poscode;
-	final String? City;
-	final String? stateName;
-	final String? Province;
-	final String? Country;
+	final String? street1;
+	final String? street2;
+	final String? postalCode;
+	final String? city;
+	final String? state;
+	final String? province;
+	final String? country;
 
   @override
   State<UserAddressesEdit> createState() => _UserAddressesEditState();

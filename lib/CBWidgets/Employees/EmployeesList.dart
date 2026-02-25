@@ -198,11 +198,11 @@ class _EmployeesListState extends State<EmployeesList> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Company: ${item.company?.name}'),
-Text('Department: ${item.department?.deptName}'),
-Text('Section: ${item.section?.name}'),
-Text('Position: ${item.position?.name}'),
-Text('Supervisor: ${item.supervisor?.name}'),
+                Text('Company: ${item.company}'),
+Text('Department: ${item.department}'),
+Text('Section: ${item.section}'),
+Text('Position: ${item.position}'),
+Text('Supervisor: ${item.supervisor}'),
 Text('Date Joined: ${item.dateJoined}'),
 Text('Date Terminated: ${item.dateTerminated}'),
               ],
@@ -218,7 +218,7 @@ Text('Date Terminated: ${item.dateTerminated}'),
                         EmployeesEdit(
                           schema: schemaResponse?.data,
                           data: item,
-                          empNo : item.empNo,name : item.name,fullname : item.fullname,resigned : item.resigned,empGroup : item.empGroup,empCode : item.empCode
+                          empNo : item.empNo,name : item.name,fullName : item.fullName,resigned : item.resigned,empGroup : item.empGroup,empCode : item.empCode
                         )));
                   },
                 ),

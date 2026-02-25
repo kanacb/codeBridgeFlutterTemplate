@@ -199,7 +199,7 @@ class _SuperiorsListState extends State<SuperiorsList> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Superior: ${item.superior?.name}'),
-Text('Subordinate: ${item.subordinate?.empno}'),
+Text('Subordinate: ${item.subordinate?.empNo}'),
               ],
             ),
             trailing: Row(

@@ -8,7 +8,7 @@ import '../../Utils/Dialogs/SnackBars.dart';
 import '../../Utils/Services/Response.dart';
 import '../../Utils/PageUtils.dart';
 import '../../Utils/Validators.dart';
-import '../../Utils/MailQuesServiceVerify.dart';
+import '../../Utils/Services/MailQuesServiceVerify.dart';
 
 class SignUpSetup extends StatefulWidget {
   const SignUpSetup({super.key});

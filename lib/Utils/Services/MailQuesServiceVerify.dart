@@ -7,7 +7,7 @@ import '../../Utils/Globals.dart' as globals;
 import '../../Utils/Services/Response.dart';
 import '../../Utils/Services/SharedPreferences.dart';
 
-class MailQueServiceVerify {
+class MailQuesServiceVerify {
   Logger logger = globals.logger;
 
   Future<Response> createOnCodeVerify({
@@ -30,7 +30,7 @@ class MailQueServiceVerify {
         body: jsonEncode(<String, dynamic>{
           "name": "onCodeVerifyEmail",
           "type": "signup",
-          "from": "hr@atlasirms.com.my",
+          "from": "admin@cloudbasha.com",
           "recipients": [email],
           "status": true,
           "data": {"name": name, "code": code.toString()}, // keep as string

@@ -50,7 +50,7 @@ class MyAppLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return MaterialApp(
-      title: 'Atlas AIMS',
+      title: 'App',
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: Color(0xFFFFC107), // Yellow
@@ -100,7 +100,7 @@ class MyAppDashBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return MaterialApp(
-      title: 'Atlas AIMS',
+      title: 'App',
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: Color(0xFFFFC107), // Yellow

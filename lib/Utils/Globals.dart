@@ -16,12 +16,11 @@ Logger logger = Logger(
   ),
 );
 
-
 // ip Home 192.168.1.19
 // ip Office 192.168.100.19
 
 // dev
-const String api = 'http://localhost:3030';
+const String api = 'http://192.168.100.19:3030';
 
 // prd
 // const String api = 'http://localhost:4030';

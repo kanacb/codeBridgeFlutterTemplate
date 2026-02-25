@@ -91,7 +91,7 @@ class _Login extends State<Login> {
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                     Image.asset(
-                      'assets/logos/atlas-logo.jpg', // Replace with your logo path
+                      'assets/logos/codebridge-logo.jpg', // Replace with your logo path
                       height: 123,
                     ),
                     Column(
@@ -126,7 +126,7 @@ class _Login extends State<Login> {
                           },
                           onSaved: (value) {
                             if (staffIdLogin) {
-                              email = value! + "@atlasirms.com.my";
+                              email = value! + "@cloudbasha.com";
                             } else
                               email = value!;
                           },
@@ -287,7 +287,7 @@ class _Login extends State<Login> {
                                                   BorderRadius.circular(35),
                                             ),
                                             content: Text(
-                                              "Welcome onboard AIMS. Get ready to be awed.",
+                                              "Welcome onboard. Get ready to be awed.",
                                               style: TextStyle(
                                                 color: Colors.black87,
                                               ),

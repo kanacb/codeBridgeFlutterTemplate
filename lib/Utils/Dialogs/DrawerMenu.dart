@@ -53,6 +53,10 @@ import '../../CBWidgets/Inbox/InboxMain.dart';
 // CodeBridge Standard Widgets Ends here
 
 // Custom imports for the drawer menu and permissions.
+import '../../Widgets/Products/ProductsMain.dart';
+import '../../Widgets/Orders/OrdersMain.dart';
+import '../../Widgets/Customers/CustomersMain.dart';
+import '../../Widgets/Items/ItemsMain.dart';
 // ~cb-service-widget~
 
 class DrawerMenu extends StatefulWidget {
@@ -115,7 +119,6 @@ class _DrawerMenuState extends State<DrawerMenu> {
         "Roles",
         "Positions",
         "Profiles",
-
         "Templates",
         "User Addresses",
         "Company Addresses",
@@ -145,29 +148,17 @@ class _DrawerMenuState extends State<DrawerMenu> {
         "Uploader",
         "User Change Password",
         "User Invites",
-
         "User Tracker Id",
         "Permission Services",
         "Permission Fields",
-
         "Error Logs",
         "Inbox",
       ],
     };
-
-    Map<String, List<String>> companyRestriction = {
-      "atlas": ["Raise Atlas Ticket", "Atlas Tickets"],
-      "irms": [
-        "Raise External Ticket",
-        "Raise Incoming Ticket",
-        "External Tickets",
-        "Job Stations",
-        "Incoming Machines",
-      ],
-      "etika": ["Raise MEM Ticket", "MEM Tickets"],
-      "external": ["Raise External Ticket", "External Tickets"],
-      "External": ["Raise External Ticket", "External Tickets"],
-    };
+    // if (kDebugMode) {
+    //   print(rolePermissions[role]);
+    // }
+    Map<String, List<String>> companyRestriction = {};
 
     // admin super bypass companyType
     if (role == 'Admin' || role == 'Super') {
@@ -209,13 +200,13 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    "assets/logos/atlas-logo.jpg",
+                    "assets/logos/codebridge-logo.jpg",
                     height: 35,
                     alignment: Alignment.topCenter,
                   ),
                   SizedBox(width: 10),
                   Text(
-                    "AIMS",
+                    "App",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,

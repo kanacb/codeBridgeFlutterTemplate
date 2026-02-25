@@ -228,13 +228,13 @@ class _DashboardState extends State<Dashboard> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            "assets/logos/atlas-logo.jpg",
+            "assets/logos/codebridge_logo.jpg",
             height: 35,
             alignment: Alignment.topCenter,
           ),
           SizedBox(width: 10),
           Text(
-            "AIMS",
+            "App",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
         ],

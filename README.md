@@ -4,38 +4,44 @@
 
 1. In VS Code / Android Studio: Go to Settings > Build, Execution, Deployment > Build Tools > Gradle. Change the Gradle JDK to JDK 17. Download the latest version from Oracle Java.
 
-2. Set the package name in cbConfig.json
+2. Set the package name in /cbConfig.json
 
-3. run 'node initPackage.js' // follow the instructions on completed
+3. run 'node initPackage.js' // follow the instructions
 
 4. Create Firebase Project, with billing enabled. Set the package name to the one set in the cbConfig file.
 
-5. run 'node configAndroid.js' // follow the instructions on completed
+5. run 'node configAndroid.js' // follow the instructions
 
 6. run 'node rebuild.js' // clean and rebuild your app
 
-Validation Notes:
-### check if this gradle version is correct
+Additional Android Validation Notes:
+### set the gradle version in android/gradle/wrapper/gradle-wrapper.properties 
 distributionUrl=https\://services.gradle.org/distributions/gradle-9.3.0-all.zip
 
-### check if the below files have the correct version number
-Place the package name in local.properties and pubspec.yaml file
+### rebuild adapters
+dart run build_runner build --delete-conflicting-outputs
 
-### check if the version is set to 17 inenjoy android/app/build.gradle
+### set the values like below in the android/app/build.gradle.kts file
 ====== start ======
+    defaultConfig {
+        multiDexEnabled = true
+    }
 
     compileOptions {
-        // Change 1.8 to VERSION_17
+        // Change 11 to VERSION_17
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
         isCoreLibraryDesugaringEnabled  = true 
     }
 
     kotlinOptions {
-        // Change '1.8' to '17'
+        // Change '11' to '17'
         jvmTarget = '17'
     }
 
+    dependencies {
+        coreLibraryDesugaring ("com.android.tools:desugar_jdk_libs:2.0.3")
+    }
 ====== end ======
 
 enjoy coding.
@@ -52,6 +58,4 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-
-
 

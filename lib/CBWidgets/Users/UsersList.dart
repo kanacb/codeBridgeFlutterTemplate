@@ -17,7 +17,6 @@ import 'UsersAdd.dart';
 import 'UsersEdit.dart';
 import 'UsersProvider.dart';
 
-
 class UsersList extends StatefulWidget {
   const UsersList({super.key});
 
@@ -76,33 +75,40 @@ class _UsersListState extends State<UsersList> {
       body: provider.isLoading
           ? const Center(child: CircularProgressIndicator())
           : GestureDetector(
-        onTap: () => setState(() {
-          _showMenu = false;
-          _showFilterBy = false;
-          _showFields = false;
-          _showSort = false;
-        }),
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                _buildHeader(),
-                data.isEmpty
-                    ? const Expanded(
-                  child: Center(
-                    child: Text('No data available'),
+              onTap: () => setState(() {
+                _showMenu = false;
+                _showFilterBy = false;
+                _showFields = false;
+                _showSort = false;
+              }),
+              child: Stack(
+                children: [
+                  Column(
+                    children: [
+                      _buildHeader(),
+                      data.isEmpty
+                          ? const Expanded(
+                              child: Center(child: Text('No data available')),
+                            )
+                          : Expanded(child: _buildList(data)),
+                    ],
                   ),
-                )
-                    : Expanded(child: _buildList(data)),
-              ],
+                  ServiceMoreMenu(show: _showMenu),
+                  ServiceFilterByMenu(
+                    show: _showFilterBy,
+                    response: schemaResponse?.data,
+                  ),
+                  ServiceSortByMenu(
+                    show: _showSort,
+                    response: schemaResponse?.data,
+                  ),
+                  ServiceFieldsMenu(
+                    show: _showFields,
+                    response: schemaResponse?.data,
+                  ),
+                ],
+              ),
             ),
-            ServiceMoreMenu(show: _showMenu),
-            ServiceFilterByMenu(show: _showFilterBy, response: schemaResponse?.data),
-            ServiceSortByMenu(show: _showSort, response: schemaResponse?.data),
-            ServiceFieldsMenu(show: _showFields, response: schemaResponse?.data),
-          ],
-        ),
-      ),
       bottomNavigationBar: CBBottomNavigationBar(),
     );
   }
@@ -142,12 +148,19 @@ class _UsersListState extends State<UsersList> {
             onChanged: (value) {
               setState(() {
                 _allSelected = value!;
-                _selected = List<bool>.filled(200, _allSelected, growable: true);
+                _selected = List<bool>.filled(
+                  200,
+                  _allSelected,
+                  growable: true,
+                );
               });
             },
           ),
           IconButton(
-            icon: Icon(Icons.filter_list, color: _showFilterBy ? Colors.red : Colors.grey),
+            icon: Icon(
+              Icons.filter_list,
+              color: _showFilterBy ? Colors.red : Colors.grey,
+            ),
             onPressed: () => setState(() => _showFilterBy = !_showFilterBy),
           ),
           IconButton(
@@ -155,13 +168,20 @@ class _UsersListState extends State<UsersList> {
             onPressed: () => setState(() => _showSort = !_showSort),
           ),
           IconButton(
-            icon: Icon(Icons.list, color: _showFields ? Colors.red : Colors.grey),
+            icon: Icon(
+              Icons.list,
+              color: _showFields ? Colors.red : Colors.grey,
+            ),
             onPressed: () => setState(() => _showFields = !_showFields),
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).push(Utils().createRoute(
-                  context, UsersAdd(resource: schemaResponse?.data)));
+              Navigator.of(context).push(
+                Utils().createRoute(
+                  context,
+                  UsersAdd(resource: schemaResponse?.data),
+                ),
+              );
             },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
             child: const Text("Add", style: TextStyle(color: Colors.white)),
@@ -197,9 +217,7 @@ class _UsersListState extends State<UsersList> {
             ),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Status: ${item.status}'),
-              ],
+              children: [Text('Status: ${item.status}')],
             ),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
@@ -207,13 +225,17 @@ class _UsersListState extends State<UsersList> {
                 IconButton(
                   icon: const Icon(Icons.edit, color: Colors.red),
                   onPressed: () {
-                    Navigator.of(context).push(Utils().createRoute(
+                    Navigator.of(context).push(
+                      Utils().createRoute(
                         context,
                         UsersEdit(
                           schema: schemaResponse?.data,
                           data: item,
-                          name : item.name,email : item.email,password : item.password
-                        )));
+                          name: item.name,
+                          email: item.email,
+                        ),
+                      ),
+                    );
                   },
                 ),
                 IconButton(
@@ -236,7 +258,8 @@ class _UsersListState extends State<UsersList> {
             ),
           ),
           TextButton(
-            onPressed: () => setState(() => _showMore[index] = !_showMore[index]),
+            onPressed: () =>
+                setState(() => _showMore[index] = !_showMore[index]),
             child: Text(
               _showMore[index] ? 'Show less' : 'Show more',
               style: const TextStyle(color: Colors.red),

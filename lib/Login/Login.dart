@@ -91,7 +91,7 @@ class _Login extends State<Login> {
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                     Image.asset(
-                      'assets/logos/codebridge-logo.jpg', // Replace with your logo path
+                      'assets/logos/codebridge-logo.png', // Replace with your logo path
                       height: 123,
                     ),
                     Column(

@@ -228,7 +228,7 @@ class _DashboardState extends State<Dashboard> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            "assets/logos/codebridge_logo.jpg",
+            "assets/logos/codebridge-logo.png",
             height: 35,
             alignment: Alignment.topCenter,
           ),

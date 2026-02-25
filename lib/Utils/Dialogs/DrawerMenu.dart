@@ -200,7 +200,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    "assets/logos/codebridge-logo.jpg",
+                    "assets/logos/codebridge-logo.png",
                     height: 35,
                     alignment: Alignment.topCenter,
                   ),

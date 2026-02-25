@@ -222,7 +222,9 @@ class _SignUpSetup extends State<SignUpSetup> {
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text("Failed to send Code"),
+                                  content: Text(
+                                    "Failed to send Code, user may already exist",
+                                  ),
                                   elevation: 2,
                                   duration: const Duration(seconds: 3),
                                   behavior: SnackBarBehavior.floating,

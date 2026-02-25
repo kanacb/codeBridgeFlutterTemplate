@@ -219,16 +219,45 @@ class _DrawerMenuState extends State<DrawerMenu> {
           ),
 
           // Dashboard Section.
-          if (hasAccess(role, "Dashboard"))
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Home'),
-              onTap: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => Dashboard(i: 1)),
-                );
-              },
-            ),
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text('Home'),
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => Dashboard(i: 1)),
+              );
+            },
+          ),
+
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text('Customers'),
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => CustomersPage()),
+              );
+            },
+          ),
+
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text('Orders'),
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => OrdersPage()),
+              );
+            },
+          ),
+
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text('Products'),
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => ProductsPage()),
+              );
+            },
+          ),
         ],
       ),
     );

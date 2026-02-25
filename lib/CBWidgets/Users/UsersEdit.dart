@@ -6,23 +6,20 @@ import '../../Utils/PageUtils.dart';
 import 'User.dart';
 import 'UsersProvider.dart';
 
-
 class UsersEdit extends StatefulWidget {
   const UsersEdit({
     super.key,
     required this.schema,
     required this.data,
     required this.name,
-		required this.email,
-		required this.password,
-		this.status
+    required this.email,
+    this.status,
   });
   final List<Schema> schema;
   final User data;
   final String name;
-	final String email;
-	final String password;
-	final bool? status;
+  final String email;
+  final bool? status;
 
   @override
   State<UsersEdit> createState() => _UsersEditState();
@@ -58,12 +55,7 @@ class _UsersEditState extends State<UsersEdit> {
   }
 
   bool shouldExcludeField(Schema field) {
-    final excludedFields = [
-      '_id',
-      'createdAt',
-      'updatedAt',
-      'password'
-    ]; // Keys to exclude
+    final excludedFields = ['_id', 'createdAt', 'updatedAt']; // Keys to exclude
     final excludedTypes = ['bool', 'date']; // Types to exclude
     return excludedFields.contains(field.field) ||
         excludedTypes.contains(field.type!);
@@ -116,10 +108,16 @@ class _UsersEditState extends State<UsersEdit> {
         }
         if (field.field.toLowerCase().contains("email")) {
           return utils.buildEmailField(
-              field, onChanged, initialValue[field.field]);
+            field,
+            onChanged,
+            initialValue[field.field],
+          );
         } else {
           return utils.buildTextField(
-              field, onChanged, initialValue[field.field]);
+            field,
+            onChanged,
+            initialValue[field.field],
+          );
         }
       case 'boolean':
         void onChange(value) {
@@ -128,7 +126,11 @@ class _UsersEditState extends State<UsersEdit> {
           });
         }
         return utils.buildCheckbox(
-            field, formData, onChange, initialValue[field.field]);
+          field,
+          formData,
+          onChange,
+          initialValue[field.field],
+        );
       case 'bool':
         void onChange(value) {
           setState(() {
@@ -136,7 +138,11 @@ class _UsersEditState extends State<UsersEdit> {
           });
         }
         return utils.buildCheckbox(
-            field, formData, onChange, initialValue[field.field]);
+          field,
+          formData,
+          onChange,
+          initialValue[field.field],
+        );
       case 'number':
         void onChange(value) {
           setState(() {
@@ -144,7 +150,11 @@ class _UsersEditState extends State<UsersEdit> {
           });
         }
         return utils.buildNumberField(
-            field, formData, onChange, initialValue[field.field]);
+          field,
+          formData,
+          onChange,
+          initialValue[field.field],
+        );
       case 'date':
         void onSetDate(value) {
           setState(() {
@@ -152,7 +162,12 @@ class _UsersEditState extends State<UsersEdit> {
           });
         }
         return utils.buildDateField(
-            field, formData, context, onSetDate, DateTime.parse(initialValue[field.field]));
+          field,
+          formData,
+          context,
+          onSetDate,
+          DateTime.parse(initialValue[field.field]),
+        );
       default:
         return SizedBox.shrink();
     }
